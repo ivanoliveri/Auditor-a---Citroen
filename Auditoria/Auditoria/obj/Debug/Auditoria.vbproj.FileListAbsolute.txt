@@ -1,0 +1,60 @@
+C:\Documents and Settings\oli\Escritorio\ULTIMO PROYECTO\Auditoria\Auditoria\bin\Auditoria.dll
+C:\Documents and Settings\oli\Escritorio\ULTIMO PROYECTO\Auditoria\Auditoria\bin\Auditoria.pdb
+C:\Documents and Settings\oli\Escritorio\ULTIMO PROYECTO\Auditoria\Auditoria\bin\Auditoria.xml
+C:\Documents and Settings\oli\Escritorio\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\oli\Escritorio\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\Auditoria.Resources.resources
+C:\Documents and Settings\oli\Escritorio\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\oli\Escritorio\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\oli\Escritorio\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\Auditoria.dll
+C:\Documents and Settings\oli\Escritorio\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\Auditoria.xml
+C:\Documents and Settings\oli\Escritorio\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\Auditoria.pdb
+C:\Users\ivan\Desktop\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\bin\Auditoria.dll
+C:\Users\ivan\Desktop\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\bin\Auditoria.pdb
+C:\Users\ivan\Desktop\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\bin\Auditoria.xml
+C:\Users\ivan\Desktop\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\ivan\Desktop\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\Auditoria.Resources.resources
+C:\Users\ivan\Desktop\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\ivan\Desktop\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\ivan\Desktop\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\Auditoria.dll
+C:\Users\ivan\Desktop\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\Auditoria.xml
+C:\Users\ivan\Desktop\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\Auditoria.pdb
+C:\Users\ivan\Desktop\ULTIMO PROYECTO - 15.06\ULTIMO PROYECTO\Auditoria\Auditoria\bin\Auditoria.dll
+C:\Users\ivan\Desktop\ULTIMO PROYECTO - 15.06\ULTIMO PROYECTO\Auditoria\Auditoria\bin\Auditoria.pdb
+C:\Users\ivan\Desktop\ULTIMO PROYECTO - 15.06\ULTIMO PROYECTO\Auditoria\Auditoria\bin\Auditoria.xml
+C:\Users\ivan\Desktop\ULTIMO PROYECTO - 15.06\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\ivan\Desktop\ULTIMO PROYECTO - 15.06\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\Auditoria.Resources.resources
+C:\Users\ivan\Desktop\ULTIMO PROYECTO - 15.06\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\ivan\Desktop\ULTIMO PROYECTO - 15.06\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\ivan\Desktop\ULTIMO PROYECTO - 15.06\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\Auditoria.dll
+C:\Users\ivan\Desktop\ULTIMO PROYECTO - 15.06\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\Auditoria.xml
+C:\Users\ivan\Desktop\ULTIMO PROYECTO - 15.06\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\Auditoria.pdb
+C:\Users\ivan\Desktop\ULTIMO PROYECTOwa\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\bin\Auditoria.dll
+C:\Users\ivan\Desktop\ULTIMO PROYECTOwa\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\bin\Auditoria.pdb
+C:\Users\ivan\Desktop\ULTIMO PROYECTOwa\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\bin\Auditoria.xml
+C:\Users\ivan\Desktop\ULTIMO PROYECTOwa\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\ivan\Desktop\ULTIMO PROYECTOwa\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\Auditoria.Resources.resources
+C:\Users\ivan\Desktop\ULTIMO PROYECTOwa\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\ivan\Desktop\ULTIMO PROYECTOwa\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\ivan\Desktop\ULTIMO PROYECTOwa\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\Auditoria.dll
+C:\Users\ivan\Desktop\ULTIMO PROYECTOwa\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\Auditoria.xml
+C:\Users\ivan\Desktop\ULTIMO PROYECTOwa\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\Auditoria.pdb
+C:\Users\ivan\Desktop\ULTIMO PROYECTO\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\bin\Auditoria.dll
+C:\Users\ivan\Desktop\ULTIMO PROYECTO\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\bin\Auditoria.pdb
+C:\Users\ivan\Desktop\ULTIMO PROYECTO\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\bin\Auditoria.xml
+C:\Users\ivan\Desktop\ULTIMO PROYECTO\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\ivan\Desktop\ULTIMO PROYECTO\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\Auditoria.Resources.resources
+C:\Users\ivan\Desktop\ULTIMO PROYECTO\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\ivan\Desktop\ULTIMO PROYECTO\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\ivan\Desktop\ULTIMO PROYECTO\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\Auditoria.dll
+C:\Users\ivan\Desktop\ULTIMO PROYECTO\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\Auditoria.xml
+C:\Users\ivan\Desktop\ULTIMO PROYECTO\ULTIMO PROYECTO\ULTIMO PROYECTO\Auditoria\Auditoria\obj\Debug\Auditoria.pdb
+C:\Users\ivan\Desktop\Trabajos\Desarrollos\Auditoria\Auditoria\bin\Auditoria.dll
+C:\Users\ivan\Desktop\Trabajos\Desarrollos\Auditoria\Auditoria\bin\Auditoria.pdb
+C:\Users\ivan\Desktop\Trabajos\Desarrollos\Auditoria\Auditoria\bin\Auditoria.xml
+C:\Users\ivan\Desktop\Trabajos\Desarrollos\Auditoria\Auditoria\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\ivan\Desktop\Trabajos\Desarrollos\Auditoria\Auditoria\obj\Debug\Auditoria.Resources.resources
+C:\Users\ivan\Desktop\Trabajos\Desarrollos\Auditoria\Auditoria\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\ivan\Desktop\Trabajos\Desarrollos\Auditoria\Auditoria\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\ivan\Desktop\Trabajos\Desarrollos\Auditoria\Auditoria\obj\Debug\Auditoria.dll
+C:\Users\ivan\Desktop\Trabajos\Desarrollos\Auditoria\Auditoria\obj\Debug\Auditoria.xml
+C:\Users\ivan\Desktop\Trabajos\Desarrollos\Auditoria\Auditoria\obj\Debug\Auditoria.pdb
