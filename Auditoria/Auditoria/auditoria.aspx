@@ -164,10 +164,12 @@
                                             <ItemTemplate>
                                                 <asp:RadioButtonList ID="RadioButtonList1" runat="server" 
                                                     RepeatDirection="Horizontal" AutoPostBack="True" 
+                                                    SelectedValue='<%#Eval("ESTADO")%>'
                                                     onselectedindexchanged="RadioButtonList1_SelectedIndexChanged">
                                                     <asp:ListItem Value="B">B</asp:ListItem>
                                                     <asp:ListItem Value="R">R</asp:ListItem>
                                                     <asp:ListItem Value="M">M</asp:ListItem>
+                                                    <asp:ListItem Value="N">N</asp:ListItem>
                                                 </asp:RadioButtonList>
                                             </ItemTemplate>
                                         </asp:TemplateField>
