@@ -46,18 +46,7 @@ Public Class auditoria
         btnF.Attributes.Add("onmouseout", "javascript:llenarLabel('')")
         btnG.Attributes.Add("onmouseout", "javascript:llenarLabel('')")
         'Seteo que los TextBox estén en align CENTER
-        For Each row As GridViewRow In GridViewData.Rows
-
-            ' MsgBox(lblFecha.Text)
-            '    If unaFecha <> "" Then
-            '        Dim unaNuevaFecha As String
-            '        formatDate(unaFecha, unaNuevaFecha)
-            '   lblFecha.Text = unaNuevaFecha
-            Dim txtStock As TextBox = CType(row.FindControl("TextBox1"), TextBox)
-            txtStock.Attributes.CssStyle.Add("TEXT-ALIGN", "center")
-            '      End If
-        Next
-
+        formatGridView()
         hideNextOrPrevious()
     End Sub
 
@@ -65,42 +54,49 @@ Public Class auditoria
         lastCat = "A"
         cargarCategoria()
         setBorderOfButton(btnA)
+        formatGridView()
     End Sub
 
     Protected Sub btnB_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnB.Click
         lastCat = "B"
         cargarCategoria()
         setBorderOfButton(btnB)
+        formatGridView()
     End Sub
 
     Protected Sub btnC_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnC.Click
         lastCat = "C"
         cargarCategoria()
         setBorderOfButton(btnC)
+        formatGridView()
     End Sub
 
     Protected Sub btnD_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnD.Click
         lastCat = "D"
         cargarCategoria()
         setBorderOfButton(btnD)
+        formatGridView()
     End Sub
 
     Protected Sub btnE_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnE.Click
         lastCat = "E"
         cargarCategoria()
         setBorderOfButton(btnE)
+        formatGridView()
     End Sub
 
     Protected Sub btnF_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnF.Click
         lastCat = "F"
         cargarCategoria()
         setBorderOfButton(btnF)
+        formatGridView()
     End Sub
 
     Protected Sub btnG_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnG.Click
         lastCat = "G"
         cargarCategoria()
         setBorderOfButton(btnG)
+        formatGridView()
     End Sub
 
     Protected Sub btnNext_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnNext.Click
@@ -116,6 +112,7 @@ Public Class auditoria
             unasReferencias.dataSet = unaTablaTemporal.dataSet
             unasReferencias.fillGridView(GridViewData)
             hideNextOrPrevious()
+            formatGridView()
         End If
     End Sub
 
@@ -136,6 +133,7 @@ Public Class auditoria
                 unasReferencias.fillGridView(GridViewData)
             End If
             hideNextOrPrevious()
+            formatGridView()
         End If
     End Sub
 
@@ -219,7 +217,7 @@ Public Class auditoria
         Next
     End Sub
     Protected Sub formatDate(ByVal unaFecha As String, ByRef unaNuevaFecha As String)
-        Dim unAno As String = Left(unaFecha, 4)
+        Dim unAno As String = Mid(unaFecha, 3, 2)
         Dim unMes As String = Mid(unaFecha, 5, 2)
         Dim unDia As String = Mid(unaFecha, 7, 2)
         unaNuevaFecha = unDia & "/" & unMes & "/" & unAno
@@ -247,5 +245,20 @@ Public Class auditoria
         btnG.BorderWidth = 0
         unButton.BorderWidth = 2
         unButton.BorderColor = Drawing.Color.Red
+    End Sub
+    Protected Sub formatGridView()
+        For Each row As GridViewRow In GridViewData.Rows
+            Dim lblFecha As Label = CType(row.FindControl("Label7"), Label)
+            Dim lblFechaEnviada As Label = CType(row.FindControl("Label9"), Label)
+            Dim unaFechaVieja As String = lblFecha.Text
+            Dim unaFecha As String
+            formatDate(unaFechaVieja, unaFecha)
+            lblFecha.Text = unaFecha
+            unaFechaVieja = lblFechaEnviada.Text
+            formatDate(unaFechaVieja, unaFecha)
+            lblFechaEnviada.Text = unaFecha
+            Dim txtStock As TextBox = CType(row.FindControl("TextBox1"), TextBox)
+            txtStock.Attributes.CssStyle.Add("TEXT-ALIGN", "center")
+        Next
     End Sub
 End Class
