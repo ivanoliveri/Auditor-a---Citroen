@@ -173,19 +173,26 @@ Public Class auditoria
     Protected Sub TextBox1_TextChanged(sender As Object, e As EventArgs)
         Dim unaPosicion As Integer = 0
         For Each row As GridViewRow In GridViewData.Rows
+            Dim radEstado As RadioButtonList = CType(row.FindControl("RadioButtonList1"), RadioButtonList)
             Dim txtStock As TextBox = CType(row.FindControl("TextBox1"), TextBox)
             Dim unStockTextBox As String = Trim(txtStock.Text)
-            'MsgBox(unStockTextBox)
             Dim unStockDataTable As String = Trim(unasReferencias.getItem(unaPosicion, 2))
+            Dim unaFechaDataTable As String = Trim(unasReferencias.getItem(unaPosicion, 7))
             If unStockTextBox <> unStockDataTable Then
-                ' MsgBox(unaPosicion)
                 Dim unaTablaIdReferencia As TablaSQL = New TablaSQL
                 unaTablaIdReferencia.setConnectionString(unConnectionString)
                 unaTablaIdReferencia.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & unasReferencias.getItem(unaPosicion, 0) & "'")
-                'MsgBox("UPDATE AUD_RELEVAMIENTOS SET STOCK_REAL='" & unStockTextBox & "' WHERE ID_AUD_REFERENCIAS=" & CInt(unaTablaIdReferencia.getItem(0, 0)) & " AND CE=" & unNumeroDeCE & " AND SUCURSAL=" & unNumeroDeSucursal)
-                unasReferencias.execQuery("UPDATE AUD_RELEVAMIENTOS SET STOCK='" & unStockTextBox & "' WHERE ID_AUD_REFERENCIAS=" & CInt(unaTablaIdReferencia.getItem(0, 0)) & " AND CE=" & unNumeroDeCE & " AND SUCURSAL=" & unNumeroDeSucursal)
+                Dim unaTablaNuevaDeAuditoria As TablaSQL = New TablaSQL
+                unaTablaNuevaDeAuditoria.setConnectionString(unConnectionString)
+                unaTablaNuevaDeAuditoria.getDataSet("SELECT COUNT(*) FROM AUD_RELEVAMIENTOS WHERE CE=" & unNumeroDeCE & " AND SUCURSAL=" & unNumeroDeSucursal & " AND PERIODO='" & unPeriodoActual & "'" & " AND ID_AUD_REFERENCIAS=" & CInt(unaTablaIdReferencia.getItem(0, 0)))
+                'Si no encuentra relevamientos en el período actual para la referencia indicada INSERTA sino UPDATE
+                If CInt(unaTablaNuevaDeAuditoria.getItem(0, 0)) = 0 Then
+                    unaTablaNuevaDeAuditoria.execQuery("INSERT INTO AUD_RELEVAMIENTOS VALUES(" & unNumeroDeCE & "," & unNumeroDeSucursal & ",'" & unPeriodoActual & "'," & unaFechaDataTable & "," & CInt(unaTablaIdReferencia.getItem(0, 0)) & ",'" & unStockTextBox & "','" & radEstado.SelectedValue & "','')")
+                Else
+                    unaTablaNuevaDeAuditoria.execQuery("UPDATE AUD_RELEVAMIENTOS SET STOCK=" & unStockTextBox & " WHERE CE=" & unNumeroDeCE & " AND SUCURSAL=" & unNumeroDeSucursal & " AND PERIODO='" & unPeriodoActual & "' AND ID_AUD_REFERENCIAS=" & CInt(unaTablaIdReferencia.getItem(0, 0)))
+                End If
+                unaPosicion += 1
             End If
-            unaPosicion += 1
         Next
     End Sub
 
