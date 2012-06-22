@@ -169,6 +169,7 @@ Public Class auditoria
         paginaActualMain = 1
         calcularPaginas(lastCat)
         traerPrimerosRegistros(lastCat)
+        hideNextOrPrevious()
     End Sub
 
     Protected Sub TextBox1_TextChanged(sender As Object, e As EventArgs)

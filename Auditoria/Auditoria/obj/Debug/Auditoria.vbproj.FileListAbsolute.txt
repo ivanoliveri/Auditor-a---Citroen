@@ -58,3 +58,13 @@ C:\Users\ivan\Desktop\Trabajos\Desarrollos\Auditoria\Auditoria\obj\Debug\Generat
 C:\Users\ivan\Desktop\Trabajos\Desarrollos\Auditoria\Auditoria\obj\Debug\Auditoria.dll
 C:\Users\ivan\Desktop\Trabajos\Desarrollos\Auditoria\Auditoria\obj\Debug\Auditoria.xml
 C:\Users\ivan\Desktop\Trabajos\Desarrollos\Auditoria\Auditoria\obj\Debug\Auditoria.pdb
+C:\Users\ivan\Documents\GitHub\Auditor-a---Citroen\Auditoria\Auditoria\bin\Auditoria.dll
+C:\Users\ivan\Documents\GitHub\Auditor-a---Citroen\Auditoria\Auditoria\bin\Auditoria.pdb
+C:\Users\ivan\Documents\GitHub\Auditor-a---Citroen\Auditoria\Auditoria\bin\Auditoria.xml
+C:\Users\ivan\Documents\GitHub\Auditor-a---Citroen\Auditoria\Auditoria\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\ivan\Documents\GitHub\Auditor-a---Citroen\Auditoria\Auditoria\obj\Debug\Auditoria.Resources.resources
+C:\Users\ivan\Documents\GitHub\Auditor-a---Citroen\Auditoria\Auditoria\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\ivan\Documents\GitHub\Auditor-a---Citroen\Auditoria\Auditoria\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\ivan\Documents\GitHub\Auditor-a---Citroen\Auditoria\Auditoria\obj\Debug\Auditoria.dll
+C:\Users\ivan\Documents\GitHub\Auditor-a---Citroen\Auditoria\Auditoria\obj\Debug\Auditoria.xml
+C:\Users\ivan\Documents\GitHub\Auditor-a---Citroen\Auditoria\Auditoria\obj\Debug\Auditoria.pdb
