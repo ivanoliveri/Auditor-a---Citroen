@@ -2,6 +2,99 @@
 Public Class auditoria
     Inherits System.Web.UI.Page
 
+    Protected Sub traerPrimerosRegistros(ByVal lastCat As String)
+        Dim unaTablaIdCategoria As TablaSQL = New TablaSQL()
+        unaTablaIdCategoria.setConnectionString(unConnectionString)
+        unaTablaIdCategoria.getDataSet("SELECT ID FROM AUD_CATEGORIAS WHERE CODIGO='" & lastCat & "'")
+        Dim unaTablaTemporal As TablaSQL = New TablaSQL()
+        unaTablaTemporal.setConnectionString(unConnectionString)
+        'CREO UNA TABLA TEMPORAL PARA OBTENER EL CORRESPONDIENTE NÚMERO DE FILAS DE CADA UNO, CUANDO LA TERMINO DE USAR SE BORRA SOLA
+        unaTablaTemporal.getDataSet("CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1) NOT NULL,[NRO_REFERENCIA] [char](20) NULL,[DESCRIPCION] [char] (75) NULL,[STOCK_ENVIADO] [int] NULL,[ESTADO_ENVIADO] [char] (1) NULL,[FECHA_ENVIADA] [char] (20) NULL,[STOCK] [int] NULL,[ESTADO] [char] (1) NULL,[FECHA] [char] (20) NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (NRO_REFERENCIA,DESCRIPCION,STOCK_ENVIADO,ESTADO_ENVIADO,FECHA_ENVIADA,STOCK,ESTADO,FECHA)SELECT AUD_REFERENCIAS.NRO_REFERENCIA,AUD_REFERENCIAS.DESCRIPCION,(SELECT AUD_RELEVAMIENTOS.STOCK FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ") AS STOCK_ENVIADO, (SELECT AUD_RELEVAMIENTOS.ESTADO FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ") AS ESTADO_ENVIADO,(SELECT AUD_RELEVAMIENTOS.FECHA FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ") AS FECHA_ENVIADA,AUD_RELEVAMIENTOS.STOCK, AUD_RELEVAMIENTOS.ESTADO, AUD_RELEVAMIENTOS.FECHA FROM AUD_RELEVAMIENTOS INNER JOIN AUD_REFERENCIAS ON AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID WHERE AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & " AND AUD_REFERENCIAS.ID_CATEGORIA=" & CInt(unaTablaIdCategoria.getItem(0, 0)) & " AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoActual & "' UNION SELECT NRO_REFERENCIA,DESCRIPCION,(SELECT AUD_RELEVAMIENTOS.STOCK FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ") AS STOCK_ENVIADO,(SELECT AUD_RELEVAMIENTOS.ESTADO FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ")AS ESTADO_ENVIADO,(SELECT AUD_RELEVAMIENTOS.FECHA FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ")AS FECHA_ENVIADA, '' AS STOCK, 'N' AS ESTADO, CONVERT(VARCHAR(8), GETDATE(), 112) AS FECHA FROM AUD_REFERENCIAS WHERE ID_CATEGORIA=" & CInt(unaTablaIdCategoria.getItem(0, 0)) & " AND ID NOT IN (SELECT ID_AUD_REFERENCIAS FROM AUD_RELEVAMIENTOS WHERE CE=" & unNumeroDeCE & " AND SUCURSAL=" & unNumeroDeSucursal & " AND PERIODO='" & unPeriodoActual & "' )SELECT NRO_REFERENCIA,DESCRIPCION,STOCK_ENVIADO,ESTADO_ENVIADO,FECHA_ENVIADA,STOCK,ESTADO,FECHA FROM #TEMP_REFERENCIAS WHERE FILA>0 AND FILA<=10")
+        unasReferencias.dataSet = unaTablaTemporal.dataSet
+        unasReferencias.fillGridView(GridViewData)
+        paginaActualMain = 1
+    End Sub
+    Protected Sub calcularPaginas(ByVal lastCat As String)
+        Dim unaTablaTemporal As TablaSQL = New TablaSQL()
+        unaTablaTemporal.setConnectionString(unConnectionString)
+        Dim unaTablaIdCategoria As TablaSQL = New TablaSQL()
+        unaTablaIdCategoria.setConnectionString(unConnectionString)
+        unaTablaIdCategoria.getDataSet("SELECT ID FROM AUD_CATEGORIAS WHERE CODIGO='" & lastCat & "'")
+        unaTablaTemporal.getDataSet("CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1) NOT NULL,[NRO_REFERENCIA] [char](20) NULL,[DESCRIPCION] [char] (75) NULL,[STOCK_ENVIADO] [int] NULL,[ESTADO_ENVIADO] [char] (1) NULL,[FECHA_ENVIADA] [char] (20) NULL,[STOCK] [int] NULL,[ESTADO] [char] (1) NULL,[FECHA] [char] (20) NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (NRO_REFERENCIA,DESCRIPCION,STOCK_ENVIADO,ESTADO_ENVIADO,FECHA_ENVIADA,STOCK,ESTADO,FECHA)SELECT AUD_REFERENCIAS.NRO_REFERENCIA,AUD_REFERENCIAS.DESCRIPCION,(SELECT AUD_RELEVAMIENTOS.STOCK FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ") AS STOCK_ENVIADO, (SELECT AUD_RELEVAMIENTOS.ESTADO FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ") AS ESTADO_ENVIADO,(SELECT AUD_RELEVAMIENTOS.FECHA FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ") AS FECHA_ENVIADA,AUD_RELEVAMIENTOS.STOCK, AUD_RELEVAMIENTOS.ESTADO, AUD_RELEVAMIENTOS.FECHA FROM AUD_RELEVAMIENTOS INNER JOIN AUD_REFERENCIAS ON AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID WHERE AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & " AND AUD_REFERENCIAS.ID_CATEGORIA=" & CInt(unaTablaIdCategoria.getItem(0, 0)) & " AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoActual & "' UNION SELECT NRO_REFERENCIA,DESCRIPCION,(SELECT AUD_RELEVAMIENTOS.STOCK FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ") AS STOCK_ENVIADO,(SELECT AUD_RELEVAMIENTOS.ESTADO FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ")AS ESTADO_ENVIADO,(SELECT AUD_RELEVAMIENTOS.FECHA FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ")AS FECHA_ENVIADA, '' AS STOCK, 'N' AS ESTADO, CONVERT(VARCHAR(8), GETDATE(), 112) AS FECHA FROM AUD_REFERENCIAS WHERE ID_CATEGORIA=" & CInt(unaTablaIdCategoria.getItem(0, 0)) & " AND ID NOT IN (SELECT ID_AUD_REFERENCIAS FROM AUD_RELEVAMIENTOS WHERE CE=" & unNumeroDeCE & " AND SUCURSAL=" & unNumeroDeSucursal & " AND PERIODO='" & unPeriodoActual & "' )SELECT COUNT(*) FROM #TEMP_REFERENCIAS")
+        If CInt(unaTablaTemporal.getItem(0, 0)) Mod 10 = 0 Then
+            totalPaginasMain = CInt(unaTablaTemporal.getItem(0, 0)) / 10
+        Else
+            totalPaginasMain = CInt(unaTablaTemporal.getItem(0, 0)) \ 10 + 1
+        End If
+    End Sub
+    Protected Sub cargarCategoria()
+        GridViewData.SelectedIndex = -1
+        paginaActualMain = 1
+        calcularPaginas(lastCat)
+        traerPrimerosRegistros(lastCat)
+        hideNextOrPrevious()
+    End Sub
+    Protected Sub formatDate(ByVal unaFecha As String, ByRef unaNuevaFecha As String)
+        If InStr(unaFecha, "/", CompareMethod.Text) Then
+            unaNuevaFecha = unaFecha
+        Else
+            Dim unAno As String = Mid(unaFecha, 3, 2)
+            Dim unMes As String = Mid(unaFecha, 5, 2)
+            Dim unDia As String = Mid(unaFecha, 7, 2)
+            unaNuevaFecha = unDia & "/" & unMes & "/" & unAno
+        End If
+    End Sub
+
+    Protected Sub hideNextOrPrevious()
+        If paginaActualMain = 1 Then
+            btnPrevious.Visible = False
+        Else
+            btnPrevious.Visible = True
+        End If
+        If paginaActualMain = totalPaginasMain Then
+            btnNext.Visible = False
+        Else
+            btnNext.Visible = True
+        End If
+    End Sub
+    Protected Sub setBorderOfButton(ByRef unButton As ImageButton)
+        btnA.BorderWidth = 0
+        btnB.BorderWidth = 0
+        btnC.BorderWidth = 0
+        btnD.BorderWidth = 0
+        btnE.BorderWidth = 0
+        btnF.BorderWidth = 0
+        btnG.BorderWidth = 0
+        unButton.BorderWidth = 2
+        unButton.BorderColor = Drawing.Color.Red
+    End Sub
+    Protected Sub formatGridView()
+        For Each row As GridViewRow In GridViewData.Rows
+            Dim radEstado As RadioButtonList = CType(row.FindControl("RadioButtonList1"), RadioButtonList)
+            radEstado.Items(3).Enabled = False
+            Dim lblFecha As Label = CType(row.FindControl("Label7"), Label)
+            Dim lblFechaEnviada As Label = CType(row.FindControl("Label9"), Label)
+            Dim unaFechaVieja As String = lblFecha.Text
+            Dim unaFecha As String
+            formatDate(unaFechaVieja, unaFecha)
+            lblFecha.Text = unaFecha
+            unaFechaVieja = lblFechaEnviada.Text
+            formatDate(unaFechaVieja, unaFecha)
+            lblFechaEnviada.Text = unaFecha
+            Dim txtStock As TextBox = CType(row.FindControl("TextBox1"), TextBox)
+            txtStock.Attributes.CssStyle.Add("TEXT-ALIGN", "center")
+        Next
+    End Sub
+    'Sirve para eliminar los ceros antes del número. Input:00502; Output:502
+    Function formatStock(ByRef unString As String)
+        Dim unContador As Integer = 1
+        Dim unaLetra As String = GetChar(unString, unContador)
+        Do While unContador < unString.Length() And unaLetra = "0"
+            unContador += 1
+            If unContador <= unString.Length() Then unaLetra = GetChar(unString, unContador)
+        Loop
+        Return Mid(unString, unContador)
+    End Function
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         txtCE.Attributes.CssStyle.Add("TEXT-ALIGN", "right")
         txtSucursal.Attributes.CssStyle.Add("TEXT-ALIGN", "right")
@@ -137,39 +230,6 @@ Public Class auditoria
         End If
     End Sub
 
-    Protected Sub traerPrimerosRegistros(ByVal lastCat As String)
-        Dim unaTablaIdCategoria As TablaSQL = New TablaSQL()
-        unaTablaIdCategoria.setConnectionString(unConnectionString)
-        unaTablaIdCategoria.getDataSet("SELECT ID FROM AUD_CATEGORIAS WHERE CODIGO='" & lastCat & "'")
-        Dim unaTablaTemporal As TablaSQL = New TablaSQL()
-        unaTablaTemporal.setConnectionString(unConnectionString)
-        'CREO UNA TABLA TEMPORAL PARA OBTENER EL CORRESPONDIENTE NÚMERO DE FILAS DE CADA UNO, CUANDO LA TERMINO DE USAR SE BORRA SOLA
-        unaTablaTemporal.getDataSet("CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1) NOT NULL,[NRO_REFERENCIA] [char](20) NULL,[DESCRIPCION] [char] (75) NULL,[STOCK_ENVIADO] [int] NULL,[ESTADO_ENVIADO] [char] (1) NULL,[FECHA_ENVIADA] [char] (20) NULL,[STOCK] [int] NULL,[ESTADO] [char] (1) NULL,[FECHA] [char] (20) NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (NRO_REFERENCIA,DESCRIPCION,STOCK_ENVIADO,ESTADO_ENVIADO,FECHA_ENVIADA,STOCK,ESTADO,FECHA)SELECT AUD_REFERENCIAS.NRO_REFERENCIA,AUD_REFERENCIAS.DESCRIPCION,(SELECT AUD_RELEVAMIENTOS.STOCK FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ") AS STOCK_ENVIADO, (SELECT AUD_RELEVAMIENTOS.ESTADO FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ") AS ESTADO_ENVIADO,(SELECT AUD_RELEVAMIENTOS.FECHA FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ") AS FECHA_ENVIADA,AUD_RELEVAMIENTOS.STOCK, AUD_RELEVAMIENTOS.ESTADO, AUD_RELEVAMIENTOS.FECHA FROM AUD_RELEVAMIENTOS INNER JOIN AUD_REFERENCIAS ON AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID WHERE AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & " AND AUD_REFERENCIAS.ID_CATEGORIA=" & CInt(unaTablaIdCategoria.getItem(0, 0)) & " AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoActual & "' UNION SELECT NRO_REFERENCIA,DESCRIPCION,(SELECT AUD_RELEVAMIENTOS.STOCK FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ") AS STOCK_ENVIADO,(SELECT AUD_RELEVAMIENTOS.ESTADO FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ")AS ESTADO_ENVIADO,(SELECT AUD_RELEVAMIENTOS.FECHA FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ")AS FECHA_ENVIADA, '' AS STOCK, 'N' AS ESTADO, CONVERT(VARCHAR(8), GETDATE(), 112) AS FECHA FROM AUD_REFERENCIAS WHERE ID_CATEGORIA=" & CInt(unaTablaIdCategoria.getItem(0, 0)) & " AND ID NOT IN (SELECT ID_AUD_REFERENCIAS FROM AUD_RELEVAMIENTOS WHERE CE=" & unNumeroDeCE & " AND SUCURSAL=" & unNumeroDeSucursal & " AND PERIODO='" & unPeriodoActual & "' )SELECT NRO_REFERENCIA,DESCRIPCION,STOCK_ENVIADO,ESTADO_ENVIADO,FECHA_ENVIADA,STOCK,ESTADO,FECHA FROM #TEMP_REFERENCIAS WHERE FILA>0 AND FILA<=10")
-        unasReferencias.dataSet = unaTablaTemporal.dataSet
-        unasReferencias.fillGridView(GridViewData)
-        paginaActualMain = 1
-    End Sub
-    Protected Sub calcularPaginas(ByVal lastCat As String)
-        Dim unaTablaTemporal As TablaSQL = New TablaSQL()
-        unaTablaTemporal.setConnectionString(unConnectionString)
-        Dim unaTablaIdCategoria As TablaSQL = New TablaSQL()
-        unaTablaIdCategoria.setConnectionString(unConnectionString)
-        unaTablaIdCategoria.getDataSet("SELECT ID FROM AUD_CATEGORIAS WHERE CODIGO='" & lastCat & "'")
-        unaTablaTemporal.getDataSet("CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1) NOT NULL,[NRO_REFERENCIA] [char](20) NULL,[DESCRIPCION] [char] (75) NULL,[STOCK_ENVIADO] [int] NULL,[ESTADO_ENVIADO] [char] (1) NULL,[FECHA_ENVIADA] [char] (20) NULL,[STOCK] [int] NULL,[ESTADO] [char] (1) NULL,[FECHA] [char] (20) NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (NRO_REFERENCIA,DESCRIPCION,STOCK_ENVIADO,ESTADO_ENVIADO,FECHA_ENVIADA,STOCK,ESTADO,FECHA)SELECT AUD_REFERENCIAS.NRO_REFERENCIA,AUD_REFERENCIAS.DESCRIPCION,(SELECT AUD_RELEVAMIENTOS.STOCK FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ") AS STOCK_ENVIADO, (SELECT AUD_RELEVAMIENTOS.ESTADO FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ") AS ESTADO_ENVIADO,(SELECT AUD_RELEVAMIENTOS.FECHA FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ") AS FECHA_ENVIADA,AUD_RELEVAMIENTOS.STOCK, AUD_RELEVAMIENTOS.ESTADO, AUD_RELEVAMIENTOS.FECHA FROM AUD_RELEVAMIENTOS INNER JOIN AUD_REFERENCIAS ON AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID WHERE AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & " AND AUD_REFERENCIAS.ID_CATEGORIA=" & CInt(unaTablaIdCategoria.getItem(0, 0)) & " AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoActual & "' UNION SELECT NRO_REFERENCIA,DESCRIPCION,(SELECT AUD_RELEVAMIENTOS.STOCK FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ") AS STOCK_ENVIADO,(SELECT AUD_RELEVAMIENTOS.ESTADO FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ")AS ESTADO_ENVIADO,(SELECT AUD_RELEVAMIENTOS.FECHA FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ")AS FECHA_ENVIADA, '' AS STOCK, 'N' AS ESTADO, CONVERT(VARCHAR(8), GETDATE(), 112) AS FECHA FROM AUD_REFERENCIAS WHERE ID_CATEGORIA=" & CInt(unaTablaIdCategoria.getItem(0, 0)) & " AND ID NOT IN (SELECT ID_AUD_REFERENCIAS FROM AUD_RELEVAMIENTOS WHERE CE=" & unNumeroDeCE & " AND SUCURSAL=" & unNumeroDeSucursal & " AND PERIODO='" & unPeriodoActual & "' )SELECT COUNT(*) FROM #TEMP_REFERENCIAS")
-        If CInt(unaTablaTemporal.getItem(0, 0)) Mod 10 = 0 Then
-            totalPaginasMain = CInt(unaTablaTemporal.getItem(0, 0)) / 10
-        Else
-            totalPaginasMain = CInt(unaTablaTemporal.getItem(0, 0)) \ 10 + 1
-        End If
-    End Sub
-    Protected Sub cargarCategoria()
-        GridViewData.SelectedIndex = -1
-        paginaActualMain = 1
-        calcularPaginas(lastCat)
-        traerPrimerosRegistros(lastCat)
-        hideNextOrPrevious()
-    End Sub
-
     Protected Sub TextBox1_TextChanged(sender As Object, e As EventArgs)
         Dim unaPosicion As Integer = 0
         For Each row As GridViewRow In GridViewData.Rows
@@ -179,7 +239,7 @@ Public Class auditoria
             Dim unStockDataTable As String = Trim(unasReferencias.getItem(unaPosicion, 5))
             Dim unaFechaDataTable As String = Trim(unasReferencias.getItem(unaPosicion, 7))
             'Se fija que sea distinto de lo que vino cargado y que adamás haya seleccionado un estado
-            If Trim(unStockTextBox) <> Trim(unStockDataTable) Then
+            If formatStock((unStockTextBox)) <> Trim(unStockDataTable) Then
                 Dim unaTablaIdReferencia As TablaSQL = New TablaSQL
                 unaTablaIdReferencia.setConnectionString(unConnectionString)
                 unaTablaIdReferencia.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & unasReferencias.getItem(unaPosicion, 0) & "'")
@@ -188,24 +248,14 @@ Public Class auditoria
                 unaTablaNuevaDeAuditoria.getDataSet("SELECT COUNT(*) FROM AUD_RELEVAMIENTOS WHERE CE=" & unNumeroDeCE & " AND SUCURSAL=" & unNumeroDeSucursal & " AND PERIODO='" & unPeriodoActual & "'" & " AND ID_AUD_REFERENCIAS=" & CInt(unaTablaIdReferencia.getItem(0, 0)))
                 'Si no encuentra relevamientos en el período actual para la referencia indicada INSERTA sino UPDATE
                 If CInt(unaTablaNuevaDeAuditoria.getItem(0, 0)) = 0 Then
-                    unaTablaNuevaDeAuditoria.execQuery("INSERT INTO AUD_RELEVAMIENTOS VALUES(" & unNumeroDeCE & "," & unNumeroDeSucursal & ",'" & unPeriodoActual & "'," & unaFechaDataTable & "," & CInt(unaTablaIdReferencia.getItem(0, 0)) & ",'" & unStockTextBox & "','" & radEstado.SelectedValue & "','')")
+                    unaTablaNuevaDeAuditoria.execQuery("INSERT INTO AUD_RELEVAMIENTOS VALUES(" & unNumeroDeCE & "," & unNumeroDeSucursal & ",'" & unPeriodoActual & "'," & unaFechaDataTable & "," & CInt(unaTablaIdReferencia.getItem(0, 0)) & ",'" & formatStock(unStockTextBox) & "','" & radEstado.SelectedValue & "','')")
                 Else
-                    unaTablaNuevaDeAuditoria.execQuery("UPDATE AUD_RELEVAMIENTOS SET STOCK=" & unStockTextBox & ",ESTADO='" & radEstado.SelectedValue & "' WHERE CE=" & unNumeroDeCE & " AND SUCURSAL=" & unNumeroDeSucursal & " AND PERIODO='" & unPeriodoActual & "' AND ID_AUD_REFERENCIAS=" & CInt(unaTablaIdReferencia.getItem(0, 0)))
+                    unaTablaNuevaDeAuditoria.execQuery("UPDATE AUD_RELEVAMIENTOS SET STOCK=" & formatStock(unStockTextBox) & ",ESTADO='" & radEstado.SelectedValue & "' WHERE CE=" & unNumeroDeCE & " AND SUCURSAL=" & unNumeroDeSucursal & " AND PERIODO='" & unPeriodoActual & "' AND ID_AUD_REFERENCIAS=" & CInt(unaTablaIdReferencia.getItem(0, 0)))
                 End If
+                txtStock.Text = formatStock(unStockTextBox)
             End If
             unaPosicion += 1
         Next
-    End Sub
-
-    Private Sub GridViewData_RowDataBound(sender As Object, e As System.Web.UI.WebControls.GridViewRowEventArgs) Handles GridViewData.RowDataBound
-        ' Try
-        'Tengo que considerar la opción de AutoGenerateColums=False. En el caso de que una categoría tenga 2 columnas más que otra NO SIRVE
-        'For i = 5 To 10
-        'e.Row.Cells(i).Visible = False
-        '  Next i
-        ' Catch ex As Exception
-
-        '   End Try
     End Sub
 
     Protected Sub RadioButtonList1_SelectedIndexChanged(sender As Object, e As EventArgs)
@@ -221,57 +271,6 @@ Public Class auditoria
                 unasReferencias.execQuery("UPDATE AUD_RELEVAMIENTOS SET ESTADO='" & radOpciones.SelectedValue & "' WHERE CE=" & unNumeroDeCE & " AND SUCURSAL=" & unNumeroDeSucursal & " AND PERIODO='" & unPeriodoActual & "' AND ID_AUD_REFERENCIAS=" & CInt(unaTablaIdReferencia.getItem(0, 0)))
             End If
             unaPosicion += 1
-        Next
-    End Sub
-    Protected Sub formatDate(ByVal unaFecha As String, ByRef unaNuevaFecha As String)
-        If InStr(unaFecha, "/", CompareMethod.Text) Then
-            unaNuevaFecha = unaFecha
-        Else
-            Dim unAno As String = Mid(unaFecha, 3, 2)
-            Dim unMes As String = Mid(unaFecha, 5, 2)
-            Dim unDia As String = Mid(unaFecha, 7, 2)
-            unaNuevaFecha = unDia & "/" & unMes & "/" & unAno
-        End If
-    End Sub
-
-    Protected Sub hideNextOrPrevious()
-        If paginaActualMain = 1 Then
-            btnPrevious.Visible = False
-        Else
-            btnPrevious.Visible = True
-        End If
-        If paginaActualMain = totalPaginasMain Then
-            btnNext.Visible = False
-        Else
-            btnNext.Visible = True
-        End If
-    End Sub
-    Protected Sub setBorderOfButton(ByRef unButton As ImageButton)
-        btnA.BorderWidth = 0
-        btnB.BorderWidth = 0
-        btnC.BorderWidth = 0
-        btnD.BorderWidth = 0
-        btnE.BorderWidth = 0
-        btnF.BorderWidth = 0
-        btnG.BorderWidth = 0
-        unButton.BorderWidth = 2
-        unButton.BorderColor = Drawing.Color.Red
-    End Sub
-    Protected Sub formatGridView()
-        For Each row As GridViewRow In GridViewData.Rows
-            Dim radEstado As RadioButtonList = CType(row.FindControl("RadioButtonList1"), RadioButtonList)
-            radEstado.Items(3).Enabled = False
-            Dim lblFecha As Label = CType(row.FindControl("Label7"), Label)
-            Dim lblFechaEnviada As Label = CType(row.FindControl("Label9"), Label)
-            Dim unaFechaVieja As String = lblFecha.Text
-            Dim unaFecha As String
-            formatDate(unaFechaVieja, unaFecha)
-            lblFecha.Text = unaFecha
-            unaFechaVieja = lblFechaEnviada.Text
-            formatDate(unaFechaVieja, unaFecha)
-            lblFechaEnviada.Text = unaFecha
-            Dim txtStock As TextBox = CType(row.FindControl("TextBox1"), TextBox)
-            txtStock.Attributes.CssStyle.Add("TEXT-ALIGN", "center")
         Next
     End Sub
 End Class
