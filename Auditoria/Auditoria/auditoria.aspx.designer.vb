@@ -104,15 +104,6 @@ Partial Public Class auditoria
     Protected WithEvents btnG As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
-    '''GridViewData control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents GridViewData As Global.System.Web.UI.WebControls.GridView
-
-    '''<summary>
     '''txtCategoria control.
     '''</summary>
     '''<remarks>
@@ -120,6 +111,15 @@ Partial Public Class auditoria
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtCategoria As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''GridViewData control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents GridViewData As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
     '''btnSearch control.

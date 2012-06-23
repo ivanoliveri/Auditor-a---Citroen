@@ -247,17 +247,17 @@ btnG control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:Auditoria.auditoria.GridViewData">
+</member><member name="F:Auditoria.auditoria.txtCategoria">
 	<summary>
-GridViewData control.
+txtCategoria control.
 </summary>
 	<remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:Auditoria.auditoria.txtCategoria">
+</member><member name="F:Auditoria.auditoria.GridViewData">
 	<summary>
-txtCategoria control.
+GridViewData control.
 </summary>
 	<remarks>
 Auto-generated field.

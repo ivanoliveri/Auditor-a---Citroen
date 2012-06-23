@@ -34,6 +34,10 @@
         height: 69px;
         width: 946px;
     }
+    .style5
+    {
+        width: 7px;
+    }
     </style>
 	<script type="text/javascript">
 	    function llenarLabel(unString) {
@@ -60,16 +64,16 @@
 
     <form id="form1" runat="server">
 
-<table align="center" class="auto-style1" style="width: 900px; height: 100px">
+<table align="center" class="auto-style1" style="width: 940px; height: 100px">
 	<tr>
 		<td style="height: 69px; width: 83px">
 		<img alt="" height="55" src="images/u82-fr.jpg" width="78" /></td>
 		<td class="style4">
             <asp:TextBox ID="txtCE" runat="server" BorderWidth="0px" Font-Names="Arial" 
-                Font-Size="Small" ForeColor="#868689" ReadOnly="True" Width="694px"></asp:TextBox>
+                Font-Size="Small" ForeColor="#868689" ReadOnly="True" Width="835px"></asp:TextBox>
             <asp:TextBox ID="txtSucursal" runat="server" BorderWidth="0px" 
                 Font-Names="Arial" Font-Size="Small" ForeColor="#868689" ReadOnly="True" 
-                Width="694px"></asp:TextBox>
+                Width="838px"></asp:TextBox>
         </td>
 	</tr>
 	<tr>
@@ -111,18 +115,27 @@
                                 ImageUrl="~/images/buttons/btnG.png" />
                         </td>
                     </tr>
-                </table>
-                <table style="width: 100%; height: 450px">
                     <tr>
+                        <td colspan="6">
+                            <asp:TextBox ID="txtCategoria" runat="server" BorderWidth="0px" 
+                                Font-Names="Arial" Font-Size="Small" ForeColor="#868689" ReadOnly="True" 
+                                Width="568px"></asp:TextBox>
+                        </td>
                         <td>
                             &nbsp;</td>
+                    </tr>
+                </table>
+                <table style="width: 100%; height: 430px">
+                    <tr>
+                        <td class="style5">
+                            &nbsp;</td>
                         <td class="style3">
-                            &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;<div id="impresion" style="width: 100%">
+                            <div id="impresion" style="width: 100%">
                                 <asp:GridView ID="GridViewData" runat="server" BackColor="White" 
                                     BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" 
                                     Font-Names="Arial" Font-Size="Small" ForeColor="#868689" GridLines="Horizontal" 
                                     Height="175px" 
-                                    style="margin-top: 19px; margin-bottom: 0px; margin-right: 1px;" Width="850px" 
+                                    style="margin-top: 19px; margin-bottom: 0px; margin-right: 1px;" Width="900px" 
                                     AutoGenerateColumns="False">
                                     <Columns>
         
@@ -195,9 +208,6 @@
                     </tr>
                 </table>
                 <div align=right id="botonera">
-                            <asp:TextBox ID="txtCategoria" runat="server" BorderWidth="0px" 
-                                Font-Names="Arial" Font-Size="Small" ForeColor="#868689" ReadOnly="True" 
-                                Width="568px"></asp:TextBox>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:ImageButton ID="btnSearch" runat="server" 
                                 ImageUrl="~/images/buttons/Buscar.png" ToolTip="Buscar" />
