@@ -30,9 +30,9 @@ txtBusqueda control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:Auditoria.busqueda.btnSearch">
+</member><member name="F:Auditoria.busqueda.radBusqueda">
 	<summary>
-btnSearch control.
+radBusqueda control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -46,25 +46,9 @@ GridViewData control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:Auditoria.busqueda.btnFirst">
-	<summary>
-btnFirst control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
 </member><member name="F:Auditoria.busqueda.btnPrevious">
 	<summary>
 btnPrevious control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Auditoria.busqueda.txtPaginacion">
-	<summary>
-txtPaginacion control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -78,17 +62,9 @@ btnNext control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:Auditoria.busqueda.btnLast">
+</member><member name="F:Auditoria.busqueda.btnSearch">
 	<summary>
-btnLast control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:Auditoria.busqueda.lblPagina">
-	<summary>
-lblPagina control.
+btnSearch control.
 </summary>
 	<remarks>
 Auto-generated field.

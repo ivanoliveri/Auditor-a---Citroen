@@ -207,7 +207,7 @@
                             &nbsp;</td>
                     </tr>
                 </table>
-                <div align=right id="botonera">
+                <div align="right" id="botonera">
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:ImageButton ID="btnSearch" runat="server" 
                                 ImageUrl="~/images/buttons/Buscar.png" ToolTip="Buscar" />

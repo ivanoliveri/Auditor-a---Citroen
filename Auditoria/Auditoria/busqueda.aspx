@@ -16,6 +16,15 @@
 .auto-style3 {
 	background-color: #868689;
 }
+    .style1
+    {
+        height: 323px;
+    }
+    #botonera
+    {
+        height: 32px;
+        width: 566px;
+    }
 </style>
 </head>
 
@@ -23,7 +32,7 @@
 
     <form id="form1" runat="server">
 
-<table align="center" class="auto-style1" style="width: 591px; height: 454px">
+<table align="center" class="auto-style1" style="width: 591px; height: 400px">
 	<tr>
 		<td style="height: 69px; width: 83px">
 		<img alt="" height="55" src="images/u82-fr.jpg" width="78" /></td>
@@ -33,20 +42,26 @@
 		<td class="auto-style2" colspan="2" style="height: 6px">&nbsp;</td>
 	</tr>
 	<tr>
-		<td colspan="2">
-            <div style="width: 100%; height: 350px;">
+		<td colspan="2" class="style1">
+            <div style="width: 99%; height: 332px;">
 
                 <br />
                 &nbsp;&nbsp;
                 <asp:TextBox ID="TextBox2" runat="server" BorderColor="White" BorderWidth="0px" 
-                    Font-Names="Arial" ForeColor="#868689" style="margin-left: 0px" Width="86px">Descripción :</asp:TextBox>
-                <asp:TextBox ID="txtBusqueda" runat="server" Width="413px"></asp:TextBox>
-                &nbsp;&nbsp;<asp:ImageButton ID="btnSearch" runat="server" 
-                    ImageUrl="~/images/buttons/Buscar.png" />
+                    Font-Names="Arial" ForeColor="#868689" style="margin-left: 0px" 
+                    Width="72px">Búsqueda :</asp:TextBox>
+                <asp:TextBox ID="txtBusqueda" runat="server" Width="466px"></asp:TextBox>
+                &nbsp;<asp:RadioButtonList ID="radBusqueda" runat="server" Font-Names="Arial" 
+                    Font-Size="Small" ForeColor="#868689" RepeatDirection="Horizontal">
+                    <asp:ListItem>NRO_REFERNCIA</asp:ListItem>
+                    <asp:ListItem>DESCRIPCIÓN</asp:ListItem>
+                    <asp:ListItem Value="PALABRA_CLAVE">PALABRA CLAVE</asp:ListItem>
+                </asp:RadioButtonList>
+                <div id="busqueda" style="width:100%;height:175px">
                 <asp:GridView ID="GridViewData" runat="server" BackColor="White" 
                     BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" 
                     Font-Names="Arial" Font-Size="Small" ForeColor="#868689" GridLines="Horizontal" 
-                    Height="175px" ShowFooter="True" style="margin-top: 19px" Width="550px">
+                    Height="175px" style="margin-top: 19px" Width="550px">
                     <FooterStyle BackColor="White" ForeColor="Black" />
                     <HeaderStyle BackColor="#DC002E" Font-Bold="True" ForeColor="White" />
                     <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
@@ -56,21 +71,18 @@
                     <SortedDescendingCellStyle BackColor="#E5E5E5" />
                     <SortedDescendingHeaderStyle BackColor="#242121" />
                 </asp:GridView>
+                </div>
                 <br />
-                &nbsp;&nbsp;
-                <asp:ImageButton ID="btnFirst" runat="server" 
-                    ImageUrl="~/images/buttons/btnFirst.png" />
-                <asp:ImageButton ID="btnPrevious" runat="server" Height="32px" 
-                    ImageUrl="~/images/buttons/btnPrevious.png" />
-                &nbsp;<asp:TextBox ID="txtPaginacion" runat="server" Width="41px"></asp:TextBox>
-                &nbsp;<asp:ImageButton ID="btnNext" runat="server" 
-                    ImageUrl="~/images/buttons/btnNext.png" />
-                &nbsp;<asp:ImageButton ID="btnLast" runat="server" 
-                    ImageUrl="~/images/buttons/btnLast.png" />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox 
-                    ID="lblPagina" runat="server" BorderColor="White" BorderWidth="0px" 
-                    Font-Names="Arial" ForeColor="#868689" style="margin-left: 0px" Width="97px">Página 1 de X</asp:TextBox>
-                &nbsp;
+                <div align="right" id="botonera">
+                    &nbsp;<asp:ImageButton ID="btnPrevious" runat="server" Height="32px" 
+                        ImageUrl="~/images/buttons/btnPrevious.png" />
+                    <asp:ImageButton ID="btnNext" runat="server" 
+                        ImageUrl="~/images/buttons/btnNext.png" />
+                    <asp:ImageButton ID="btnSearch" runat="server" 
+                        ImageUrl="~/images/buttons/Buscar.png" />
+                    <br />
+                </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
             </div>
 		</td>

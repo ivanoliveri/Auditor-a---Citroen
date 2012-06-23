@@ -41,13 +41,13 @@ Partial Public Class busqueda
     Protected WithEvents txtBusqueda As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''btnSearch control.
+    '''radBusqueda control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnSearch As Global.System.Web.UI.WebControls.ImageButton
+    Protected WithEvents radBusqueda As Global.System.Web.UI.WebControls.RadioButtonList
 
     '''<summary>
     '''GridViewData control.
@@ -59,15 +59,6 @@ Partial Public Class busqueda
     Protected WithEvents GridViewData As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
-    '''btnFirst control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnFirst As Global.System.Web.UI.WebControls.ImageButton
-
-    '''<summary>
     '''btnPrevious control.
     '''</summary>
     '''<remarks>
@@ -75,15 +66,6 @@ Partial Public Class busqueda
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnPrevious As Global.System.Web.UI.WebControls.ImageButton
-
-    '''<summary>
-    '''txtPaginacion control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtPaginacion As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''btnNext control.
@@ -95,20 +77,11 @@ Partial Public Class busqueda
     Protected WithEvents btnNext As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
-    '''btnLast control.
+    '''btnSearch control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnLast As Global.System.Web.UI.WebControls.ImageButton
-
-    '''<summary>
-    '''lblPagina control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblPagina As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents btnSearch As Global.System.Web.UI.WebControls.ImageButton
 End Class
