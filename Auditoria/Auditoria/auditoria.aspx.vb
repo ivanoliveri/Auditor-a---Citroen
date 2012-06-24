@@ -101,6 +101,7 @@ Public Class auditoria
         Return Mid(unString, unContador)
     End Function
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        btnAgregar.Visible = False
         agregoOedito = False
         txtCE.Attributes.CssStyle.Add("TEXT-ALIGN", "right")
         txtSucursal.Attributes.CssStyle.Add("TEXT-ALIGN", "right")
@@ -120,6 +121,7 @@ Public Class auditoria
         'Agrego Atributo onClick al Imprimir y Buscar
         btnSearch.Attributes.Add("onclick", "javascript:mostrarPopupBuscar('" & "busqueda.aspx" & "')")
         btnImprimir.Attributes.Add("onclick", "javascript:mostrarPopupImprimir('" & "imprimir.aspx" & "')")
+        btnAgregar.Attributes.Add("onclick", "javascript:mostrarPopupAgregar('" & "agregar.aspx" & "')")
         'Agrego validación de isNumeric al textBox de Stock
         'For Each row As GridViewRow In GridViewData.Rows
         ' Dim txtStock As TextBox = CType(row.FindControl("TextBox1"), TextBox)
@@ -151,6 +153,7 @@ Public Class auditoria
 
     Protected Sub btnA_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnA.Click
         If agregoOedito = True Then Exit Sub
+        agregarReferencia = False
         lastCat = "A"
         cargarCategoria()
         setBorderOfButton(btnA)
@@ -158,6 +161,7 @@ Public Class auditoria
     End Sub
 
     Protected Sub btnB_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnB.Click
+        agregarReferencia = False
         lastCat = "B"
         cargarCategoria()
         setBorderOfButton(btnB)
@@ -165,6 +169,7 @@ Public Class auditoria
     End Sub
 
     Protected Sub btnC_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnC.Click
+        agregarReferencia = False
         lastCat = "C"
         cargarCategoria()
         setBorderOfButton(btnC)
@@ -172,6 +177,7 @@ Public Class auditoria
     End Sub
 
     Protected Sub btnD_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnD.Click
+        agregarReferencia = False
         lastCat = "D"
         cargarCategoria()
         setBorderOfButton(btnD)
@@ -179,6 +185,7 @@ Public Class auditoria
     End Sub
 
     Protected Sub btnE_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnE.Click
+        agregarReferencia = False
         lastCat = "E"
         cargarCategoria()
         setBorderOfButton(btnE)
@@ -186,20 +193,25 @@ Public Class auditoria
     End Sub
 
     Protected Sub btnF_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnF.Click
+        agregarReferencia = True
         lastCat = "F"
         cargarCategoria()
         setBorderOfButton(btnF)
         formatGridView()
+        ' btnAgregar.Visible = True
     End Sub
 
     Protected Sub btnG_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnG.Click
+        agregarReferencia = True
         lastCat = "G"
         cargarCategoria()
         setBorderOfButton(btnG)
         formatGridView()
+        ' btnAgregar.Visible = True
     End Sub
 
     Protected Sub btnNext_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnNext.Click
+        agregarReferencia = False
         If paginaActualMain < totalPaginasMain Then
             paginaActualMain += 1
             Dim unaTablaIdCategoria As TablaSQL = New TablaSQL()
@@ -217,6 +229,7 @@ Public Class auditoria
     End Sub
 
     Protected Sub btnPrevious_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnPrevious.Click
+        agregarReferencia = False
         If paginaActualMain <> 1 Then
             paginaActualMain -= 1
             If paginaActualMain = 1 Then
@@ -238,6 +251,7 @@ Public Class auditoria
     End Sub
 
     Protected Sub TextBox1_TextChanged(sender As Object, e As EventArgs)
+        agregarReferencia = False
         Dim unaPosicion As Integer = 0
         For Each row As GridViewRow In GridViewData.Rows
             Dim radEstado As RadioButtonList = CType(row.FindControl("RadioButtonList1"), RadioButtonList)
@@ -267,6 +281,7 @@ Public Class auditoria
     End Sub
 
     Protected Sub RadioButtonList1_SelectedIndexChanged(sender As Object, e As EventArgs)
+        agregarReferencia = False
         Dim unaPosicion As Integer = 0
         For Each row As GridViewRow In GridViewData.Rows
             Dim radOpciones As RadioButtonList = CType(row.FindControl("RadioButtonList1"), RadioButtonList)
@@ -280,5 +295,17 @@ Public Class auditoria
             End If
             unaPosicion += 1
         Next
+    End Sub
+
+    Protected Sub btnAgregar_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnAgregar.Click
+        agregarReferencia = True
+    End Sub
+
+    Private Sub auditoria_LoadComplete(sender As Object, e As System.EventArgs) Handles Me.LoadComplete
+        If agregarReferencia = True Then
+            btnAgregar.Visible = True
+        Else
+            btnAgregar.Visible = False
+        End If
     End Sub
 End Class

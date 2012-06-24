@@ -122,6 +122,15 @@ Partial Public Class auditoria
     Protected WithEvents GridViewData As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
+    '''btnAgregar control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnAgregar As Global.System.Web.UI.WebControls.ImageButton
+
+    '''<summary>
     '''btnSearch control.
     '''</summary>
     '''<remarks>

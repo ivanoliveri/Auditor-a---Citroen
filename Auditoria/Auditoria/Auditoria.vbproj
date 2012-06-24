@@ -87,6 +87,7 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="agregar.aspx" />
     <Content Include="auditoria.aspx" />
     <Content Include="bin\Auditoria.dll" />
     <Content Include="bin\Auditoria.pdb" />
@@ -120,6 +121,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="agregar.aspx.designer.vb">
+      <DependentUpon>agregar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="agregar.aspx.vb">
+      <DependentUpon>agregar.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="auditoria.aspx.designer.vb">
       <DependentUpon>auditoria.aspx</DependentUpon>
     </Compile>

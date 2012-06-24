@@ -48,7 +48,11 @@
 	    }
 	    function mostrarPopupImprimir(unString) {
 	        hidden = open(unString, 'Imprimir @ Auditoría', 'top=0,left=0,width=620,height=295,status=yes,resizable=yes,scrollbars=yes');
-	    }
+        }
+	    function mostrarPopupAgregar(unString) {
+	        hidden = open(unString, 'Imprimir @ Auditoría', 'top=0,left=0,width=480,height=330,status=yes,resizable=yes,scrollbars=yes');
+	        return false; 
+        }
 	    function printGrid(nombre) {
 	        var ficha = document.getElementById(nombre);
 	        var ventimp = window.open(' ', 'popimpr');
@@ -107,7 +111,7 @@
                                 ImageUrl="~/images/buttons/btnE.png" />
                         </td>
                         <td>
-                            <asp:ImageButton ID="btnF" runat="server" 
+                            <asp:ImageButton ID="btnF" runat="server"  OnClientClick="#"
                                 ImageUrl="~/images/buttons/btnF.png" />
                         </td>
                         <td>
@@ -209,14 +213,17 @@
                 </table>
                 <div align="right" id="botonera">
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:ImageButton ID="btnSearch" runat="server" 
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:ImageButton 
+                                ID="btnAgregar" runat="server" UseSubmitBehavior="false"
+                                ImageUrl="~/images/buttons/agregar.png" ToolTip="Agregar" />
+                            <asp:ImageButton ID="btnSearch" runat="server" 
                                 ImageUrl="~/images/buttons/Buscar.png" ToolTip="Buscar" />
                             <asp:ImageButton ID="btnImprimir" runat="server" Height="32px" 
                                 ImageUrl="~/images/buttons/Imprimir.png" ToolTip="Imprimir" />
                             <asp:ImageButton ID="btnPrevious" runat="server" Height="32px" 
-                                ImageUrl="~/images/buttons/btnPrevious.png" />
+                                ImageUrl="~/images/buttons/btnPrevious.png" ToolTip="Página Anterior" />
                             <asp:ImageButton ID="btnNext" runat="server" 
-                                ImageUrl="~/images/buttons/btnNext.png" />
+                                ImageUrl="~/images/buttons/btnNext.png" ToolTip="Página Siguiente" />
                             &nbsp; 
                         </div>
 

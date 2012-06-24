@@ -6,7 +6,79 @@ Auditoria
 </name>
 </assembly>
 <members>
-<member name="F:Auditoria.busqueda.form1">
+<member name="F:Auditoria.agregar.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.agregar.TextBox1">
+	<summary>
+TextBox1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.agregar.txtNroReferencia">
+	<summary>
+txtNroReferencia control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.agregar.TextBox3">
+	<summary>
+TextBox3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.agregar.txtDescripcion">
+	<summary>
+txtDescripcion control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.agregar.TextBox4">
+	<summary>
+TextBox4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.agregar.txtCategoria">
+	<summary>
+txtDescripcion0 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.agregar.btnConfirmar">
+	<summary>
+btnConfirmar control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.agregar.btnCancelar">
+	<summary>
+btnCancelar control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.busqueda.form1">
 	<summary>
 form1 control.
 </summary>
@@ -234,6 +306,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:Auditoria.auditoria.GridViewData">
 	<summary>
 GridViewData control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.auditoria.btnAgregar">
+	<summary>
+btnAgregar control.
 </summary>
 	<remarks>
 Auto-generated field.

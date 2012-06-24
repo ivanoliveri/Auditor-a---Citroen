@@ -8,5 +8,5 @@ Module Variables
     Public unNumeroDeCE As Integer = 0
     Public unNumeroDeSucursal As Integer = 0
     Public unPeriodoAnterior, unPeriodoActual As String
-    Public agregoOedito, primerIngresoBusqueda As Boolean
+    Public agregoOedito, primerIngresoBusqueda, agregarReferencia As Boolean
 End Module
