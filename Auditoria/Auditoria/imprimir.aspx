@@ -71,8 +71,75 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
 		        <br />
                 <div id="impresion" class=invisible>
-                    <asp:GridView ID="GridViewData" runat="server" Height="16px" Width="34px">
-                    </asp:GridView>
+                                <asp:GridView ID="GridViewData" runat="server" BackColor="White" 
+                                    BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" 
+                                    Font-Names="Arial" Font-Size="Small" ForeColor="#868689" GridLines="Horizontal" 
+                                    Height="175px" 
+                                    style="margin-top: 19px; margin-bottom: 0px; margin-right: 1px;" Width="900px" 
+                                    AutoGenerateColumns="False">
+                                    <Columns>
+        
+                                        <asp:TemplateField HeaderText="NRO_REFERENCIA">
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("NRO_REFERENCIA") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="DESCRIPCION">
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label2" runat="server" Text='<%# Eval("DESCRIPCION") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+        
+                                        <asp:templatefield headertext="STOCK_ENV">
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label8" runat="server" text='<%# Eval("STOCK_ENVIADO") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:templatefield>   
+                                        <asp:TemplateField HeaderText="ESTADO_ENV">
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label5" runat="server" text='<%# Eval("ESTADO_ENVIADO") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="FECHA_ENV">
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label9" runat="server" text='<%# Eval("FECHA_ENVIADA") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="STOCK">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="TextBox1" runat="server" Height="20px" 
+                                                    text='<%# Eval("STOCK") %>'
+                                                    Width="54px" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="ESTADO">
+                                            <ItemTemplate>
+                                                <asp:RadioButtonList ID="RadioButtonList1" runat="server" 
+                                                    RepeatDirection="Horizontal" AutoPostBack="True" 
+                                                    SelectedValue='<%#Eval("ESTADO")%>'
+                                                     >
+                                                    <asp:ListItem Value="B">B</asp:ListItem>
+                                                    <asp:ListItem Value="R">R</asp:ListItem>
+                                                    <asp:ListItem Value="M">M</asp:ListItem>
+                                                    <asp:ListItem Value="N">N</asp:ListItem>
+                                                </asp:RadioButtonList>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="FECHA">
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label7" runat="server" text='<%# Eval("FECHA") %>' ></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                    <FooterStyle BackColor="White" ForeColor="Black" />
+                                    <HeaderStyle BackColor="#DC002E" Font-Bold="True" ForeColor="White" />
+                                    <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+                                    <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                                    <SortedAscendingCellStyle BackColor="#F7F7F7" />
+                                    <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+                                    <SortedDescendingCellStyle BackColor="#E5E5E5" />
+                                    <SortedDescendingHeaderStyle BackColor="#242121" />
+                                </asp:GridView>
                 </div>
         </td>
 	</tr>

@@ -4,7 +4,7 @@ Public Class ingreso
     Private unContadorPrimerCE As Integer = 0
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         unPeriodoAnterior = "2011-2"
-        unPeriodoActual = "2012-2"
+        unPeriodoActual = "2012-1"
         If unNumeroDeCE = 0 Then cargarConcesionarias()
         If dropConcesionaria.Text = "Seleccione CE" Then Exit Sub
         unNumeroDeCE = CInt(dropConcesionaria.Text)
