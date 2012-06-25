@@ -1,6 +1,23 @@
 ﻿Imports Auditoria.TableClass
 Public Class busqueda
     Inherits System.Web.UI.Page
+    Protected Sub hideNextOrPrevious()
+        If paginaActualBusqueda = 0 Then
+            btnPrevious.Visible = False
+            btnNext.Visible = False
+            Exit Sub
+        End If
+        If paginaActualBusqueda = 1 Then
+            btnPrevious.Visible = False
+        Else
+            btnPrevious.Visible = True
+        End If
+        If paginaActualBusqueda = totalPaginasBusqueda Then
+            btnNext.Visible = False
+        Else
+            btnNext.Visible = True
+        End If
+    End Sub
     Protected Sub calcularPaginas()
         Dim unaTablaTemporal As TablaSQL = New TablaSQL()
         unaTablaTemporal.setConnectionString(unConnectionString)
@@ -35,6 +52,7 @@ Public Class busqueda
             unaTablaTemporal.fillGridView(GridViewData)
         End If
         paginaActualBusqueda = 1
+        hideNextOrPrevious()
     End Sub
     Protected Sub btnSearch_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnSearch.Click
         buscar()
@@ -50,6 +68,7 @@ Public Class busqueda
             unasReferencias.dataSet = unaTablaTemporal.dataSet
             unasReferencias.fillGridView(GridViewData)
         End If
+        hideNextOrPrevious()
     End Sub
 
     Protected Sub btnPrevious_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnPrevious.Click
@@ -66,6 +85,7 @@ Public Class busqueda
                 unasReferencias.fillGridView(GridViewData)
             End If
         End If
+        hideNextOrPrevious()
     End Sub
     Private Sub WebForm2_Load(sender As Object, e As System.EventArgs) Handles Me.Load
         If primerIngresoBusqueda = True Then
@@ -73,6 +93,7 @@ Public Class busqueda
             calcularPaginas()
             primerIngresoBusqueda = False
         End If
+        hideNextOrPrevious()
     End Sub
 
     Protected Sub txtBusqueda_TextChanged(sender As Object, e As EventArgs) Handles txtBusqueda.TextChanged
