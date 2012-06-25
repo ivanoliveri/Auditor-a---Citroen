@@ -59,6 +59,15 @@ Partial Public Class busqueda
     Protected WithEvents GridViewData As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
+    '''btnSearch control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnSearch As Global.System.Web.UI.WebControls.ImageButton
+
+    '''<summary>
     '''btnPrevious control.
     '''</summary>
     '''<remarks>
@@ -75,13 +84,4 @@ Partial Public Class busqueda
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnNext As Global.System.Web.UI.WebControls.ImageButton
-
-    '''<summary>
-    '''btnSearch control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnSearch As Global.System.Web.UI.WebControls.ImageButton
 End Class

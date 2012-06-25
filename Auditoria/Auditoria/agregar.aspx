@@ -10,6 +10,9 @@
     function unloadPage() {
         window.close();
     }
+    function postBackEnPadre() {
+        opener.location.reload();
+    }
 </script>
 <style type="text/css">
 .auto-style1 {
@@ -30,6 +33,14 @@
     {
         height: 186px;
     }
+    .style3
+    {
+        width: 100%;
+    }
+    .style4
+    {
+        width: 221px;
+    }
 </style>
 </head>
 
@@ -48,27 +59,67 @@
 	</tr>
 	<tr>
 		<td colspan="2" class="style2">
-            <asp:TextBox ID="TextBox1" runat="server" BorderWidth="0px" Font-Names="Arial" 
-                Font-Size="Small" ForeColor="#868689" Width="144px" ReadOnly="True">Número de Referencia :</asp:TextBox>
-            <asp:TextBox ID="txtNroReferencia" runat="server"></asp:TextBox>
-            <br />
-            <br />
-            <asp:TextBox ID="TextBox3" runat="server" BorderWidth="0px" Font-Names="Arial" 
-                Font-Size="Small" ForeColor="#868689" Width="144px" ReadOnly="True">Descripción :</asp:TextBox>
-            <asp:TextBox ID="txtDescripcion" runat="server"></asp:TextBox>
-            <br />
-            <br />
+            <table class="style3">
+                <tr>
+                    <td class="style4">
+                        <br />
             <asp:TextBox ID="TextBox4" runat="server" BorderWidth="0px" Font-Names="Arial" 
                 Font-Size="Small" ForeColor="#868689" Width="144px" ReadOnly="True">Categoría :</asp:TextBox>
+                    </td>
+                    <td>
             <asp:TextBox ID="txtCategoria" runat="server" BorderWidth="0px" ReadOnly="True"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="style4">
+            <asp:TextBox ID="TextBox1" runat="server" BorderWidth="0px" Font-Names="Arial" 
+                Font-Size="Small" ForeColor="#868689" Width="144px" ReadOnly="True">Número de Referencia :</asp:TextBox>
+                    </td>
+                    <td>
+            <asp:TextBox ID="txtNroReferencia" runat="server"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="style4">
+            <asp:TextBox ID="TextBox3" runat="server" BorderWidth="0px" Font-Names="Arial" 
+                Font-Size="Small" ForeColor="#868689" Width="144px" ReadOnly="True">Descripción :</asp:TextBox>
+                    </td>
+                    <td>
+            <asp:TextBox ID="txtDescripcion" runat="server"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="style4">
+            <asp:TextBox ID="TextBox5" runat="server" BorderWidth="0px" Font-Names="Arial" 
+                Font-Size="Small" ForeColor="#868689" Width="144px" ReadOnly="True">Stock :</asp:TextBox>
+                    </td>
+                    <td>
+            <asp:TextBox ID="txtStock" runat="server"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="style4">
+            <asp:TextBox ID="TextBox6" runat="server" BorderWidth="0px" Font-Names="Arial" 
+                Font-Size="Small" ForeColor="#868689" Width="144px" ReadOnly="True">Estado :</asp:TextBox>
+                    </td>
+                    <td>
+            <asp:RadioButtonList ID="radEstado" runat="server" Font-Names="Arial" 
+                Font-Size="Small" ForeColor="#868689" RepeatDirection="Horizontal" Height="20px" 
+                            Width="124px">
+                <asp:ListItem>B</asp:ListItem>
+                <asp:ListItem>R</asp:ListItem>
+                <asp:ListItem>M</asp:ListItem>
+            </asp:RadioButtonList>
+                    </td>
+                </tr>
+            </table>
             <br />
-            <br />
-            <asp:ImageButton ID="btnConfirmar" runat="server" Height="40px" 
-                ImageUrl="~/images/buttons/Confirmar.png" Width="41px" 
+            <asp:ImageButton ID="btnConfirmar" runat="server" Height="32px" 
+                ImageUrl="~/images/buttons/confirm.png" Width="32px" 
                 ToolTip="Confirmar" />
 &nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:ImageButton ID="btnCancelar" runat="server" Height="40px" 
-                ImageUrl="~/images/buttons/Cancelar.png" Width="41px" ToolTip="Cancelar" />
+            <asp:ImageButton ID="btnCancelar" runat="server" Height="32px" 
+                ImageUrl="~/images/buttons/cancel.png" Width="32px" ToolTip="Cancelar" />
 		</td>
 	</tr>
 	</table>

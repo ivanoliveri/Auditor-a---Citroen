@@ -62,12 +62,12 @@
             </asp:RadioButtonList>
             <br />
             <br />
-            <asp:ImageButton ID="btnConfirmar" runat="server" Height="40px" 
-                ImageUrl="~/images/buttons/Confirmar.png" Width="41px" 
+            <asp:ImageButton ID="btnConfirmar" runat="server" Height="32px" 
+                ImageUrl="~/images/buttons/confirm.png" Width="32px" 
                 ToolTip="Confirmar" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:ImageButton ID="btnCancelar" runat="server" Height="40px" 
-                ImageUrl="~/images/buttons/Cancelar.png" Width="41px" ToolTip="Cancelar" />
+            <asp:ImageButton ID="btnCancelar" runat="server" Height="32px" 
+                ImageUrl="~/images/buttons/cancel.png" Width="32px" ToolTip="Cancelar" />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
 		        <br />
                 <div id="impresion" class=invisible>
@@ -79,7 +79,7 @@
                                     AutoGenerateColumns="False">
                                     <Columns>
         
-                                        <asp:TemplateField HeaderText="NRO_REFERENCIA">
+                                        <asp:TemplateField HeaderText="NRO. REFERENCIA">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label1" runat="server" Text='<%# Eval("NRO_REFERENCIA") %>'></asp:Label>
                                             </ItemTemplate>
@@ -90,17 +90,17 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
         
-                                        <asp:templatefield headertext="STOCK_ENV">
+                                        <asp:templatefield headertext="STOCK ENV.">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label8" runat="server" text='<%# Eval("STOCK_ENVIADO") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:templatefield>   
-                                        <asp:TemplateField HeaderText="ESTADO_ENV">
+                                        <asp:TemplateField HeaderText="ESTADO ENV.">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label5" runat="server" text='<%# Eval("ESTADO_ENVIADO") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="FECHA_ENV">
+                                        <asp:TemplateField HeaderText="FECHA ENV.">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label9" runat="server" text='<%# Eval("FECHA_ENVIADA") %>'></asp:Label>
                                             </ItemTemplate>
@@ -117,7 +117,7 @@
                                                 <asp:RadioButtonList ID="RadioButtonList1" runat="server" 
                                                     RepeatDirection="Horizontal" AutoPostBack="True" 
                                                     SelectedValue='<%#Eval("ESTADO")%>'
-                                                     >
+                                                    onselectedindexchanged="RadioButtonList1_SelectedIndexChanged">
                                                     <asp:ListItem Value="B">B</asp:ListItem>
                                                     <asp:ListItem Value="R">R</asp:ListItem>
                                                     <asp:ListItem Value="M">M</asp:ListItem>

@@ -93,6 +93,7 @@
     <Content Include="bin\Auditoria.pdb" />
     <Content Include="bin\Auditoria.xml" />
     <Content Include="busqueda.aspx" />
+    <Content Include="images\buttons\agregar.png" />
     <Content Include="images\buttons\btnA.png" />
     <Content Include="images\buttons\btnB.png" />
     <Content Include="images\buttons\btnC.png" />
@@ -105,6 +106,8 @@
     <Content Include="images\buttons\btnNext.png" />
     <Content Include="images\buttons\btnPrevious.png" />
     <Content Include="images\buttons\Buscar.png" />
+    <Content Include="images\buttons\cancel.png" />
+    <Content Include="images\buttons\confirm.png" />
     <Content Include="images\buttons\Imprimir.png" />
     <Content Include="images\citroen.ico" />
     <Content Include="images\Select.png" />

@@ -61,7 +61,7 @@
 	        ventimp.print();
 	        ventimp.close();
 	    }
-	    </script>
+        </script>
 </head>
 
 <body>
@@ -143,7 +143,7 @@
                                     AutoGenerateColumns="False">
                                     <Columns>
         
-                                        <asp:TemplateField HeaderText="NRO_REFERENCIA">
+                                        <asp:TemplateField HeaderText="NRO. REFERENCIA">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label1" runat="server" Text='<%# Eval("NRO_REFERENCIA") %>'></asp:Label>
                                             </ItemTemplate>
@@ -154,17 +154,17 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
         
-                                        <asp:templatefield headertext="STOCK_ENV">
+                                        <asp:templatefield headertext="STOCK ENV.">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label8" runat="server" text='<%# Eval("STOCK_ENVIADO") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:templatefield>   
-                                        <asp:TemplateField HeaderText="ESTADO_ENV">
+                                        <asp:TemplateField HeaderText="ESTADO ENV.">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label5" runat="server" text='<%# Eval("ESTADO_ENVIADO") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="FECHA_ENV">
+                                        <asp:TemplateField HeaderText="FECHA ENV.">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label9" runat="server" text='<%# Eval("FECHA_ENVIADA") %>'></asp:Label>
                                             </ItemTemplate>

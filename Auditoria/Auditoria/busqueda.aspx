@@ -74,12 +74,12 @@
                 </div>
                 <br />
                 <div align="right" id="botonera">
+                    <asp:ImageButton ID="btnSearch" runat="server" 
+                        ImageUrl="~/images/buttons/Buscar.png" />
                     &nbsp;<asp:ImageButton ID="btnPrevious" runat="server" Height="32px" 
                         ImageUrl="~/images/buttons/btnPrevious.png" />
                     <asp:ImageButton ID="btnNext" runat="server" 
                         ImageUrl="~/images/buttons/btnNext.png" />
-                    <asp:ImageButton ID="btnSearch" runat="server" 
-                        ImageUrl="~/images/buttons/Buscar.png" />
                     <br />
                 </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
