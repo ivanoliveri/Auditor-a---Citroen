@@ -4,7 +4,6 @@
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         txtCategoria.Text = lastCat
         btnCancelar.Attributes.Add("onclick", "javascript:unloadPage()")
-        btnConfirmar.Attributes.Add("onclick", "javascript:postBackEnPadre()")
         txtCategoria.Attributes.CssStyle.Add("TEXT-ALIGN", "center")
         txtDescripcion.Attributes.CssStyle.Add("TEXT-ALIGN", "center")
         txtNroReferencia.Attributes.CssStyle.Add("TEXT-ALIGN", "center")
@@ -29,5 +28,6 @@
         unaTablaIdReferencia.setConnectionString(unConnectionString)
         unaTablaIdReferencia.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & txtNroReferencia.Text & "'")
         unasReferencias.execQuery("INSERT INTO AUD_RELEVAMIENTOS VALUES(" & unNumeroDeCE & "," & unNumeroDeSucursal & ",'" & unPeriodoActual & "'," & unAno & unMes & unDia & "," & CInt(unaTablaIdReferencia.getItem(0, 0)) & ",'" & txtStock.Text & "','" & radEstado.SelectedValue & "','')")
+        Response.Write("<script>opener.location.reload();</script>")
     End Sub
 End Class

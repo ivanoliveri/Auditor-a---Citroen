@@ -78,6 +78,10 @@
             <asp:TextBox ID="txtSucursal" runat="server" BorderWidth="0px" 
                 Font-Names="Arial" Font-Size="Small" ForeColor="#868689" ReadOnly="True" 
                 Width="838px"></asp:TextBox>
+            <br />
+            <asp:TextBox ID="txtPeriodo" runat="server" BorderWidth="0px" 
+                Font-Names="Arial" Font-Size="Small" ForeColor="#868689" ReadOnly="True" 
+                Width="838px"></asp:TextBox>
         </td>
 	</tr>
 	<tr>

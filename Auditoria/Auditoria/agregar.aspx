@@ -10,9 +10,6 @@
     function unloadPage() {
         window.close();
     }
-    function postBackEnPadre() {
-        opener.location.reload();
-    }
 </script>
 <style type="text/css">
 .auto-style1 {

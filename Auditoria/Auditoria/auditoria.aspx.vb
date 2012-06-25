@@ -105,8 +105,10 @@ Public Class auditoria
         agregoOedito = False
         txtCE.Attributes.CssStyle.Add("TEXT-ALIGN", "right")
         txtSucursal.Attributes.CssStyle.Add("TEXT-ALIGN", "right")
+        txtPeriodo.Attributes.CssStyle.Add("TEXT-ALIGN", "right")
         txtCE.Text = "CE: " & unNumeroDeCE
         txtSucursal.Text = "Sucursal: " & unNumeroDeSucursal
+        txtPeriodo.Text = "Período: " & unPeriodoActual
         unasReferencias.setConnectionString(unConnectionString)
         'Setteo este atributo para que cuando ingrese al popup, no esté vacio el gridView
         primerIngresoBusqueda = True 'Ver esto si lo pongo en el click, se ejecuta mucho mas rapido el JS
