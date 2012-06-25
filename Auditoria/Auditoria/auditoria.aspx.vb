@@ -111,7 +111,6 @@ Public Class auditoria
         txtPeriodo.Text = "Período: " & unPeriodoActual
         unasReferencias.setConnectionString(unConnectionString)
         'Setteo este atributo para que cuando ingrese al popup, no esté vacio el gridView
-        primerIngresoBusqueda = True 'Ver esto si lo pongo en el click, se ejecuta mucho mas rapido el JS
         'El ViewGrid viene por defecto en categoría A
         If primerIngresoMain = True Then
             lastCat = "A"
@@ -262,6 +261,11 @@ Public Class auditoria
             Dim unaFechaDataTable As String = Trim(unasReferencias.getItem(unaPosicion, 7))
             'Se fija que sea distinto de lo que vino cargado y que adamás haya seleccionado un estado
             If formatStock((unStockTextBox)) <> Trim(unStockDataTable) Then
+                If IsNumeric(txtStock.Text) = False Then
+                    txtStock.Text = ""
+                    agregoOedito = True
+                    Exit Sub
+                End If
                 Dim unaTablaIdReferencia As TablaSQL = New TablaSQL
                 unaTablaIdReferencia.setConnectionString(unConnectionString)
                 unaTablaIdReferencia.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & unasReferencias.getItem(unaPosicion, 0) & "'")

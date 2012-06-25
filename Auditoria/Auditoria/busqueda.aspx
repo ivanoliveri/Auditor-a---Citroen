@@ -53,8 +53,8 @@
                 <asp:TextBox ID="txtBusqueda" runat="server" Width="466px"></asp:TextBox>
                 &nbsp;<asp:RadioButtonList ID="radBusqueda" runat="server" Font-Names="Arial" 
                     Font-Size="Small" ForeColor="#868689" RepeatDirection="Horizontal">
-                    <asp:ListItem>NRO_REFERNCIA</asp:ListItem>
-                    <asp:ListItem>DESCRIPCIÓN</asp:ListItem>
+                    <asp:ListItem Selected="True" Value="NRO_REFERENCIA">NRO. REFERENCIA</asp:ListItem>
+                    <asp:ListItem Value="DESCRIPCION">DESCRIPCIÓN</asp:ListItem>
                     <asp:ListItem Value="PALABRA_CLAVE">PALABRA CLAVE</asp:ListItem>
                 </asp:RadioButtonList>
                 <div id="busqueda" style="width:100%;height:175px">

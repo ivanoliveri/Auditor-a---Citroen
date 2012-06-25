@@ -37,18 +37,8 @@ Public Class ingreso
         dropSucursal.Items.Insert(0, "Seleccione SUC")
         unNumeroDeCE = -1
     End Sub
-
     Private Sub dropSucursal_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles dropSucursal.SelectedIndexChanged
-        ' Dim unaTablaDeAuditoria As TablaSQL = New TablaSQL
-        ' unaTablaDeAuditoria.setConnectionString(unConnectionString)
-        '  unaTablaDeAuditoria.getDataSet("SELECT COUNT(*) FROM AUD_RELEVAMIENTOS WHERE CE=" & unNumeroDeCE & " AND SUCURSAL=" & unNumeroDeSucursal & " AND PERIODO='" & unPeriodoActual & "'")
-        '  If unaTablaDeAuditoria.getItem(0, 0) = "0" Then
-        '        Dim unContador As Integer = 1
-        '  Do While unContador <= unaTablaDeAuditoria.getRowsCount()
-        '       'unaTablaDeAuditoria.execQuery("INSERT INTO AUD_RELEVAMIENTOS VALUES()")
-        'unContador += 1
-        '   Loop
-        '    End If
         Response.Redirect("auditoria.aspx")
     End Sub
+
 End Class
