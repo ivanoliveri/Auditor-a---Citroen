@@ -11,12 +11,23 @@
     End Sub
 
     Protected Sub btnConfirmar_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnConfirmar.Click
+        Dim unaTablaTemporal As TablaSQL = New TablaSQL()
+        unaTablaTemporal.setConnectionString(unConnectionString)
+        'Verifica que la referencia ingresada no exista previamente.
+        unaTablaTemporal.getDataSet("SELECT COUNT(*) FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & Trim(txtNroReferencia.Text) & "'")
+        If CInt(unaTablaTemporal.getItem(0, 0)) >= 1 Then
+            txtNroReferencia.Text = ""
+            txtNroReferencia.Focus()
+            Exit Sub
+        End If
         If IsNumeric(txtStock.Text) = False Then
             txtStock.Text = ""
+            txtStock.Focus()
             Exit Sub
         End If
         If CInt(txtStock.Text) < 0 Then
             txtStock.Text = ""
+            txtStock.Focus()
             Exit Sub
         End If
         If InStr(txtStock.Text, ".", CompareMethod.Text) Then
@@ -42,5 +53,6 @@
         unaTablaIdReferencia.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & txtNroReferencia.Text & "'")
         unasReferencias.execQuery("INSERT INTO AUD_RELEVAMIENTOS VALUES(" & unNumeroDeCE & "," & unNumeroDeSucursal & ",'" & unPeriodoActual & "'," & unAno & unMes & unDia & "," & CInt(unaTablaIdReferencia.getItem(0, 0)) & ",'" & txtStock.Text & "','" & radEstado.SelectedValue & "','')")
         Response.Write("<script>opener.location.reload();</script>")
+        Response.Write("<script>window.location.reload();</script>")
     End Sub
 End Class

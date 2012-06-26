@@ -19,7 +19,7 @@
 	background-color: #DC002E;
 }
 .auto-style3 {
-	background-color: #868689;
+	background-color: #666666;
 }
     .style1
     {
@@ -61,52 +61,52 @@
                     <td class="style4">
                         <br />
             <asp:TextBox ID="TextBox4" runat="server" BorderWidth="0px" Font-Names="Arial" 
-                Font-Size="Small" ForeColor="#868689" Width="144px" ReadOnly="True">Categoría :</asp:TextBox>
+                Font-Size="Small" ForeColor="#666666" Width="144px" ReadOnly="True">Categoría :</asp:TextBox>
                     </td>
                     <td>
             <asp:TextBox ID="txtCategoria" runat="server" BorderWidth="0px" ReadOnly="True" 
-                            Font-Names="Arial" Font-Size="Small" ForeColor="#868689"></asp:TextBox>
+                            Font-Names="Arial" Font-Size="Small" ForeColor="#666666"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="style4">
             <asp:TextBox ID="TextBox1" runat="server" BorderWidth="0px" Font-Names="Arial" 
-                Font-Size="Small" ForeColor="#868689" Width="144px" ReadOnly="True">Número de Referencia :</asp:TextBox>
+                Font-Size="Small" ForeColor="#666666" Width="144px" ReadOnly="True">Número de Referencia :</asp:TextBox>
                     </td>
                     <td>
             <asp:TextBox ID="txtNroReferencia" runat="server" Font-Names="Arial" Font-Size="Small" 
-                            ForeColor="#868689"></asp:TextBox>
+                            ForeColor="#666666"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="style4">
             <asp:TextBox ID="TextBox3" runat="server" BorderWidth="0px" Font-Names="Arial" 
-                Font-Size="Small" ForeColor="#868689" Width="144px" ReadOnly="True">Descripción :</asp:TextBox>
+                Font-Size="Small" ForeColor="#666666" Width="144px" ReadOnly="True">Descripción :</asp:TextBox>
                     </td>
                     <td>
             <asp:TextBox ID="txtDescripcion" runat="server" Font-Names="Arial" Font-Size="Small" 
-                            ForeColor="#868689"></asp:TextBox>
+                            ForeColor="#666666"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="style4">
             <asp:TextBox ID="TextBox5" runat="server" BorderWidth="0px" Font-Names="Arial" 
-                Font-Size="Small" ForeColor="#868689" Width="144px" ReadOnly="True">Stock :</asp:TextBox>
+                Font-Size="Small" ForeColor="#666666" Width="144px" ReadOnly="True">Stock :</asp:TextBox>
                     </td>
                     <td>
             <asp:TextBox ID="txtStock" runat="server" Font-Names="Arial" Font-Size="Small" 
-                            ForeColor="#868689"></asp:TextBox>
+                            ForeColor="#666666"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="style4">
             <asp:TextBox ID="TextBox6" runat="server" BorderWidth="0px" Font-Names="Arial" 
-                Font-Size="Small" ForeColor="#868689" Width="144px" ReadOnly="True">Estado :</asp:TextBox>
+                Font-Size="Small" ForeColor="#666666" Width="144px" ReadOnly="True">Estado :</asp:TextBox>
                     </td>
                     <td>
                         <div align=left id="divRadEstado">
                             <asp:RadioButtonList ID="radEstado" runat="server" Font-Names="Arial" 
-                                Font-Size="Small" ForeColor="#868689" RepeatDirection="Horizontal" Height="20px" 
+                                Font-Size="Small" ForeColor="#666666" RepeatDirection="Horizontal" Height="20px" 
                                             Width="124px">
                                 <asp:ListItem>B</asp:ListItem>
                                 <asp:ListItem>R</asp:ListItem>

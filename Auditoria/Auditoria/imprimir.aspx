@@ -31,7 +31,7 @@
 	background-color: #DC002E;
 }
 .auto-style3 {
-	background-color: #868689;
+	background-color: #666666;
 }
 </style>
 </head>
@@ -56,7 +56,7 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <br />
             <asp:RadioButtonList ID="radImpresion" runat="server" AutoPostBack="True" 
-                Font-Names="Arial" Font-Size="Small" ForeColor="#868689">
+                Font-Names="Arial" Font-Size="Small" ForeColor="#666666">
                 <asp:ListItem>Imprimir Grilla</asp:ListItem>
                 <asp:ListItem>Imprimir Categoría</asp:ListItem>
             </asp:RadioButtonList>
@@ -73,7 +73,7 @@
                 <div id="impresion" class=invisible>
                                 <asp:GridView ID="GridViewData" runat="server" BackColor="White" 
                                     BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" 
-                                    Font-Names="Arial" Font-Size="Small" ForeColor="#868689" GridLines="Horizontal" 
+                                    Font-Names="Arial" Font-Size="Small" ForeColor="#666666" GridLines="Horizontal" 
                                     Height="175px" 
                                     style="margin-top: 19px; margin-bottom: 0px; margin-right: 1px;" Width="900px" 
                                     AutoGenerateColumns="False">
@@ -109,7 +109,7 @@
                                             <ItemTemplate>
                                                 <asp:TextBox ID="TextBox1" runat="server" Height="20px" 
                                                     text='<%# Eval("STOCK") %>'  
-                                                    Width="54px" Font-Names="Arial" Font-Size="Small" ForeColor="#868689" />
+                                                    Width="54px" Font-Names="Arial" Font-Size="Small" ForeColor="#666666" />
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="ESTADO">

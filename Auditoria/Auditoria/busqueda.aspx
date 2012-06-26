@@ -14,7 +14,7 @@
 	background-color: #DC002E;
 }
 .auto-style3 {
-	background-color: #868689;
+	background-color: #666666;
 }
     .style1
     {
@@ -48,11 +48,11 @@
                 <br />
                 &nbsp;&nbsp;
                 <asp:TextBox ID="TextBox2" runat="server" BorderColor="White" BorderWidth="0px" 
-                    Font-Names="Arial" ForeColor="#868689" style="margin-left: 0px" 
+                    Font-Names="Arial" ForeColor="#666666" style="margin-left: 0px" 
                     Width="72px">Búsqueda :</asp:TextBox>
                 <asp:TextBox ID="txtBusqueda" runat="server" Width="466px"></asp:TextBox>
                 &nbsp;<asp:RadioButtonList ID="radBusqueda" runat="server" Font-Names="Arial" 
-                    Font-Size="Small" ForeColor="#868689" RepeatDirection="Horizontal">
+                    Font-Size="Small" ForeColor="#666666" RepeatDirection="Horizontal">
                     <asp:ListItem Selected="True" Value="NRO_REFERENCIA">NRO. REFERENCIA</asp:ListItem>
                     <asp:ListItem Value="DESCRIPCION">DESCRIPCIÓN</asp:ListItem>
                     <asp:ListItem Value="PALABRA_CLAVE">PALABRA CLAVE</asp:ListItem>
@@ -60,7 +60,7 @@
                 <div id="busqueda" style="width:100%;height:175px">
                 <asp:GridView ID="GridViewData" runat="server" BackColor="White" 
                     BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" 
-                    Font-Names="Arial" Font-Size="Small" ForeColor="#868689" GridLines="Horizontal" 
+                    Font-Names="Arial" Font-Size="Small" ForeColor="#666666" GridLines="Horizontal" 
                     Height="175px" style="margin-top: 19px" Width="550px">
                     <FooterStyle BackColor="White" ForeColor="Black" />
                     <HeaderStyle BackColor="#DC002E" Font-Bold="True" ForeColor="White" />

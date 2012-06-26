@@ -15,7 +15,7 @@
 	    background-color: #DC002E;
     }
     .auto-style3 {
-	    background-color: #868689;
+	    background-color: #666666;
     }
     .style1
     {
@@ -68,19 +68,19 @@
 
     <form id="form1" runat="server">
 
-<table align="center" class="auto-style1" style="width: 940px; height: 100px">
+<table align="center" class="auto-style1" style="width: 1015px; height: 100px">
 	<tr>
 		<td style="height: 69px; width: 83px">
 		<img alt="" height="55" src="images/u82-fr.jpg" width="78" /></td>
 		<td class="style4">
             <asp:TextBox ID="txtCE" runat="server" BorderWidth="0px" Font-Names="Arial" 
-                Font-Size="Small" ForeColor="#868689" ReadOnly="True" Width="835px"></asp:TextBox>
+                Font-Size="Small" ForeColor="#666666" ReadOnly="True" Width="835px"></asp:TextBox>
             <asp:TextBox ID="txtSucursal" runat="server" BorderWidth="0px" 
-                Font-Names="Arial" Font-Size="Small" ForeColor="#868689" ReadOnly="True" 
+                Font-Names="Arial" Font-Size="Small" ForeColor="#666666" ReadOnly="True" 
                 Width="838px"></asp:TextBox>
             <br />
             <asp:TextBox ID="txtPeriodo" runat="server" BorderWidth="0px" 
-                Font-Names="Arial" Font-Size="Small" ForeColor="#868689" ReadOnly="True" 
+                Font-Names="Arial" Font-Size="Small" ForeColor="#666666" ReadOnly="True" 
                 Width="838px"></asp:TextBox>
         </td>
 	</tr>
@@ -126,7 +126,7 @@
                     <tr>
                         <td colspan="6">
                             <asp:TextBox ID="txtCategoria" runat="server" BorderWidth="0px" 
-                                Font-Names="Arial" Font-Size="Small" ForeColor="#868689" ReadOnly="True" 
+                                Font-Names="Arial" Font-Size="Small" ForeColor="#666666" ReadOnly="True" 
                                 Width="568px"></asp:TextBox>
                         </td>
                         <td>
@@ -140,10 +140,10 @@
                         <td class="style3">
                             <div id="impresion" style="width: 100%">
                                 <asp:GridView ID="GridViewData" runat="server" BackColor="White" 
-                                    BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" 
-                                    Font-Names="Arial" Font-Size="Small" ForeColor="#868689" GridLines="Horizontal" 
+                                    BorderColor="#666666" BorderStyle="None" BorderWidth="1px" CellPadding="4" 
+                                    Font-Names="Arial" Font-Size="Small" ForeColor="#666666" GridLines="Horizontal" 
                                     Height="175px" 
-                                    style="margin-top: 19px; margin-bottom: 0px; margin-right: 1px;" Width="900px" 
+                                    style="margin-top: 19px; margin-bottom: 0px; margin-right: 1px;" Width="981px" 
                                     AutoGenerateColumns="False">
                                     <Columns>
         
@@ -178,7 +178,7 @@
                                                 <asp:TextBox ID="TextBox1" runat="server" Height="20px" 
                                                     text='<%# Eval("STOCK") %>'
                                                     ontextchanged="TextBox1_TextChanged"  
-                                                    Width="54px" Font-Names="Arial" Font-Size="Small" ForeColor="#868689" />
+                                                    Width="54px" Font-Names="Arial" Font-Size="Small" ForeColor="#666666" />
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="ESTADO">
