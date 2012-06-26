@@ -15,6 +15,15 @@
             txtStock.Text = ""
             Exit Sub
         End If
+        If CInt(txtStock.Text) < 0 Then
+            txtStock.Text = ""
+            Exit Sub
+        End If
+        If InStr(txtStock.Text, ".", CompareMethod.Text) Then
+            Dim unNumero As Decimal = Val(txtStock.Text)
+            unNumero = unNumero.Round(unNumero, 0)
+            txtStock.Text = unNumero
+        End If
         Dim unaTablaIdCategoria As TablaSQL = New TablaSQL()
         unaTablaIdCategoria.setConnectionString(unConnectionString)
         unaTablaIdCategoria.getDataSet("SELECT ID FROM AUD_CATEGORIAS WHERE CODIGO='" & lastCat & "'")

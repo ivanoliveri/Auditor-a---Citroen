@@ -266,6 +266,17 @@ Public Class auditoria
                     agregoOedito = True
                     Exit Sub
                 End If
+                If CInt(txtStock.Text) < 0 Then
+                    txtStock.Text = ""
+                    agregoOedito = True
+                    Exit Sub
+                End If
+                If InStr(txtStock.Text, ".", CompareMethod.Text) Then
+                    Dim unNumero As Decimal = Val(txtStock.Text)
+                    unNumero = unNumero.Round(unNumero, 0)
+                    txtStock.Text = unNumero
+                    unStockTextBox = Trim(txtStock.Text)
+                End If
                 Dim unaTablaIdReferencia As TablaSQL = New TablaSQL
                 unaTablaIdReferencia.setConnectionString(unConnectionString)
                 unaTablaIdReferencia.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & unasReferencias.getItem(unaPosicion, 0) & "'")
