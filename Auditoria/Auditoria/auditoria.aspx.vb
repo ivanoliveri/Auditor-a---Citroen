@@ -327,4 +327,11 @@ Public Class auditoria
         unasReferencias.fillGridView(GridViewData)
         formatGridView()
     End Sub
+
+    Protected Sub btnSalir_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnSalir.Click
+        unNumeroDeCE = 0
+        unNumeroDeSucursal = 0
+        primerIngresoMain = True
+        Response.Redirect("ingreso.aspx")
+    End Sub
 End Class

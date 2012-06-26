@@ -218,6 +218,9 @@
                 <div align="right" id="botonera">
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:ImageButton 
+                                ID="btnSalir" runat="server" ImageUrl="~/images/buttons/exit.png" 
+                                ToolTip="Salir" />
+                            <asp:ImageButton 
                                 ID="btnAgregar" runat="server" UseSubmitBehavior="false"
                                 ImageUrl="~/images/buttons/agregar.png" ToolTip="Agregar" />
                             <asp:ImageButton ID="btnSearch" runat="server" 
