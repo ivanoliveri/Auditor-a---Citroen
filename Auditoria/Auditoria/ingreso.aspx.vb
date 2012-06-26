@@ -2,13 +2,14 @@
 Public Class ingreso
     Inherits System.Web.UI.Page
     Private unContadorPrimerCE As Integer = 0
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         unPeriodoAnterior = "2011-2"
         unPeriodoActual = "2012-1"
         If unNumeroDeCE = 0 Then cargarConcesionarias()
-        If dropConcesionaria.Text = "Seleccione CE" Then Exit Sub
+        If dropConcesionaria.Text = "Seleccione CE" Or dropConcesionaria.Text = "" Then Exit Sub
         unNumeroDeCE = CInt(dropConcesionaria.Text)
-        If dropSucursal.Text <> "Seleccione SUC" Then unNumeroDeSucursal = CInt(dropSucursal.Text)
+        If dropSucursal.Text <> "Seleccione SUC" And dropSucursal.Text <> "" Then unNumeroDeSucursal = CInt(dropSucursal.Text)
     End Sub
 
     Protected Sub dropConcesionaria_SelectedIndexChanged(sender As Object, e As EventArgs) Handles dropConcesionaria.SelectedIndexChanged
@@ -40,5 +41,4 @@ Public Class ingreso
     Private Sub dropSucursal_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles dropSucursal.SelectedIndexChanged
         Response.Redirect("auditoria.aspx")
     End Sub
-
 End Class
