@@ -11,6 +11,10 @@
     End Sub
 
     Protected Sub btnConfirmar_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnConfirmar.Click
+        If IsNumeric(txtStock.Text) = False Then
+            txtStock.Text = ""
+            Exit Sub
+        End If
         Dim unaTablaIdCategoria As TablaSQL = New TablaSQL()
         unaTablaIdCategoria.setConnectionString(unConnectionString)
         unaTablaIdCategoria.getDataSet("SELECT ID FROM AUD_CATEGORIAS WHERE CODIGO='" & lastCat & "'")

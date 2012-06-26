@@ -108,8 +108,8 @@
                                         <asp:TemplateField HeaderText="STOCK">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="TextBox1" runat="server" Height="20px" 
-                                                    text='<%# Eval("STOCK") %>'
-                                                    Width="54px" />
+                                                    text='<%# Eval("STOCK") %>'  
+                                                    Width="54px" Font-Names="Arial" Font-Size="Small" ForeColor="#868689" />
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="ESTADO">

@@ -64,7 +64,8 @@
                 Font-Size="Small" ForeColor="#868689" Width="144px" ReadOnly="True">Categoría :</asp:TextBox>
                     </td>
                     <td>
-            <asp:TextBox ID="txtCategoria" runat="server" BorderWidth="0px" ReadOnly="True"></asp:TextBox>
+            <asp:TextBox ID="txtCategoria" runat="server" BorderWidth="0px" ReadOnly="True" 
+                            Font-Names="Arial" Font-Size="Small" ForeColor="#868689"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -73,7 +74,8 @@
                 Font-Size="Small" ForeColor="#868689" Width="144px" ReadOnly="True">Número de Referencia :</asp:TextBox>
                     </td>
                     <td>
-            <asp:TextBox ID="txtNroReferencia" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtNroReferencia" runat="server" Font-Names="Arial" Font-Size="Small" 
+                            ForeColor="#868689"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -82,7 +84,8 @@
                 Font-Size="Small" ForeColor="#868689" Width="144px" ReadOnly="True">Descripción :</asp:TextBox>
                     </td>
                     <td>
-            <asp:TextBox ID="txtDescripcion" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtDescripcion" runat="server" Font-Names="Arial" Font-Size="Small" 
+                            ForeColor="#868689"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -91,7 +94,8 @@
                 Font-Size="Small" ForeColor="#868689" Width="144px" ReadOnly="True">Stock :</asp:TextBox>
                     </td>
                     <td>
-            <asp:TextBox ID="txtStock" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtStock" runat="server" Font-Names="Arial" Font-Size="Small" 
+                            ForeColor="#868689"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -100,13 +104,15 @@
                 Font-Size="Small" ForeColor="#868689" Width="144px" ReadOnly="True">Estado :</asp:TextBox>
                     </td>
                     <td>
-            <asp:RadioButtonList ID="radEstado" runat="server" Font-Names="Arial" 
-                Font-Size="Small" ForeColor="#868689" RepeatDirection="Horizontal" Height="20px" 
-                            Width="124px">
-                <asp:ListItem>B</asp:ListItem>
-                <asp:ListItem>R</asp:ListItem>
-                <asp:ListItem>M</asp:ListItem>
-            </asp:RadioButtonList>
+                        <div align=left id="divRadEstado">
+                            <asp:RadioButtonList ID="radEstado" runat="server" Font-Names="Arial" 
+                                Font-Size="Small" ForeColor="#868689" RepeatDirection="Horizontal" Height="20px" 
+                                            Width="124px">
+                                <asp:ListItem>B</asp:ListItem>
+                                <asp:ListItem>R</asp:ListItem>
+                                <asp:ListItem>M</asp:ListItem>
+                            </asp:RadioButtonList>
+                        </div>
                     </td>
                 </tr>
             </table>

@@ -8,15 +8,15 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 <title>Auditoría</title>
 <style type="text/css">
-.auto-style1 {
-	border: 2px solid #000000;
-}
-.auto-style2 {
-	background-color: #DC002E;
-}
-.auto-style3 {
-	background-color: #868689;
-}
+    .auto-style1 {
+	    border: 2px solid #000000;
+    }
+    .auto-style2 {
+	    background-color: #DC002E;
+    }
+    .auto-style3 {
+	    background-color: #868689;
+    }
     .style1
     {
         height: 27px;
@@ -50,7 +50,7 @@
 	        hidden = open(unString, 'Imprimir @ Auditoría', 'top=0,left=0,width=620,height=295,status=yes,resizable=yes,scrollbars=yes');
         }
 	    function mostrarPopupAgregar(unString) {
-	        hidden = open(unString, 'Imprimir @ Auditoría', 'top=0,left=0,width=480,height=330,status=yes,resizable=yes,scrollbars=yes');
+	        hidden = open(unString, 'Imprimir @ Auditoría', 'top=0,left=0,width=465,height=360,status=yes,resizable=yes,scrollbars=yes');
 	        return false; 
         }
 	    function printGrid(nombre) {
@@ -178,7 +178,7 @@
                                                 <asp:TextBox ID="TextBox1" runat="server" Height="20px" 
                                                     text='<%# Eval("STOCK") %>'
                                                     ontextchanged="TextBox1_TextChanged"  
-                                                    Width="54px" />
+                                                    Width="54px" Font-Names="Arial" Font-Size="Small" ForeColor="#868689" />
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="ESTADO">
