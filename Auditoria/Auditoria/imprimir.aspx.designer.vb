@@ -50,6 +50,15 @@ Partial Public Class imprimir
     Protected WithEvents btnCancelar As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
+    '''txtTitulo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTitulo As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''GridViewData control.
     '''</summary>
     '''<remarks>

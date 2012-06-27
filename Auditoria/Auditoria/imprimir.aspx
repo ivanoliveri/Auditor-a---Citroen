@@ -57,8 +57,8 @@
             <br />
             <asp:RadioButtonList ID="radImpresion" runat="server" AutoPostBack="True" 
                 Font-Names="Arial" Font-Size="Small" ForeColor="#666666">
-                <asp:ListItem>Imprimir Grilla</asp:ListItem>
                 <asp:ListItem>Imprimir Categoría</asp:ListItem>
+                <asp:ListItem>Imprimir Todas Las Categorías</asp:ListItem>
             </asp:RadioButtonList>
             <br />
             <br />
@@ -71,45 +71,49 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
 		        <br />
                 <div id="impresion" class=invisible>
+                                <asp:TextBox ID="txtTitulo" runat="server" BorderWidth="0px" Font-Names="Arial" 
+                                    Font-Size="Medium" ForeColor="#666666" ReadOnly="True" Width="971px"></asp:TextBox>
+                                <br />
+
                                 <asp:GridView ID="GridViewData" runat="server" BackColor="White" 
-                                    BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" 
+                                    BorderColor="#666666" BorderStyle="None" BorderWidth="1px" CellPadding="4" 
                                     Font-Names="Arial" Font-Size="Small" ForeColor="#666666" GridLines="Horizontal" 
                                     Height="175px" 
-                                    style="margin-top: 19px; margin-bottom: 0px; margin-right: 1px;" Width="900px" 
+                                    style="margin-top: 19px; margin-bottom: 0px; margin-right: 1px;" Width="981px" 
                                     AutoGenerateColumns="False">
                                     <Columns>
         
-                                        <asp:TemplateField HeaderText="NRO. REFERENCIA">
+                                        <asp:TemplateField HeaderText="NRO. REF.">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label1" runat="server" Text='<%# Eval("NRO_REFERENCIA") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="DESCRIPCION">
+                                        <asp:TemplateField HeaderText="DESCRIPCIÓN">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label2" runat="server" Text='<%# Eval("DESCRIPCION") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
         
-                                        <asp:templatefield headertext="STOCK ENV.">
+                                        <asp:templatefield headertext="STK. ENV.">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label8" runat="server" text='<%# Eval("STOCK_ENVIADO") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:templatefield>   
-                                        <asp:TemplateField HeaderText="ESTADO ENV.">
+                                        <asp:TemplateField HeaderText="EST. ENV.">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label5" runat="server" text='<%# Eval("ESTADO_ENVIADO") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="FECHA ENV.">
+                                        <asp:TemplateField HeaderText="FEC. ENV.">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label9" runat="server" text='<%# Eval("FECHA_ENVIADA") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="STOCK">
+                                        <asp:TemplateField HeaderText="STK. VERIF.">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="TextBox1" runat="server" Height="20px" 
-                                                    text='<%# Eval("STOCK") %>'  
-                                                    Width="54px" Font-Names="Arial" Font-Size="Small" ForeColor="#666666" />
+                                                    text='<%# Eval("STOCK") %>'
+                                                    Width="54px" Font-Names="Arial" Font-Size="Small" ForeColor="#666666" style="text-align: center" />
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="ESTADO">

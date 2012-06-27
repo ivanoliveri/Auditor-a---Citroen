@@ -10,6 +10,13 @@
     function unloadPage() {
         window.close();
     }
+    function ponerCategoriaF() {
+        if (document.getElementById('txtDescripcion').value == '') {
+               document.getElementById('txtCategoria').value = 'G';
+        }else{
+               document.getElementById('txtCategoria').value = 'F';
+        }
+    }
 </script>
 <style type="text/css">
 .auto-style1 {
@@ -84,7 +91,7 @@
                 Font-Size="Small" ForeColor="#666666" Width="144px" ReadOnly="True">Descripción :</asp:TextBox>
                     </td>
                     <td>
-            <asp:TextBox ID="txtDescripcion" runat="server" Font-Names="Arial" Font-Size="Small" 
+            <asp:TextBox ID="txtDescripcion" runat="server" onKeyUp="ponerCategoriaF()" Font-Names="Arial" Font-Size="Small" 
                             ForeColor="#666666"></asp:TextBox>
                     </td>
                 </tr>

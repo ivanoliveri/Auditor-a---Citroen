@@ -147,38 +147,38 @@
                                     AutoGenerateColumns="False">
                                     <Columns>
         
-                                        <asp:TemplateField HeaderText="NRO. REFERENCIA">
+                                        <asp:TemplateField HeaderText="NRO. REF.">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label1" runat="server" Text='<%# Eval("NRO_REFERENCIA") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="DESCRIPCION">
+                                        <asp:TemplateField HeaderText="DESCRIPCIÓN">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label2" runat="server" Text='<%# Eval("DESCRIPCION") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
         
-                                        <asp:templatefield headertext="STOCK ENV.">
+                                        <asp:templatefield headertext="STK. ENV.">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label8" runat="server" text='<%# Eval("STOCK_ENVIADO") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:templatefield>   
-                                        <asp:TemplateField HeaderText="ESTADO ENV.">
+                                        <asp:TemplateField HeaderText="EST. ENV.">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label5" runat="server" text='<%# Eval("ESTADO_ENVIADO") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="FECHA ENV.">
+                                        <asp:TemplateField HeaderText="FEC. ENV.">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label9" runat="server" text='<%# Eval("FECHA_ENVIADA") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="STOCK">
+                                        <asp:TemplateField HeaderText="STK. VERIF.">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="TextBox1" runat="server" Height="20px" 
                                                     text='<%# Eval("STOCK") %>'
                                                     ontextchanged="TextBox1_TextChanged"  
-                                                    Width="54px" Font-Names="Arial" Font-Size="Small" ForeColor="#666666" />
+                                                    Width="54px" Font-Names="Arial" Font-Size="Small" ForeColor="#666666" style="text-align: center" />
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="ESTADO">
@@ -218,9 +218,6 @@
                 <div align="right" id="botonera">
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:ImageButton 
-                                ID="btnSalir" runat="server" ImageUrl="~/images/buttons/exit.png" 
-                                ToolTip="Salir" />
-                            <asp:ImageButton 
                                 ID="btnAgregar" runat="server" UseSubmitBehavior="false"
                                 ImageUrl="~/images/buttons/agregar.png" ToolTip="Agregar" />
                             <asp:ImageButton ID="btnSearch" runat="server" 
@@ -231,6 +228,9 @@
                                 ImageUrl="~/images/buttons/btnPrevious.png" ToolTip="Página Anterior" />
                             <asp:ImageButton ID="btnNext" runat="server" 
                                 ImageUrl="~/images/buttons/btnNext.png" ToolTip="Página Siguiente" />
+                            <asp:ImageButton 
+                                ID="btnSalir" runat="server" ImageUrl="~/images/buttons/exit.png" 
+                                ToolTip="Salir" Height="32px" />
                             &nbsp; 
                         </div>
 

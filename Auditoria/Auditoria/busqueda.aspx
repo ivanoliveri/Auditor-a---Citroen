@@ -61,7 +61,13 @@
                 <asp:GridView ID="GridViewData" runat="server" BackColor="White" 
                     BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" 
                     Font-Names="Arial" Font-Size="Small" ForeColor="#666666" GridLines="Horizontal" 
-                    Height="175px" style="margin-top: 19px" Width="550px">
+                    Height="175px" style="margin-top: 19px" Width="550px" 
+                        AutoGenerateColumns="False">
+                    <Columns>
+                        <asp:TemplateField HeaderText="CAT."></asp:TemplateField>
+                        <asp:TemplateField HeaderText="NRO. REF."></asp:TemplateField>
+                        <asp:TemplateField HeaderText="DESCRIPCIÓN"></asp:TemplateField>
+                    </Columns>
                     <FooterStyle BackColor="White" ForeColor="Black" />
                     <HeaderStyle BackColor="#DC002E" Font-Bold="True" ForeColor="White" />
                     <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
