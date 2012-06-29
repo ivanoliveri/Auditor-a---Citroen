@@ -286,6 +286,12 @@ Public Class auditoria
                     agregoOedito = True
                     Exit Sub
                 End If
+                Dim radOpciones As RadioButtonList = CType(row.FindControl("RadioButtonList1"), RadioButtonList)
+                If radOpciones.SelectedValue = "N" Then
+                    Response.Write("<script>alert('Debes seleccionar un estado(B/M/R).');</script>")
+                    agregoOedito = True
+                    Exit Sub
+                End If
                 Dim unaTablaIdReferencia As TablaSQL = New TablaSQL
                 unaTablaIdReferencia.setConnectionString(unConnectionString)
                 unaTablaIdReferencia.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & unasReferencias.getItem(unaPosicion, 1) & "'")
@@ -308,14 +314,17 @@ Public Class auditoria
     Protected Sub RadioButtonList1_SelectedIndexChanged(sender As Object, e As EventArgs)
         Dim unaPosicion As Integer = 0
         For Each row As GridViewRow In GridViewData.Rows
-            Dim radOpciones As RadioButtonList = CType(row.FindControl("RadioButtonList1"), RadioButtonList)
-            Dim valorRadOpciones As String = radOpciones.SelectedValue
-            Dim unValorTabla As String = Trim(unasReferencias.dataSet.Tables(0).Rows(unaPosicion).Item(6).ToString())
-            If valorRadOpciones <> unValorTabla Then
-                Dim unaTablaIdReferencia As TablaSQL = New TablaSQL
-                unaTablaIdReferencia.setConnectionString(unConnectionString)
-                unaTablaIdReferencia.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & unasReferencias.getItem(unaPosicion, 0) & "'")
-                unasReferencias.execQuery("UPDATE AUD_RELEVAMIENTOS SET ESTADO='" & radOpciones.SelectedValue & "' WHERE CE=" & unNumeroDeCE & " AND SUCURSAL=" & unNumeroDeSucursal & " AND PERIODO='" & unPeriodoActual & "' AND ID_AUD_REFERENCIAS=" & CInt(unaTablaIdReferencia.getItem(0, 0)))
+            Dim txtStock As TextBox = CType(row.FindControl("TextBox1"), TextBox)
+            If Trim(txtStock.Text) <> "" Then
+                Dim radOpciones As RadioButtonList = CType(row.FindControl("RadioButtonList1"), RadioButtonList)
+                Dim valorRadOpciones As String = radOpciones.SelectedValue
+                Dim unValorTabla As String = Trim(unasReferencias.dataSet.Tables(0).Rows(unaPosicion).Item(6).ToString())
+                If valorRadOpciones <> unValorTabla Then
+                    Dim unaTablaIdReferencia As TablaSQL = New TablaSQL
+                    unaTablaIdReferencia.setConnectionString(unConnectionString)
+                    unaTablaIdReferencia.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & unasReferencias.getItem(unaPosicion, 1) & "'")
+                    unasReferencias.execQuery("UPDATE AUD_RELEVAMIENTOS SET ESTADO='" & radOpciones.SelectedValue & "' WHERE CE=" & unNumeroDeCE & " AND SUCURSAL=" & unNumeroDeSucursal & " AND PERIODO='" & unPeriodoActual & "' AND ID_AUD_REFERENCIAS=" & CInt(unaTablaIdReferencia.getItem(0, 0)))
+                End If
             End If
             unaPosicion += 1
         Next
