@@ -194,4 +194,27 @@ Public Class busqueda
         End If
         hideNextOrPrevious()
     End Sub
+
+    Private Sub GridViewData_RowDataBound(sender As Object, e As System.Web.UI.WebControls.GridViewRowEventArgs) Handles GridViewData.RowDataBound
+        '  If e.Row.RowType = DataControlRowType.DataRow Then
+        '    e.Row.Attributes.Add("onmouseover", "this.style.cursor='hand'; tempColour = this.style.backgroundColor; this.style.backgroundColor='#DC002E';")
+        '  e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor=tempColour;")
+
+        'e.Row.Attributes.Add("onclick", alert(e.Row.RowIndex.ToString()))
+        '  End If
+    End Sub
+    Protected Overrides Sub Render(ByVal writer As System.Web.UI.HtmlTextWriter)
+        For Each row As GridViewRow In GridViewData.Rows
+            If row.RowType = DataControlRowType.DataRow Then
+                row.Attributes("onmouseover") = "this.style.cursor='hand';this.style.textDecoration='underline';"
+                row.Attributes("onmouseout") = "this.style.textDecoration='none';"
+                row.Attributes("onclick") = ClientScript.GetPostBackClientHyperlink(GridViewData, "Select$" & row.DataItemIndex, True)
+            End If
+        Next
+        MyBase.Render(writer)
+    End Sub
+
+    Private Sub GridViewData_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles GridViewData.SelectedIndexChanged
+        MsgBox("SELECCIONO: " & GridViewData.SelectedIndex)
+    End Sub
 End Class
