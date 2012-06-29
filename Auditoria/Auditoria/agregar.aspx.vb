@@ -3,6 +3,7 @@
     Private unaCategoria As String
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         txtCategoria.Text = "G"
+        txtNroReferencia.Focus()
         btnCancelar.Attributes.Add("onclick", "javascript:unloadPage()")
         txtCategoria.Attributes.CssStyle.Add("TEXT-ALIGN", "center")
         txtDescripcion.Attributes.CssStyle.Add("TEXT-ALIGN", "center")

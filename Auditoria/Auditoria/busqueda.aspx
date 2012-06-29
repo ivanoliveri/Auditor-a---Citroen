@@ -6,6 +6,11 @@
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 <title>Busqueda de Herramientas @ Auditoría</title>
+<script type="text/javascript">
+    function unloadPage() {
+        window.close();
+    }
+</script>
 <style type="text/css">
 .auto-style1 {
 	border: 2px solid #000000;
@@ -24,6 +29,7 @@
     {
         height: 32px;
         width: 566px;
+        margin-left: 0px;
     }
 </style>
 </head>
@@ -64,9 +70,21 @@
                     Height="175px" style="margin-top: 19px" Width="550px" 
                         AutoGenerateColumns="False">
                     <Columns>
-                        <asp:TemplateField HeaderText="CAT."></asp:TemplateField>
-                        <asp:TemplateField HeaderText="NRO. REF."></asp:TemplateField>
-                        <asp:TemplateField HeaderText="DESCRIPCIÓN"></asp:TemplateField>
+                        <asp:TemplateField HeaderText="CAT.">
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("CATEGORIA") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="NRO. REF.">
+                            <ItemTemplate>
+                                <asp:Label ID="Label2" runat="server" Text='<%# Eval("NRO_REFERENCIA") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="DESCRIPCIÓN">
+                            <ItemTemplate>
+                                <asp:Label ID="Label3" runat="server" Text='<%# Eval("DESCRIPCION") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                     <FooterStyle BackColor="White" ForeColor="Black" />
                     <HeaderStyle BackColor="#DC002E" Font-Bold="True" ForeColor="White" />
@@ -82,10 +100,12 @@
                 <div align="right" id="botonera">
                     <asp:ImageButton ID="btnSearch" runat="server" 
                         ImageUrl="~/images/buttons/Buscar.png" />
-                    &nbsp;<asp:ImageButton ID="btnPrevious" runat="server" Height="32px" 
+                    <asp:ImageButton ID="btnPrevious" runat="server" Height="100%" 
                         ImageUrl="~/images/buttons/btnPrevious.png" />
                     <asp:ImageButton ID="btnNext" runat="server" 
                         ImageUrl="~/images/buttons/btnNext.png" />
+            <asp:ImageButton ID="btnCancelar" runat="server" Height="32px" 
+                ImageUrl="~/images/buttons/cancel.png" Width="32px" ToolTip="Cancelar" />
                     <br />
                 </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

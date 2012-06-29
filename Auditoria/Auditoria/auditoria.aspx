@@ -47,10 +47,10 @@
 	        hidden = open(unString, 'Buscar @ Auditoría', 'top=0,left=0,width=620,height=495,status=yes,resizable=yes,scrollbars=yes');
 	    }
 	    function mostrarPopupImprimir(unString) {
-	        hidden = open(unString, 'Imprimir @ Auditoría', 'top=0,left=0,width=620,height=295,status=yes,resizable=yes,scrollbars=yes');
+	        hidden = open(unString, 'Imprimir @ Auditoría', 'top=0,left=0,width=550,height=295,status=yes,resizable=yes,scrollbars=yes');
         }
 	    function mostrarPopupAgregar(unString) {
-	        hidden = open(unString, 'Imprimir @ Auditoría', 'top=0,left=0,width=465,height=360,status=yes,resizable=yes,scrollbars=yes');
+	        hidden = open(unString, 'Agregar @ Auditoría', 'top=0,left=0,width=465,height=360,status=yes,resizable=yes,scrollbars=yes');
 	        return false; 
         }
 	    function printGrid(nombre) {
@@ -74,14 +74,14 @@
 		<img alt="" height="55" src="images/u82-fr.jpg" width="78" /></td>
 		<td class="style4">
             <asp:TextBox ID="txtCE" runat="server" BorderWidth="0px" Font-Names="Arial" 
-                Font-Size="Small" ForeColor="#666666" ReadOnly="True" Width="835px"></asp:TextBox>
+                Font-Size="Small" ForeColor="#666666" ReadOnly="True" Width="912px"></asp:TextBox>
             <asp:TextBox ID="txtSucursal" runat="server" BorderWidth="0px" 
                 Font-Names="Arial" Font-Size="Small" ForeColor="#666666" ReadOnly="True" 
-                Width="838px"></asp:TextBox>
+                Width="914px"></asp:TextBox>
             <br />
             <asp:TextBox ID="txtPeriodo" runat="server" BorderWidth="0px" 
                 Font-Names="Arial" Font-Size="Small" ForeColor="#666666" ReadOnly="True" 
-                Width="838px"></asp:TextBox>
+                Width="914px" Height="16px"></asp:TextBox>
         </td>
 	</tr>
 	<tr>
@@ -137,15 +137,21 @@
                     <tr>
                         <td class="style5">
                             &nbsp;</td>
-                        <td class="style3">
-                            <div id="impresion" style="width: 100%">
+                        <td class="style3" >
                                 <asp:GridView ID="GridViewData" runat="server" BackColor="White" 
                                     BorderColor="#666666" BorderStyle="None" BorderWidth="1px" CellPadding="4" 
                                     Font-Names="Arial" Font-Size="Small" ForeColor="#666666" GridLines="Horizontal" 
                                     Height="175px" 
-                                    style="margin-top: 19px; margin-bottom: 0px; margin-right: 1px;" Width="981px" 
+                                    style="margin-top: 5px; margin-bottom: 0px; margin-right: 1px;" Width="981px" 
                                     AutoGenerateColumns="False">
                                     <Columns>
+        
+                                        <asp:TemplateField HeaderText="CAT.">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="TextBox2" runat="server" Text='<%# Eval("CATEGORIA")%>' 
+                                                    ontextchanged="TextBox2_TextChanged" Width="24px"></asp:TextBox>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
         
                                         <asp:TemplateField HeaderText="NRO. REF.">
                                             <ItemTemplate>
@@ -209,7 +215,6 @@
                                     <SortedDescendingCellStyle BackColor="#E5E5E5" />
                                     <SortedDescendingHeaderStyle BackColor="#242121" />
                                 </asp:GridView>
-                            </div>
                         </td>
                         <td>
                             &nbsp;</td>

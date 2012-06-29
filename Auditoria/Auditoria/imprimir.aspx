@@ -52,7 +52,7 @@
 	<tr>
 		<td colspan="2">
             <br />
-        <div id="menu">
+
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <br />
             <asp:RadioButtonList ID="radImpresion" runat="server" AutoPostBack="True" 
@@ -62,11 +62,11 @@
             </asp:RadioButtonList>
             <br />
             <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:ImageButton ID="btnConfirmar" runat="server" Height="32px" 
                 ImageUrl="~/images/buttons/confirm.png" Width="32px" 
                 ToolTip="Confirmar" />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:ImageButton ID="btnCancelar" runat="server" Height="32px" 
+            &nbsp;<asp:ImageButton ID="btnCancelar" runat="server" Height="32px" 
                 ImageUrl="~/images/buttons/cancel.png" Width="32px" ToolTip="Cancelar" />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
 		        <br />
@@ -144,7 +144,7 @@
                                     <SortedDescendingCellStyle BackColor="#E5E5E5" />
                                     <SortedDescendingHeaderStyle BackColor="#242121" />
                                 </asp:GridView>
-                </div>
+      
         </td>
 	</tr>
 	</table>

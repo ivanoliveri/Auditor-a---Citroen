@@ -124,11 +124,11 @@
                 </tr>
             </table>
             <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:ImageButton ID="btnConfirmar" runat="server" Height="32px" 
                 ImageUrl="~/images/buttons/confirm.png" Width="32px" 
                 ToolTip="Confirmar" />
-&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:ImageButton ID="btnCancelar" runat="server" Height="32px" 
+&nbsp;<asp:ImageButton ID="btnCancelar" runat="server" Height="32px" 
                 ImageUrl="~/images/buttons/cancel.png" Width="32px" ToolTip="Cancelar" />
 		</td>
 	</tr>

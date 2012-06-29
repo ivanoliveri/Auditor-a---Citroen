@@ -84,4 +84,13 @@ Partial Public Class busqueda
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnNext As Global.System.Web.UI.WebControls.ImageButton
+
+    '''<summary>
+    '''btnCancelar control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCancelar As Global.System.Web.UI.WebControls.ImageButton
 End Class
