@@ -65,4 +65,7 @@
     End Sub
 
 
+    Protected Sub btnConfirmar_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnConfirmar.Click
+
+    End Sub
 End Class

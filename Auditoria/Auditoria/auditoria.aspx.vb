@@ -84,6 +84,7 @@ Public Class auditoria
             Case "G"
                 btnG.ImageUrl = "~/images/buttons/btnG.png"
         End Select
+
         Select Case unaCategoriaActual
             Case "A"
                 btnA.ImageUrl = "~/images/buttons/btnA1.png"
@@ -151,6 +152,7 @@ Public Class auditoria
         End If
         If BusquedaMode = True Then
             setImageButton(lastCat, codCategoriaToSearch)
+            lastCat = codCategoriaToSearch
             'MsgBox("ID_CATEGORIA: " & idCategoriaToSearch & " ; ID_REF: " & idReferenciaToSearch & " ; NRO_REF: " & nroReferenciaToSearch)
             'setImageButton(lastCat, codCategoriaToSearch)
             Dim unaTablaTemporal As TablaSQL = New TablaSQL
@@ -164,6 +166,8 @@ Public Class auditoria
                 Do While maxFila Mod 10 <> 0
                     maxFila += 1
                 Loop
+            Else
+                maxFila = unNumeroDeFila
             End If
             'unNumFila = 222 y maxFila=230
             GridViewData.SelectedIndex = (unNumeroDeFila - (maxFila - 10)) - 1
@@ -301,6 +305,7 @@ Public Class auditoria
             Dim unStockTextBox As String = Trim(txtStock.Text)
             Dim unStockDataTable As String = Trim(unasReferencias.getItem(unaPosicion, 6))
             Dim unaFechaDataTable As String = Trim(unasReferencias.getItem(unaPosicion, 8))
+            txtStock.Text = formatStock(unStockTextBox)
             'Se fija que sea distinto de lo que vino cargado y que adamás haya seleccionado un estado
             If formatStock((unStockTextBox)) <> Trim(unStockDataTable) Then
                 If IsNumeric(txtStock.Text) = False Then
@@ -335,11 +340,14 @@ Public Class auditoria
                 unaTablaNuevaDeAuditoria.getDataSet("SELECT COUNT(*) FROM AUD_RELEVAMIENTOS WHERE CE=" & unNumeroDeCE & " AND SUCURSAL=" & unNumeroDeSucursal & " AND PERIODO='" & unPeriodoActual & "'" & " AND ID_AUD_REFERENCIAS=" & CInt(unaTablaIdReferencia.getItem(0, 0)))
                 'Si no encuentra relevamientos en el período actual para la referencia indicada INSERTA sino UPDATE
                 If CInt(unaTablaNuevaDeAuditoria.getItem(0, 0)) = 0 Then
+                    Dim unIns As String = "INSERT INTO AUD_RELEVAMIENTOS VALUES(" & unNumeroDeCE & "," & unNumeroDeSucursal & ",'" & unPeriodoActual & "'," & unaFechaDataTable & "," & CInt(unaTablaIdReferencia.getItem(0, 0)) & ",'" & formatStock(unStockTextBox) & "','" & radEstado.SelectedValue & "','')"
                     unaTablaNuevaDeAuditoria.execQuery("INSERT INTO AUD_RELEVAMIENTOS VALUES(" & unNumeroDeCE & "," & unNumeroDeSucursal & ",'" & unPeriodoActual & "'," & unaFechaDataTable & "," & CInt(unaTablaIdReferencia.getItem(0, 0)) & ",'" & formatStock(unStockTextBox) & "','" & radEstado.SelectedValue & "','')")
                 Else
                     unaTablaNuevaDeAuditoria.execQuery("UPDATE AUD_RELEVAMIENTOS SET STOCK=" & formatStock(unStockTextBox) & ",ESTADO='" & radEstado.SelectedValue & "' WHERE CE=" & unNumeroDeCE & " AND SUCURSAL=" & unNumeroDeSucursal & " AND PERIODO='" & unPeriodoActual & "' AND ID_AUD_REFERENCIAS=" & CInt(unaTablaIdReferencia.getItem(0, 0)))
                 End If
-                txtStock.Text = formatStock(unStockTextBox)
+               ' unasReferencias.getDataSet(ultimoQuery)
+                '  unasReferencias.fillGridView(GridViewData)
+                '  formatGridView()
             End If
             unaPosicion += 1
         Next
@@ -347,20 +355,18 @@ Public Class auditoria
     End Sub
 
     Protected Sub RadioButtonList1_SelectedIndexChanged(sender As Object, e As EventArgs)
+
         Dim unaPosicion As Integer = 0
         For Each row As GridViewRow In GridViewData.Rows
             Dim txtStock As TextBox = CType(row.FindControl("TextBox1"), TextBox)
-            If Trim(txtStock.Text) <> "" Then
-                Dim radOpciones As RadioButtonList = CType(row.FindControl("RadioButtonList1"), RadioButtonList)
-                Dim valorRadOpciones As String = radOpciones.SelectedValue
-                Dim unValorTabla As String = Trim(unasReferencias.dataSet.Tables(0).Rows(unaPosicion).Item(6).ToString())
-                If valorRadOpciones <> unValorTabla Then
-                    Dim unaTablaIdReferencia As TablaSQL = New TablaSQL
-                    unaTablaIdReferencia.setConnectionString(unConnectionString)
-                    unaTablaIdReferencia.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & unasReferencias.getItem(unaPosicion, 1) & "'")
-                    unasReferencias.execQuery("UPDATE AUD_RELEVAMIENTOS SET ESTADO='" & radOpciones.SelectedValue & "' WHERE CE=" & unNumeroDeCE & " AND SUCURSAL=" & unNumeroDeSucursal & " AND PERIODO='" & unPeriodoActual & "' AND ID_AUD_REFERENCIAS=" & CInt(unaTablaIdReferencia.getItem(0, 0)))
-                End If
+            Dim radOpciones As RadioButtonList = CType(row.FindControl("RadioButtonList1"), RadioButtonList)
+            Dim unValorTabla As String = Trim(unasReferencias.dataSet.Tables(0).Rows(unaPosicion).Item(6).ToString())
+            If radOpciones.SelectedValue = "N" And txtStock.Text <> unValorTabla Then
+                Response.Write("<script>alert('Debes ingresar el stock antes de ingresar el estado.');</script>")
+                agregoOedito = True
+                Exit Sub
             End If
+            'End If
             unaPosicion += 1
         Next
     End Sub

@@ -46,6 +46,10 @@
             txtStock.Focus()
             Exit Sub
         End If
+        If radEstado.SelectedIndex = -1 Then
+            Response.Write("<script>alert('Debes seleccionar un estado(B/M/R).');</script>")
+            Exit Sub
+        End If
         Dim unaTablaIdCategoria As TablaSQL = New TablaSQL()
         unaTablaIdCategoria.setConnectionString(unConnectionString)
         unaTablaIdCategoria.getDataSet("SELECT ID FROM AUD_CATEGORIAS WHERE CODIGO='" & unaCategoria & "'")

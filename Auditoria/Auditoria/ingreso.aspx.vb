@@ -10,12 +10,20 @@ Public Class ingreso
         If unNumeroDeCE = 0 Then cargarConcesionarias()
         If dropConcesionaria.Text = "Seleccione CE" Or dropConcesionaria.Text = "" Then Exit Sub
         unNumeroDeCE = CInt(dropConcesionaria.Text)
-        If dropSucursal.Text <> "Seleccione SUC" And dropSucursal.Text <> "" Then unNumeroDeSucursal = CInt(dropSucursal.Text)
+        If dropSucursal.Text <> "Seleccione SUC" Then
+            If Trim(dropSucursal.Text) = "" Then
+                unNumeroDeSucursal = 0
+            Else
+                unNumeroDeSucursal = CInt(dropSucursal.Text)
+            End If
+        End If
+
     End Sub
 
     Protected Sub dropConcesionaria_SelectedIndexChanged(sender As Object, e As EventArgs) Handles dropConcesionaria.SelectedIndexChanged
         cargarSucursales()
     End Sub
+
     Protected Sub cargarSucursales()
         Dim unaTablaDeRelevamientos As TablaSQL = New TablaSQL
         unaTablaDeRelevamientos.setConnectionString(unConnectionStringDeBasesComunes)
@@ -28,10 +36,11 @@ Public Class ingreso
         If Trim(dropSucursal.Items.Item(1).Text) = "" Then dropSucursal.Items.Item(1).Text = "0"
         unNumeroDeSucursal = -1
     End Sub
+
     Protected Sub cargarConcesionarias()
         Dim unaTablaDeRelevamientos As TablaSQL = New TablaSQL
         unaTablaDeRelevamientos.setConnectionString(unConnectionStringDeBasesComunes)
-        unaTablaDeRelevamientos.getDataSet("SELECT DISTINCT(CE) , Razon_Social FROM CONCESIONARIAS WHERE (CE<3800) AND (TS IN (7,2,9,4)) ORDER BY CE")
+        unaTablaDeRelevamientos.getDataSet("SELECT DISTINCT(CE) FROM CONCESIONARIAS WHERE (CE<3800) AND (TS IN (7,2,9,4)) ORDER BY CE")
         dropConcesionaria.DataSource = unaTablaDeRelevamientos.dataSet.Tables(0)
         dropConcesionaria.DataTextField = "CE"
         dropConcesionaria.DataValueField = "CE"
@@ -40,6 +49,7 @@ Public Class ingreso
         dropSucursal.Items.Insert(0, "Seleccione SUC")
         unNumeroDeCE = -1
     End Sub
+
     Private Sub dropSucursal_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles dropSucursal.SelectedIndexChanged
         Response.Redirect("auditoria.aspx")
     End Sub
