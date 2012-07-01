@@ -7,7 +7,11 @@ Public Class ingreso
         unPeriodoAnterior = "2011-2"
         unPeriodoActual = "2012-1"
         BusquedaMode = False
-        If unNumeroDeCE = 0 Then cargarConcesionarias()
+        If unNumeroDeCE = 0 Then
+            cargarConcesionarias()
+            dropSucursal.Visible = False
+            Label1.Visible = False
+        End If
         If dropConcesionaria.Text = "Seleccione CE" Or dropConcesionaria.Text = "" Then Exit Sub
         unNumeroDeCE = CInt(dropConcesionaria.Text)
         If dropSucursal.Text <> "Seleccione SUC" Then
@@ -27,14 +31,21 @@ Public Class ingreso
     Protected Sub cargarSucursales()
         Dim unaTablaDeRelevamientos As TablaSQL = New TablaSQL
         unaTablaDeRelevamientos.setConnectionString(unConnectionStringDeBasesComunes)
-        unaTablaDeRelevamientos.getDataSet("SELECT Suc FROM CONCESIONARIAS WHERE (CE=" & unNumeroDeCE & ") AND (TS IN (7,2,9,4)) ORDER BY CE")
-        dropSucursal.DataSource = unaTablaDeRelevamientos.dataSet.Tables(0)
-        dropSucursal.DataTextField = "Suc"
-        dropSucursal.DataValueField = "Suc"
-        dropSucursal.DataBind()
-        dropSucursal.Items.Insert(0, "Seleccione SUC")
-        If Trim(dropSucursal.Items.Item(1).Text) = "" Then dropSucursal.Items.Item(1).Text = "0"
-        unNumeroDeSucursal = -1
+        unaTablaDeRelevamientos.getDataSet("SELECT Suc FROM CONCESIONARIAS WHERE (CE=" & unNumeroDeCE & ") AND (TS IN (7,2,9,4)) ORDER BY Suc")
+        If Trim(unaTablaDeRelevamientos.getItem(0, 0)) = "" And unaTablaDeRelevamientos.getRowsCount = 1 Then
+            unNumeroDeSucursal = 0
+            Response.Redirect("auditoria.aspx")
+        Else
+            dropSucursal.Visible = True
+            Label1.Visible = True
+            dropSucursal.DataSource = unaTablaDeRelevamientos.dataSet.Tables(0)
+            dropSucursal.DataTextField = "Suc"
+            dropSucursal.DataValueField = "Suc"
+            dropSucursal.DataBind()
+            dropSucursal.Items.Insert(0, "Seleccione SUC")
+            If Trim(dropSucursal.Items.Item(1).Text) = "" Then dropSucursal.Items.Item(1).Text = "0"
+            unNumeroDeSucursal = -1
+        End If
     End Sub
 
     Protected Sub cargarConcesionarias()
