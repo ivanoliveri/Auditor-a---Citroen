@@ -67,7 +67,6 @@ Public Class auditoria
     End Sub
 
     Protected Sub setImageButton(ByVal unaCategoriaPasada As String, ByVal unaCategoriaActual As String)
-        ' If unaCategoriaActual = unaCategoriaPasada Then Exit Sub
         Select Case unaCategoriaPasada
             Case "A"
                 btnA.ImageUrl = "~/images/buttons/btnA.png"
@@ -141,7 +140,6 @@ Public Class auditoria
         txtSucursal.Text = "Sucursal: " & unNumeroDeSucursal
         txtPeriodo.Text = "Período: " & unPeriodoActual
         unasReferencias.setConnectionString(unConnectionString)
-        'Setteo este atributo para que cuando ingrese al popup, no esté vacio el gridView
         'El ViewGrid viene por defecto en categoría A
         If primerIngresoMain = True Then
             setImageButton(lastCat, "A")
@@ -153,8 +151,6 @@ Public Class auditoria
         If BusquedaMode = True Then
             setImageButton(lastCat, codCategoriaToSearch)
             lastCat = codCategoriaToSearch
-            'MsgBox("ID_CATEGORIA: " & idCategoriaToSearch & " ; ID_REF: " & idReferenciaToSearch & " ; NRO_REF: " & nroReferenciaToSearch)
-            'setImageButton(lastCat, codCategoriaToSearch)
             Dim unaTablaTemporal As TablaSQL = New TablaSQL
             unaTablaTemporal.setConnectionString(unConnectionString)
             unaTablaTemporal.getDataSet("CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1)  NOT NULL,[NRO_REFERENCIA] [char] (15) NOT NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (NRO_REFERENCIA) SELECT NRO_REFERENCIA FROM AUD_REFERENCIAS WHERE ID_CATEGORIA=" & idCategoriaToSearch & " ORDER BY NRO_REFERENCIA ASC SELECT FILA FROM #TEMP_REFERENCIAS WHERE NRO_REFERENCIA='" & nroReferenciaToSearch & "'")
@@ -169,11 +165,9 @@ Public Class auditoria
             Else
                 maxFila = unNumeroDeFila
             End If
-            'unNumFila = 222 y maxFila=230
             GridViewData.SelectedIndex = (unNumeroDeFila - (maxFila - 10)) - 1
             paginaActualMain = maxFila / 10
             calcularPaginas(codCategoriaToSearch)
-            'MsgBox("TOTAL PAGINAS: " & totalPaginasMain & " ; MAX FILA: " & maxFila & " ; NRO FILA: " & unNumeroDeFila)
             ultimoQuery = "CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1) NOT NULL,[CATEGORIA] [char](1) NULL,[NRO_REFERENCIA] [char](15) NULL,[DESCRIPCION] [char] (55) NULL,[STOCK_ENVIADO] [int] NULL,[ESTADO_ENVIADO] [char] (1) NULL,[FECHA_ENVIADA] [char] (15) NULL,[STOCK] [char] (10) NULL,[ESTADO] [char] (1) NULL,[FECHA] [char] (15) NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (CATEGORIA,NRO_REFERENCIA,DESCRIPCION,STOCK_ENVIADO,ESTADO_ENVIADO,FECHA_ENVIADA,STOCK,ESTADO,FECHA)SELECT (SELECT CODIGO FROM AUD_CATEGORIAS WHERE AUD_CATEGORIAS.ID=AUD_REFERENCIAS.ID_CATEGORIA),AUD_REFERENCIAS.NRO_REFERENCIA,AUD_REFERENCIAS.DESCRIPCION,(SELECT AUD_RELEVAMIENTOS.STOCK FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ") AS STOCK_ENVIADO, (SELECT AUD_RELEVAMIENTOS.ESTADO FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ") AS ESTADO_ENVIADO,(SELECT AUD_RELEVAMIENTOS.FECHA FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ") AS FECHA_ENVIADA,AUD_RELEVAMIENTOS.STOCK, AUD_RELEVAMIENTOS.ESTADO, AUD_RELEVAMIENTOS.FECHA FROM AUD_RELEVAMIENTOS INNER JOIN AUD_REFERENCIAS ON AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID WHERE AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & " AND AUD_REFERENCIAS.ID_CATEGORIA=" & idCategoriaToSearch & " AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoActual & "' UNION SELECT (SELECT CODIGO FROM AUD_CATEGORIAS WHERE AUD_CATEGORIAS.ID=AUD_REFERENCIAS.ID_CATEGORIA),NRO_REFERENCIA,DESCRIPCION,(SELECT AUD_RELEVAMIENTOS.STOCK FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ") AS STOCK_ENVIADO,(SELECT AUD_RELEVAMIENTOS.ESTADO FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ")AS ESTADO_ENVIADO,(SELECT AUD_RELEVAMIENTOS.FECHA FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & unNumeroDeCE & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & unNumeroDeSucursal & ")AS FECHA_ENVIADA, '' AS STOCK, 'N' AS ESTADO, CONVERT(VARCHAR(8), GETDATE(), 112) AS FECHA FROM AUD_REFERENCIAS WHERE ID_CATEGORIA=" & idCategoriaToSearch & " AND ID NOT IN (SELECT ID_AUD_REFERENCIAS FROM AUD_RELEVAMIENTOS WHERE CE=" & unNumeroDeCE & " AND SUCURSAL=" & unNumeroDeSucursal & " AND PERIODO='" & unPeriodoActual & "' )SELECT CATEGORIA,NRO_REFERENCIA,DESCRIPCION,STOCK_ENVIADO,ESTADO_ENVIADO,FECHA_ENVIADA,STOCK,ESTADO,FECHA FROM #TEMP_REFERENCIAS WHERE FILA>" & maxFila - 10 & " AND FILA<=" & maxFila
             unasReferencias.getDataSet(ultimoQuery)
             hideNextOrPrevious()
@@ -314,13 +308,7 @@ Public Class auditoria
                     agregoOedito = True
                     Exit Sub
                 End If
-                If CInt(txtStock.Text) < 0 Then
-                    Response.Write("<script>alert('El stock debe ser un entero positivo.');</script>")
-                    txtStock.Text = ""
-                    agregoOedito = True
-                    Exit Sub
-                End If
-                If InStr(txtStock.Text, ".", CompareMethod.Text) Then
+                If CInt(txtStock.Text) < 0 Or InStr(txtStock.Text, ".", CompareMethod.Text) Then
                     Response.Write("<script>alert('El stock debe ser un entero positivo.');</script>")
                     txtStock.Text = ""
                     agregoOedito = True
@@ -344,9 +332,6 @@ Public Class auditoria
                 Else
                     unaTablaNuevaDeAuditoria.execQuery("UPDATE AUD_RELEVAMIENTOS SET STOCK=" & formatStock(unStockTextBox) & ",ESTADO='" & radEstado.SelectedValue & "' WHERE CE=" & unNumeroDeCE & " AND SUCURSAL=" & unNumeroDeSucursal & " AND PERIODO='" & unPeriodoActual & "' AND ID_AUD_REFERENCIAS=" & CInt(unaTablaIdReferencia.getItem(0, 0)))
                 End If
-               ' unasReferencias.getDataSet(ultimoQuery)
-                '  unasReferencias.fillGridView(GridViewData)
-                '  formatGridView()
             End If
             unaPosicion += 1
         Next
@@ -361,11 +346,12 @@ Public Class auditoria
             Dim radOpciones As RadioButtonList = CType(row.FindControl("RadioButtonList1"), RadioButtonList)
             Dim unValorTabla As String = Trim(unasReferencias.dataSet.Tables(0).Rows(unaPosicion).Item(6).ToString())
             If radOpciones.SelectedValue = "N" And txtStock.Text <> unValorTabla Then
-                Response.Write("<script>alert('Debes ingresar el stock antes de ingresar el estado.');</script>")
-                agregoOedito = True
+                If agregoOedito = False Then
+                    Response.Write("<script>alert('Debes ingresar el stock antes de ingresar el estado.');</script>")
+                    agregoOedito = True
+                End If
                 Exit Sub
             End If
-            'End If
             unaPosicion += 1
         Next
     End Sub

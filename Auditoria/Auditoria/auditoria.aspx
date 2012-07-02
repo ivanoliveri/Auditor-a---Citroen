@@ -44,15 +44,15 @@
 	        document.all("txtCategoria").value = unString;
 	    }
 	    function mostrarPopupBuscar(unString) {
-	        hidden = open(unString, 'Buscar @ Auditoría', 'top=0,left=0,width=620,height=495,status=yes,resizable=yes,scrollbars=yes');
+	        hidden = open(unString, 'Buscar', 'top=0,left=0,width=620,height=495,status=yes,resizable=yes,scrollbars=yes');
 	    }
 	    function mostrarPopupImprimir(unString) {
-	        hidden = open(unString, 'Imprimir @ Auditoría', 'top=0,left=0,width=550,height=295,status=yes,resizable=yes,scrollbars=yes');
+	        hidden = open(unString, 'Imprimir', 'top=0,left=0,width=630,height=320,status=yes,resizable=yes,scrollbars=yes');
         }
 	    function mostrarPopupAgregar(unString) {
-	        hidden = open(unString, 'Agregar @ Auditoría', 'top=0,left=0,width=465,height=360,status=yes,resizable=yes,scrollbars=yes');
-	        return false; 
-        }
+	        hidden = open(unString, 'Agregar', 'top=0,left=0,width=465,height=360,status=yes,resizable=yes,scrollbars=yes');
+	        return false;
+	    }
 	    function printGrid(nombre) {
 	        var ficha = document.getElementById(nombre);
 	        var ventimp = window.open(' ', 'popimpr');
@@ -142,7 +142,7 @@
                                     BorderColor="#666666" BorderStyle="None" BorderWidth="1px" CellPadding="4" 
                                     Font-Names="Arial" Font-Size="Small" ForeColor="#666666" GridLines="Horizontal" 
                                     Height="175px" 
-                                    style="margin-top: 5px; margin-bottom: 0px; margin-right: 1px;" Width="981px" 
+                                    style="margin-top: 2px; margin-bottom: 0px; margin-right: 1px;" Width="981px" 
                                     AutoGenerateColumns="False">
                                     <Columns>
         
@@ -196,7 +196,7 @@
                                                     <asp:ListItem Value="B">B</asp:ListItem>
                                                     <asp:ListItem Value="R">R</asp:ListItem>
                                                     <asp:ListItem Value="M">M</asp:ListItem>
-                                                    <asp:ListItem Value="N">N</asp:ListItem>
+                                                    <asp:ListItem Value="N" style="display:none">N</asp:ListItem>
                                                 </asp:RadioButtonList>
                                             </ItemTemplate>
                                         </asp:TemplateField>
