@@ -11,7 +11,7 @@
         window.close();
     }
     function ponerCategoriaF() {
-        if (document.getElementById('txtDescripcion').value == '') {
+        if (document.getElementById('txtNroReferencia').value == '') {
                document.getElementById('txtCategoria').value = 'G';
         }else{
                document.getElementById('txtCategoria').value = 'F';
@@ -81,7 +81,7 @@
                 Font-Size="Small" ForeColor="#666666" Width="144px" ReadOnly="True">Número de Referencia :</asp:TextBox>
                     </td>
                     <td>
-            <asp:TextBox ID="txtNroReferencia" runat="server" Font-Names="Arial" Font-Size="Small" 
+            <asp:TextBox ID="txtNroReferencia" runat="server" onKeyUp="ponerCategoriaF()" Font-Names="Arial" Font-Size="Small" 
                             ForeColor="#666666"></asp:TextBox>
                     </td>
                 </tr>
@@ -91,7 +91,7 @@
                 Font-Size="Small" ForeColor="#666666" Width="144px" ReadOnly="True">Descripción :</asp:TextBox>
                     </td>
                     <td>
-            <asp:TextBox ID="txtDescripcion" runat="server" onKeyUp="ponerCategoriaF()" Font-Names="Arial" Font-Size="Small" 
+            <asp:TextBox ID="txtDescripcion" runat="server"  Font-Names="Arial" Font-Size="Small" 
                             ForeColor="#666666"></asp:TextBox>
                     </td>
                 </tr>
