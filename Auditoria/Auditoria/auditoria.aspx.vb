@@ -110,6 +110,12 @@ Public Class auditoria
             Dim lblFechaEnviada As Label = CType(row.FindControl("Label9"), Label)
             Dim unaFechaVieja As String = lblFecha.Text
             Dim unaFecha As String
+            Dim lblDescripcion As Label = CType(row.FindControl("Label2"), Label)
+            Dim unString As String = Trim(lblDescripcion.Text)
+            Dim unNum As Integer = Len(unString)
+            If Len(unString) >= 29 Then
+                lblDescripcion.Text = Left(unString, 30) + ".."
+            End If
             formatDate(unaFechaVieja, unaFecha)
             lblFecha.Text = unaFecha
             unaFechaVieja = lblFechaEnviada.Text
@@ -345,19 +351,13 @@ Public Class auditoria
     End Sub
 
     Protected Sub RadioButtonList1_SelectedIndexChanged(sender As Object, e As EventArgs)
-
         Dim unaPosicion As Integer = 0
+        Dim unaTablaTemporal As TablaSQL = New TablaSQL
+        unaTablaTemporal.setConnectionString(unConnectionString)
         For Each row As GridViewRow In GridViewData.Rows
-            Dim txtStock As TextBox = CType(row.FindControl("TextBox1"), TextBox)
-            Dim radOpciones As RadioButtonList = CType(row.FindControl("RadioButtonList1"), RadioButtonList)
-            Dim unValorTabla As String = Trim(unasReferencias.dataSet.Tables(0).Rows(unaPosicion).Item(6).ToString())
-            If radOpciones.SelectedValue = "N" And txtStock.Text <> unValorTabla Then
-                If agregoOedito = False Then
-                    Response.Write("<script>alert('Debes ingresar el stock antes de ingresar el estado.');</script>")
-                    agregoOedito = True
-                End If
-                Exit Sub
-            End If
+            Dim radEstado As RadioButtonList = CType(row.FindControl("RadioButtonList1"), RadioButtonList)
+            unaTablaTemporal.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & unasReferencias.dataSet.Tables(0).Rows(unaPosicion).Item(1).ToString() & "'")
+            unasReferencias.execQuery("UPDATE AUD_RELEVAMIENTOS SET ESTADO='" & radEstado.SelectedValue & "' WHERE ID_AUD_REFERENCIAS='" & CInt(unaTablaTemporal.getItem(0, 0)) & "'")
             unaPosicion += 1
         Next
     End Sub

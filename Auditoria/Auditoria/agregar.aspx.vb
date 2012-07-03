@@ -10,7 +10,6 @@
         txtNroReferencia.Attributes.CssStyle.Add("TEXT-ALIGN", "center")
         txtStock.Attributes.CssStyle.Add("TEXT-ALIGN", "center")
     End Sub
-
     Protected Sub btnConfirmar_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnConfirmar.Click
         Dim unaCategoria As String
         If Len(txtNroReferencia.Text) = 0 Then
@@ -39,6 +38,11 @@
                 txtNroReferencia.Focus()
                 Exit Sub
             End If
+        End If
+        If Trim(txtDescripcion.Text) = "" Then
+            Response.Write("<script>alert('No has ingresado la descripción.');</script>")
+            txtDescripcion.Focus()
+            Exit Sub
         End If
         If IsNumeric(txtStock.Text) = False Then
             Response.Write("<script>alert('El stock debe ser un entero positivo.');</script>")
@@ -85,7 +89,7 @@
         unasReferencias.execQuery("INSERT INTO AUD_RELEVAMIENTOS VALUES(" & unNumeroDeCE & "," & unNumeroDeSucursal & ",'" & unPeriodoActual & "'," & unAno & unMes & unDia & "," & CInt(unaTablaIdReferencia.getItem(0, 0)) & ",'" & txtStock.Text & "','" & radEstado.SelectedValue & "')")
         If (lastCat = "F" And unaCategoria = "F") Or (lastCat = "G" And unaCategoria = "G") Then
             agregoDesdePopup = True
-            Response.Write("<script>opener.location.href='http://localhost:11981/auditoria.aspx';</script>")
+            Response.Write("<script>opener.location.href='http://normasymetodos.com/citroen.ar/Auditoria/auditoria.aspx';</script>")
         End If
         Response.Write("<script>window.close();</script>")
     End Sub
