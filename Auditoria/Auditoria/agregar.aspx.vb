@@ -13,20 +13,32 @@
 
     Protected Sub btnConfirmar_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnConfirmar.Click
         Dim unaCategoria As String
-        If Len(txtDescripcion.Text) = 0 Then
+        If Len(txtNroReferencia.Text) = 0 Then
+            popupCat = "G"
             unaCategoria = "G"
         Else
+            popupCat = "F"
             unaCategoria = "F"
         End If
         Dim unaTablaTemporal As TablaSQL = New TablaSQL()
         unaTablaTemporal.setConnectionString(unConnectionString)
         'Verifica que la referencia ingresada no exista previamente.
-        unaTablaTemporal.getDataSet("SELECT COUNT(*) FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & Trim(txtNroReferencia.Text) & "'")
-        If CInt(unaTablaTemporal.getItem(0, 0)) >= 1 Then
-            Response.Write("<script>alert('El número de referencia ingresado ya existe.');</script>")
-            txtNroReferencia.Text = ""
-            txtNroReferencia.Focus()
-            Exit Sub
+        If popupCat = "F" Then
+            unaTablaTemporal.getDataSet("SELECT COUNT(*) FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & Trim(txtNroReferencia.Text) & "'")
+            If CInt(unaTablaTemporal.getItem(0, 0)) >= 1 Then
+                Response.Write("<script>alert('La pieza ingresada ya existe.');</script>")
+                txtNroReferencia.Text = ""
+                txtNroReferencia.Focus()
+                Exit Sub
+            End If
+        Else
+            unaTablaTemporal.getDataSet("SELECT COUNT(*) FROM AUD_REFERENCIAS WHERE DESCRIPCION='" & Trim(txtDescripcion.Text) & "' AND NRO_REFERENCIA=''")
+            If CInt(unaTablaTemporal.getItem(0, 0)) >= 1 Then
+                Response.Write("<script>alert('La pieza ingresada ya existe.');</script>")
+                txtNroReferencia.Text = ""
+                txtNroReferencia.Focus()
+                Exit Sub
+            End If
         End If
         If IsNumeric(txtStock.Text) = False Then
             Response.Write("<script>alert('El stock debe ser un entero positivo.');</script>")
@@ -65,11 +77,16 @@
         End If
         Dim unaTablaIdReferencia As TablaSQL = New TablaSQL
         unaTablaIdReferencia.setConnectionString(unConnectionString)
-        unaTablaIdReferencia.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & txtNroReferencia.Text & "'")
+        If popupCat = "G" Then
+            unaTablaIdReferencia.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE DESCRIPCION='" & txtDescripcion.Text & "' AND NRO_REFERENCIA=''")
+        Else
+            unaTablaIdReferencia.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & txtNroReferencia.Text & "'")
+        End If
         unasReferencias.execQuery("INSERT INTO AUD_RELEVAMIENTOS VALUES(" & unNumeroDeCE & "," & unNumeroDeSucursal & ",'" & unPeriodoActual & "'," & unAno & unMes & unDia & "," & CInt(unaTablaIdReferencia.getItem(0, 0)) & ",'" & txtStock.Text & "','" & radEstado.SelectedValue & "')")
         If (lastCat = "F" And unaCategoria = "F") Or (lastCat = "G" And unaCategoria = "G") Then
-            Response.Write("<script>opener.location.reload();</script>")
+            agregoDesdePopup = True
+            Response.Write("<script>opener.location.href='http://localhost:11981/auditoria.aspx';</script>")
         End If
-        Response.Write("<script>window.location.reload();</script>")
+        Response.Write("<script>window.close();</script>")
     End Sub
 End Class

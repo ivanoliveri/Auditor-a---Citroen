@@ -107,7 +107,6 @@ Public Class busqueda
             Else
                 GridViewData.Visible = True
             End If
-            Dim unQuery As String = "CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1) NOT NULL,[NRO_REFERENCIA] [char](20) NULL,[DESCRIPCION] [char] (55) NOT NULL,[CATEGORIA] [char](1) NOT NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (NRO_REFERENCIA,DESCRIPCION,CATEGORIA)SELECT AUD_REFERENCIAS.NRO_REFERENCIA,AUD_REFERENCIAS.DESCRIPCION, AUD_CATEGORIAS.CODIGO FROM AUD_REFERENCIAS INNER JOIN AUD_CATEGORIAS ON AUD_REFERENCIAS.ID_CATEGORIA=AUD_CATEGORIAS.ID WHERE AUD_REFERENCIAS.DESCRIPCION LIKE'%" & txtBusqueda.Text & "%' ORDER BY AUD_REFERENCIAS.NRO_REFERENCIA ASC SELECT CATEGORIA,NRO_REFERENCIA,DESCRIPCION FROM #TEMP_REFERENCIAS WHERE FILA>0 AND FILA<=5"
             unaTablaTemporalDeBusqueda.getDataSet("CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1) NOT NULL,[NRO_REFERENCIA] [char](20) NULL,[DESCRIPCION] [char] (55) NOT NULL,[CATEGORIA] [char](1) NOT NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (NRO_REFERENCIA,DESCRIPCION,CATEGORIA)SELECT AUD_REFERENCIAS.NRO_REFERENCIA,AUD_REFERENCIAS.DESCRIPCION, AUD_CATEGORIAS.CODIGO FROM AUD_REFERENCIAS INNER JOIN AUD_CATEGORIAS ON AUD_REFERENCIAS.ID_CATEGORIA=AUD_CATEGORIAS.ID WHERE AUD_REFERENCIAS.DESCRIPCION LIKE'%" & txtBusqueda.Text & "%' ORDER BY AUD_REFERENCIAS.NRO_REFERENCIA ASC SELECT CATEGORIA,NRO_REFERENCIA,DESCRIPCION FROM #TEMP_REFERENCIAS WHERE FILA>0 AND FILA<=5")
         ElseIf radBusqueda.SelectedValue = "NRO_REFERENCIA" Then
             calcularPaginasNroReferencia()
@@ -200,6 +199,7 @@ Public Class busqueda
     Private Sub GridViewData_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles GridViewData.SelectedIndexChanged
         nroReferenciaToSearch = unaTablaTemporalDeBusqueda.getItem(GridViewData.SelectedIndex, 1)
         codCategoriaToSearch = unaTablaTemporalDeBusqueda.getItem(GridViewData.SelectedIndex, 0)
+        descripcionToSearch = Trim(unaTablaTemporalDeBusqueda.getItem(GridViewData.SelectedIndex, 2))
         Dim unaTablaTemp As TablaSQL = New TablaSQL
         unaTablaTemp.setConnectionString(unConnectionString)
         unaTablaTemp.getDataSet("SELECT ID FROM AUD_CATEGORIAS WHERE CODIGO='" & codCategoriaToSearch & "'")
@@ -207,7 +207,7 @@ Public Class busqueda
         unaTablaTemp.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & nroReferenciaToSearch & "'")
         idReferenciaToSearch = CInt(unaTablaTemp.getItem(0, 0))
         BusquedaMode = True
-        Response.Write("<script>opener.location.reload();</script>")
+        Response.Write("<script>opener.location.href='http://localhost:11981/auditoria.aspx';</script>")
         Response.Write("<script>window.close();</script>")
     End Sub
 End Class

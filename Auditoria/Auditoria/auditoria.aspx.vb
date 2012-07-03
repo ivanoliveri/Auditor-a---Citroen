@@ -153,8 +153,14 @@ Public Class auditoria
             lastCat = codCategoriaToSearch
             Dim unaTablaTemporal As TablaSQL = New TablaSQL
             unaTablaTemporal.setConnectionString(unConnectionString)
-            unaTablaTemporal.getDataSet("CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1)  NOT NULL,[NRO_REFERENCIA] [char] (15) NOT NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (NRO_REFERENCIA) SELECT NRO_REFERENCIA FROM AUD_REFERENCIAS WHERE ID_CATEGORIA=" & idCategoriaToSearch & " ORDER BY NRO_REFERENCIA ASC SELECT FILA FROM #TEMP_REFERENCIAS WHERE NRO_REFERENCIA='" & nroReferenciaToSearch & "'")
-            Dim unNumeroDeFila As Integer = CInt(unaTablaTemporal.getItem(0, 0))
+            Dim unNumeroDeFila As Integer
+            If idCategoriaToSearch <> 7 Then
+                unaTablaTemporal.getDataSet("CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1)  NOT NULL,[NRO_REFERENCIA] [char] (15) NOT NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (NRO_REFERENCIA) SELECT NRO_REFERENCIA FROM AUD_REFERENCIAS WHERE ID_CATEGORIA=" & idCategoriaToSearch & " ORDER BY NRO_REFERENCIA ASC SELECT FILA FROM #TEMP_REFERENCIAS WHERE NRO_REFERENCIA='" & nroReferenciaToSearch & "'")
+                unNumeroDeFila = CInt(unaTablaTemporal.getItem(0, 0))
+            Else
+                unaTablaTemporal.getDataSet("CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1)  NOT NULL,[NRO_REFERENCIA] [char] (15) NOT NULL, [DESCRIPCION] [char] (55) NOT NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (NRO_REFERENCIA,DESCRIPCION) SELECT NRO_REFERENCIA,DESCRIPCION FROM AUD_REFERENCIAS WHERE ID_CATEGORIA=" & idCategoriaToSearch & " ORDER BY DESCRIPCION ASC SELECT FILA FROM #TEMP_REFERENCIAS WHERE DESCRIPCION='" & descripcionToSearch & "'")
+                unNumeroDeFila = CInt(unaTablaTemporal.getItem(0, 0)) - 1
+            End If
             Dim maxFila As Integer
             If unNumeroDeFila Mod 10 <> 0 Then
                 totalPaginasMain = CInt(unaTablaTemporal.getItem(0, 0)) \ 10 + 1
@@ -357,6 +363,10 @@ Public Class auditoria
     End Sub
 
     Private Sub auditoria_LoadComplete(sender As Object, e As System.EventArgs) Handles Me.LoadComplete
+        If agregoDesdePopup = True Then
+            setImageButton("A", popupCat)
+            agregoDesdePopup = False
+        End If
         unasReferencias.getDataSet(ultimoQuery)
         unasReferencias.fillGridView(GridViewData)
         formatGridView()

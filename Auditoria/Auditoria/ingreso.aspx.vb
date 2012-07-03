@@ -7,7 +7,7 @@ Public Class ingreso
         unPeriodoAnterior = "2011-2"
         unPeriodoActual = "2012-1"
         BusquedaMode = False
-        If unNumeroDeCE = 0 Then
+        If Trim(dropConcesionaria.Text) = "" Then
             cargarConcesionarias()
             dropSucursal.Visible = False
             Label1.Visible = False
@@ -21,7 +21,6 @@ Public Class ingreso
                 unNumeroDeSucursal = CInt(dropSucursal.Text)
             End If
         End If
-
     End Sub
 
     Protected Sub dropConcesionaria_SelectedIndexChanged(sender As Object, e As EventArgs) Handles dropConcesionaria.SelectedIndexChanged
