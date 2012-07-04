@@ -2,10 +2,10 @@
 Public Class auditoria
     Inherits System.Web.UI.Page
 
-    Protected Sub traerPrimerosRegistros(ByVal lastCat As String)
+    Protected Sub traerPrimerosRegistros(ByVal unCodigoCategoria As String)
         Dim unaTablaIdCategoria As TablaSQL = New TablaSQL()
         unaTablaIdCategoria.setConnectionString(unConnectionString)
-        unaTablaIdCategoria.getDataSet("SELECT ID FROM AUD_CATEGORIAS WHERE CODIGO='" & lastCat & "'")
+        unaTablaIdCategoria.getDataSet("SELECT ID FROM AUD_CATEGORIAS WHERE CODIGO='" & unCodigoCategoria & "'")
         Dim unaTablaTemporal As TablaSQL = New TablaSQL()
         unaTablaTemporal.setConnectionString(unConnectionString)
         'CREO UNA TABLA TEMPORAL PARA OBTENER EL CORRESPONDIENTE NÚMERO DE FILAS DE CADA UNO, CUANDO LA TERMINO DE USAR SE BORRA SOLA
@@ -15,12 +15,12 @@ Public Class auditoria
         paginaActualMain = 1
     End Sub
 
-    Protected Sub calcularPaginas(ByVal lastCat As String)
+    Protected Sub calcularPaginas(ByVal unCodigoCategoria As String)
         Dim unaTablaTemporal As TablaSQL = New TablaSQL()
         unaTablaTemporal.setConnectionString(unConnectionString)
         Dim unaTablaIdCategoria As TablaSQL = New TablaSQL()
         unaTablaIdCategoria.setConnectionString(unConnectionString)
-        unaTablaIdCategoria.getDataSet("SELECT ID FROM AUD_CATEGORIAS WHERE CODIGO='" & lastCat & "'")
+        unaTablaIdCategoria.getDataSet("SELECT ID FROM AUD_CATEGORIAS WHERE CODIGO='" & unCodigoCategoria & "'")
         unaTablaTemporal.getDataSet("CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1) NOT NULL,[NRO_REFERENCIA] [char](15) NULL,[DESCRIPCION] [char] (55) NULL,[STOCK_ENVIADO] [int] NULL,[ESTADO_ENVIADO] [char] (1) NULL,[FECHA_ENVIADA] [char] (15) NULL,[STOCK] [char] (10) NULL,[ESTADO] [char] (1) NULL,[FECHA] [char] (15) NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (NRO_REFERENCIA,DESCRIPCION,STOCK_ENVIADO,ESTADO_ENVIADO,FECHA_ENVIADA,STOCK,ESTADO,FECHA)SELECT AUD_REFERENCIAS.NRO_REFERENCIA,AUD_REFERENCIAS.DESCRIPCION,(SELECT AUD_RELEVAMIENTOS.STOCK FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & Application("unNumeroDeCE") & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & Application("unNumeroDeSucursal") & ") AS STOCK_ENVIADO, (SELECT AUD_RELEVAMIENTOS.ESTADO FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & Application("unNumeroDeCE") & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & Application("unNumeroDeSucursal") & ") AS ESTADO_ENVIADO,(SELECT AUD_RELEVAMIENTOS.FECHA FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & Application("unNumeroDeCE") & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & Application("unNumeroDeSucursal") & ") AS FECHA_ENVIADA,AUD_RELEVAMIENTOS.STOCK, AUD_RELEVAMIENTOS.ESTADO, AUD_RELEVAMIENTOS.FECHA FROM AUD_RELEVAMIENTOS INNER JOIN AUD_REFERENCIAS ON AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID WHERE AUD_RELEVAMIENTOS.CE=" & Application("unNumeroDeCE") & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & Application("unNumeroDeSucursal") & " AND AUD_REFERENCIAS.ID_CATEGORIA=" & CInt(unaTablaIdCategoria.getItem(0, 0)) & " AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoActual & "' UNION SELECT NRO_REFERENCIA,DESCRIPCION,(SELECT AUD_RELEVAMIENTOS.STOCK FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & Application("unNumeroDeCE") & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & Application("unNumeroDeSucursal") & ") AS STOCK_ENVIADO,(SELECT AUD_RELEVAMIENTOS.ESTADO FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & Application("unNumeroDeCE") & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & Application("unNumeroDeSucursal") & ")AS ESTADO_ENVIADO,(SELECT AUD_RELEVAMIENTOS.FECHA FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & unPeriodoAnterior & "' AND AUD_RELEVAMIENTOS.CE=" & Application("unNumeroDeCE") & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & Application("unNumeroDeSucursal") & ")AS FECHA_ENVIADA, '' AS STOCK, 'N' AS ESTADO, CONVERT(VARCHAR(8), GETDATE(), 112) AS FECHA FROM AUD_REFERENCIAS WHERE ID_CATEGORIA=" & CInt(unaTablaIdCategoria.getItem(0, 0)) & " AND ID NOT IN (SELECT ID_AUD_REFERENCIAS FROM AUD_RELEVAMIENTOS WHERE CE=" & Application("unNumeroDeCE") & " AND SUCURSAL=" & Application("unNumeroDeSucursal") & " AND PERIODO='" & unPeriodoActual & "' )SELECT COUNT(*) FROM #TEMP_REFERENCIAS")
         If CInt(unaTablaTemporal.getItem(0, 0)) Mod 10 = 0 Then
             totalPaginasMain = CInt(unaTablaTemporal.getItem(0, 0)) / 10
@@ -32,8 +32,8 @@ Public Class auditoria
     Protected Sub cargarCategoria()
         GridViewData.SelectedIndex = -1
         paginaActualMain = 1
-        calcularPaginas(lastCat)
-        traerPrimerosRegistros(lastCat)
+        calcularPaginas(Application("lastCat"))
+        traerPrimerosRegistros(Application("lastCat"))
         hideNextOrPrevious()
     End Sub
 
@@ -138,7 +138,6 @@ Public Class auditoria
     End Function
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        MsgBox(Application("ultimoQuery"))
         agregoOedito = False
         txtCE.Attributes.CssStyle.Add("TEXT-ALIGN", "right")
         txtSucursal.Attributes.CssStyle.Add("TEXT-ALIGN", "right")
@@ -149,14 +148,14 @@ Public Class auditoria
         unasReferencias.setConnectionString(unConnectionString)
         'El ViewGrid viene por defecto en categoría A
         If Application("ultimoQuery") = "" Then
-            setImageButton(lastCat, "A")
-            lastCat = "A"
-            calcularPaginas(lastCat)
-            traerPrimerosRegistros(lastCat)
+            setImageButton(Application("lastCat"), "A")
+            Application("lastCat") = "A"
+            calcularPaginas(Application("lastCat"))
+            traerPrimerosRegistros(Application("lastCat"))
         End If
         If BusquedaMode = True Then
-            setImageButton(lastCat, codCategoriaToSearch)
-            lastCat = codCategoriaToSearch
+            setImageButton(Application("lastCat"), codCategoriaToSearch)
+            Application("lastCat") = codCategoriaToSearch
             Dim unaTablaTemporal As TablaSQL = New TablaSQL
             unaTablaTemporal.setConnectionString(unConnectionString)
             Dim unNumeroDeFila As Integer
@@ -215,50 +214,50 @@ Public Class auditoria
 
     Protected Sub btnA_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnA.Click
         If agregoOedito = True Then Exit Sub
-        setImageButton(lastCat, "A")
-        lastCat = "A"
+        setImageButton(Application("lastCat"), "A")
+        Application("lastCat") = "A"
         cargarCategoria()
         formatGridView()
     End Sub
 
     Protected Sub btnB_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnB.Click
-        setImageButton(lastCat, "B")
-        lastCat = "B"
+        setImageButton(Application("lastCat"), "B")
+        Application("lastCat") = "B"
         cargarCategoria()
         formatGridView()
     End Sub
 
     Protected Sub btnC_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnC.Click
-        setImageButton(lastCat, "C")
-        lastCat = "C"
+        setImageButton(Application("lastCat"), "C")
+        Application("lastCat") = "C"
         cargarCategoria()
         formatGridView()
     End Sub
 
     Protected Sub btnD_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnD.Click
-        setImageButton(lastCat, "D")
-        lastCat = "D"
+        setImageButton(Application("lastCat"), "D")
+        Application("lastCat") = "D"
         cargarCategoria()
         formatGridView()
     End Sub
 
     Protected Sub btnE_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnE.Click
-        setImageButton(lastCat, "E")
-        lastCat = "E"
+        setImageButton(Application("lastCat"), "E")
+        Application("lastCat") = "E"
         cargarCategoria()
         formatGridView()
     End Sub
 
     Protected Sub btnF_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnF.Click
-        setImageButton(lastCat, "F")
-        lastCat = "F"
+        setImageButton(Application("lastCat"), "F")
+        Application("lastCat") = "F"
         cargarCategoria()
         formatGridView()
     End Sub
 
     Protected Sub btnG_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnG.Click
-        setImageButton(lastCat, "G")
-        lastCat = "G"
+        setImageButton(Application("lastCat"), "G")
+        Application("lastCat") = "G"
         cargarCategoria()
         formatGridView()
     End Sub
@@ -269,7 +268,7 @@ Public Class auditoria
             paginaActualMain += 1
             Dim unaTablaIdCategoria As TablaSQL = New TablaSQL()
             unaTablaIdCategoria.setConnectionString(unConnectionString)
-            unaTablaIdCategoria.getDataSet("SELECT ID FROM AUD_CATEGORIAS WHERE CODIGO='" & lastCat & "'")
+            unaTablaIdCategoria.getDataSet("SELECT ID FROM AUD_CATEGORIAS WHERE CODIGO='" & Application("lastCat") & "'")
             Dim unaTablaTemporal As TablaSQL = New TablaSQL()
             unaTablaTemporal.setConnectionString(unConnectionString)
             'CREO UNA TABLA TEMPORAL PARA OBTENER EL CORRESPONDIENTE NÚMERO DE FILAS DE CADA UNO, CUANDO LA TERMINO DE USAR SE BORRA SOLA
@@ -286,11 +285,11 @@ Public Class auditoria
             GridViewData.SelectedIndex = -1
             paginaActualMain -= 1
             If paginaActualMain = 1 Then
-                traerPrimerosRegistros(lastCat)
+                traerPrimerosRegistros(Application("lastCat"))
             Else
                 Dim unaTablaIdCategoria As TablaSQL = New TablaSQL()
                 unaTablaIdCategoria.setConnectionString(unConnectionString)
-                unaTablaIdCategoria.getDataSet("SELECT ID FROM AUD_CATEGORIAS WHERE CODIGO='" & lastCat & "'")
+                unaTablaIdCategoria.getDataSet("SELECT ID FROM AUD_CATEGORIAS WHERE CODIGO='" & Application("lastCat") & "'")
                 'CREO UNA TABLA TEMPORAL PARA OBTENER EL CORRESPONDIENTE NÚMERO DE FILAS DE CADA UNO, CUANDO LA TERMINO DE USAR SE BORRA
                 Dim unaTablaTemporal As TablaSQL = New TablaSQL()
                 unaTablaTemporal.setConnectionString(unConnectionString)
@@ -334,7 +333,11 @@ Public Class auditoria
                 End If
                 Dim unaTablaIdReferencia As TablaSQL = New TablaSQL
                 unaTablaIdReferencia.setConnectionString(unConnectionString)
-                unaTablaIdReferencia.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & unasReferencias.getItem(unaPosicion, 1) & "'")
+                If Application("lastCat") = "F" Then
+                    unaTablaIdReferencia.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & unasReferencias.getItem(unaPosicion, 1) & "'")
+                ElseIf Application("lastCat") = "G" Then
+                    unaTablaIdReferencia.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE DESCRIPCION='" & unasReferencias.getItem(unaPosicion, 2) & "' AND NRO_REFERENCIA=''")
+                End If
                 Dim unaTablaNuevaDeAuditoria As TablaSQL = New TablaSQL
                 unaTablaNuevaDeAuditoria.setConnectionString(unConnectionString)
                 unaTablaNuevaDeAuditoria.getDataSet("SELECT COUNT(*) FROM AUD_RELEVAMIENTOS WHERE CE=" & Application("unNumeroDeCE") & " AND SUCURSAL=" & Application("unNumeroDeSucursal") & " AND PERIODO='" & unPeriodoActual & "'" & " AND ID_AUD_REFERENCIAS=" & CInt(unaTablaIdReferencia.getItem(0, 0)))
@@ -379,7 +382,7 @@ Public Class auditoria
     End Sub
 
     Private Sub GridViewData_RowDataBound(sender As Object, e As System.Web.UI.WebControls.GridViewRowEventArgs) Handles GridViewData.RowDataBound
-        If lastCat = "F" Or lastCat = "G" Then
+        If Application("lastCat") = "F" Or Application("lastCat") = "G" Then
             e.Row.Cells(0).Visible = True
         Else
             e.Row.Cells(0).Visible = False
@@ -398,7 +401,11 @@ Public Class auditoria
                 unaTablaTemporal.getDataSet("SELECT COUNT(*) FROM AUD_CATEGORIAS WHERE CODIGO='" & Trim(unaCategoriaTextBox) & "'")
                 If unaTablaTemporal.getItem(0, 0) = "1" Then
                     unaTablaTemporal.getDataSet("SELECT ID FROM AUD_CATEGORIAS WHERE CODIGO='" & Trim(unaCategoriaTextBox) & "'")
-                    unasReferencias.execQuery("UPDATE AUD_REFERENCIAS SET ID_CATEGORIA=" & CInt(unaTablaTemporal.getItem(0, 0)) & " WHERE NRO_REFERENCIA='" & unasReferencias.getItem(unaPosicion, 1) & "'")
+                    If Application("lastCat") = "F" Then
+                        unasReferencias.execQuery("UPDATE AUD_REFERENCIAS SET ID_CATEGORIA=" & CInt(unaTablaTemporal.getItem(0, 0)) & " WHERE NRO_REFERENCIA='" & unasReferencias.getItem(unaPosicion, 1) & "'")
+                    ElseIf Application("lastCat") = "G" Then
+                        unasReferencias.execQuery("UPDATE AUD_REFERENCIAS SET ID_CATEGORIA=" & CInt(unaTablaTemporal.getItem(0, 0)) & " WHERE DESCRIPCION='" & unasReferencias.getItem(unaPosicion, 2) & "' AND NRO_REFERENCIA=''")
+                    End If
                 Else
                     Response.Write("<script>alert('La categoría ingresada es inválida.');</script>")
                 End If

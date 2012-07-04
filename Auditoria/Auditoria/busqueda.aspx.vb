@@ -210,4 +210,5 @@ Public Class busqueda
         Response.Write("<script>opener.location.href='http://normasymetodos.com/citroen.ar/Auditoria/auditoria.aspx';</script>")
         Response.Write("<script>window.close();</script>")
     End Sub
+
 End Class
