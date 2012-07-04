@@ -8,17 +8,22 @@ Public Class ingreso
         unPeriodoActual = "2012-1"
         BusquedaMode = False
         If Trim(dropConcesionaria.Text) = "" Then
+            Application.Lock()
+            Application("unNumeroDeCE") = 0
+            Application("unNumeroDeSucursal") = 0
+            Application("ultimoQuery") = ""
+            Application.UnLock()
             cargarConcesionarias()
             dropSucursal.Visible = False
             Label1.Visible = False
         End If
         If dropConcesionaria.Text = "Seleccione CE" Or dropConcesionaria.Text = "" Then Exit Sub
-        unNumeroDeCE = CInt(dropConcesionaria.Text)
+        Application("unNumeroDeCE") = CInt(dropConcesionaria.Text)
         If dropSucursal.Text <> "Seleccione SUC" Then
             If Trim(dropSucursal.Text) = "" Then
-                unNumeroDeSucursal = 0
+                Application("unNumeroDeSucursal") = 0
             Else
-                unNumeroDeSucursal = CInt(dropSucursal.Text)
+                Application("unNumeroDeSucursal") = CInt(dropSucursal.Text)
             End If
         End If
     End Sub
@@ -30,9 +35,9 @@ Public Class ingreso
     Protected Sub cargarSucursales()
         Dim unaTablaDeRelevamientos As TablaSQL = New TablaSQL
         unaTablaDeRelevamientos.setConnectionString(unConnectionStringDeBasesComunes)
-        unaTablaDeRelevamientos.getDataSet("SELECT Suc FROM CONCESIONARIAS WHERE (CE=" & unNumeroDeCE & ") AND (TS IN (7,2,9,4)) ORDER BY Suc")
+        unaTablaDeRelevamientos.getDataSet("SELECT Suc FROM CONCESIONARIAS WHERE (CE=" & Application("unNumeroDeCE") & ") AND (TS IN (7,2,9,4)) ORDER BY Suc")
         If Trim(unaTablaDeRelevamientos.getItem(0, 0)) = "" And unaTablaDeRelevamientos.getRowsCount = 1 Then
-            unNumeroDeSucursal = 0
+            Application("unNumeroDeSucursal") = 0
             Response.Redirect("auditoria.aspx")
         Else
             dropSucursal.Visible = True
@@ -43,7 +48,7 @@ Public Class ingreso
             dropSucursal.DataBind()
             dropSucursal.Items.Insert(0, "Seleccione SUC")
             If Trim(dropSucursal.Items.Item(1).Text) = "" Then dropSucursal.Items.Item(1).Text = "0"
-            unNumeroDeSucursal = -1
+            Application("unNumeroDeSucursal") = -1
         End If
     End Sub
 
@@ -57,10 +62,11 @@ Public Class ingreso
         dropConcesionaria.DataBind()
         dropConcesionaria.Items.Insert(0, "Seleccione CE")
         dropSucursal.Items.Insert(0, "Seleccione SUC")
-        unNumeroDeCE = -1
+        Application("unNumeroDeCE") = -1
     End Sub
 
     Private Sub dropSucursal_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles dropSucursal.SelectedIndexChanged
+        Application("ultimoQuery") = ""
         Response.Redirect("auditoria.aspx")
     End Sub
 End Class
