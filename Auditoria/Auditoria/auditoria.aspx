@@ -138,83 +138,83 @@
                         <td class="style5">
                             &nbsp;</td>
                         <td class="style3" >
-                                <asp:GridView ID="GridViewData" runat="server" BackColor="White" 
-                                    BorderColor="#666666" BorderStyle="None" BorderWidth="1px" CellPadding="4" 
-                                    Font-Names="Arial" Font-Size="Small" ForeColor="#666666" GridLines="Horizontal" 
-                                    Height="175px" 
-                                    style="margin-top: 2px; margin-bottom: 0px; margin-right: 1px;" Width="981px" 
-                                    AutoGenerateColumns="False">
-                                    <Columns>
-        
-                                        <asp:TemplateField HeaderText="CAT.">
-                                            <ItemTemplate>
-                                                <asp:TextBox ID="TextBox2" runat="server" Text='<%# Eval("CATEGORIA")%>' 
-                                                    ontextchanged="TextBox2_TextChanged" Width="24px"></asp:TextBox>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-        
-                                        <asp:TemplateField HeaderText="NRO. REF.">
-                                            <ItemTemplate>
-                                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("NRO_REFERENCIA") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="DESCRIPCIÓN">
-                                            <ItemTemplate>
-                                                <asp:Label ID="Label2" runat="server" Text='<%# Eval("DESCRIPCION") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-        
-                                        <asp:templatefield headertext="STK. ENV.">
-                                            <ItemTemplate>
-                                                <asp:Label ID="Label8" runat="server" text='<%# Eval("STOCK_ENVIADO") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:templatefield>   
-                                        <asp:TemplateField HeaderText="EST. ENV.">
-                                            <ItemTemplate>
-                                                <asp:Label ID="Label5" runat="server" text='<%# Eval("ESTADO_ENVIADO") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="FEC. ENV.">
-                                            <ItemTemplate>
-                                                <asp:Label ID="Label9" runat="server" text='<%# Eval("FECHA_ENVIADA") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="STK. VERIF.">
-                                            <ItemTemplate>
-                                                <asp:TextBox ID="TextBox1" runat="server" Height="20px" 
-                                                    text='<%# Eval("STOCK") %>'
-                                                    ontextchanged="TextBox1_TextChanged"  
-                                                    Width="54px" Font-Names="Arial" Font-Size="Small" ForeColor="#666666" style="text-align: center" />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="ESTADO">
-                                            <ItemTemplate>
-                                                <asp:RadioButtonList ID="RadioButtonList1" runat="server" 
-                                                    RepeatDirection="Horizontal" AutoPostBack="True" 
-                                                    SelectedValue='<%#Eval("ESTADO")%>'
-                                                    onselectedindexchanged="RadioButtonList1_SelectedIndexChanged">
-                                                    <asp:ListItem Value="B">B</asp:ListItem>
-                                                    <asp:ListItem Value="R">R</asp:ListItem>
-                                                    <asp:ListItem Value="M">M</asp:ListItem>
-                                                    <asp:ListItem Value="N" style="display:none">N</asp:ListItem>
-                                                </asp:RadioButtonList>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="FECHA">
-                                            <ItemTemplate>
-                                                <asp:Label ID="Label7" runat="server" text='<%# Eval("FECHA") %>' ></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                    </Columns>
-                                    <FooterStyle BackColor="White" ForeColor="Black" />
-                                    <HeaderStyle BackColor="#DC002E" Font-Bold="True" ForeColor="White" />
-                                    <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
-                                    <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
-                                    <SortedAscendingCellStyle BackColor="#F7F7F7" />
-                                    <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
-                                    <SortedDescendingCellStyle BackColor="#E5E5E5" />
-                                    <SortedDescendingHeaderStyle BackColor="#242121" />
-                                </asp:GridView>
+                                <asp:ScriptManager ID="ScriptManager1" runat="server">
+                                </asp:ScriptManager>
+                                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                    <ContentTemplate>
+                                        <asp:GridView ID="GridViewData" runat="server" AutoGenerateColumns="False" 
+                                            BackColor="White" BorderColor="#666666" BorderStyle="None" BorderWidth="1px" 
+                                            CellPadding="4" Font-Names="Arial" Font-Size="Small" ForeColor="#666666" 
+                                            GridLines="Horizontal" Height="175px" 
+                                            style="margin-top: 2px; margin-bottom: 0px; margin-right: 1px;" Width="981px">
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="CAT.">
+                                                    <ItemTemplate>
+                                                        <asp:TextBox ID="TextBox2" runat="server" ontextchanged="TextBox2_TextChanged" 
+                                                            Text='<%# Eval("CATEGORIA")%>' Width="24px"></asp:TextBox>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="NRO. REF.">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("NRO_REFERENCIA") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="DESCRIPCIÓN">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("DESCRIPCION") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:templatefield headertext="STK. ENV.">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="Label8" runat="server" text='<%# Eval("STOCK_ENVIADO") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:templatefield>
+                                                <asp:TemplateField HeaderText="EST. ENV.">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="Label5" runat="server" text='<%# Eval("ESTADO_ENVIADO") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="FEC. ENV.">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="Label9" runat="server" text='<%# Eval("FECHA_ENVIADA") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="STK. VERIF.">
+                                                    <ItemTemplate>
+                                                        <asp:TextBox ID="TextBox1" runat="server" Font-Names="Arial" Font-Size="Small" 
+                                                            ForeColor="#666666" Height="20px" ontextchanged="TextBox1_TextChanged" 
+                                                            style="text-align: center" Text='<%# Eval("STOCK") %>' Width="54px"></asp:TextBox>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="ESTADO">
+                                                    <ItemTemplate>
+                                                        <asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="True" 
+                                                            onselectedindexchanged="RadioButtonList1_SelectedIndexChanged" 
+                                                            RepeatDirection="Horizontal" SelectedValue='<%#Eval("ESTADO")%>'>
+                                                            <asp:ListItem Value="B">B</asp:ListItem>
+                                                            <asp:ListItem Value="R">R</asp:ListItem>
+                                                            <asp:ListItem Value="M">M</asp:ListItem>
+                                                            <asp:ListItem style="display:none" Value="N">N</asp:ListItem>
+                                                        </asp:RadioButtonList>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="FECHA">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="Label7" runat="server" text='<%# Eval("FECHA") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            </Columns>
+                                            <FooterStyle BackColor="White" ForeColor="Black" />
+                                            <HeaderStyle BackColor="#DC002E" Font-Bold="True" ForeColor="White" />
+                                            <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+                                            <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                                            <SortedAscendingCellStyle BackColor="#F7F7F7" />
+                                            <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+                                            <SortedDescendingCellStyle BackColor="#E5E5E5" />
+                                            <SortedDescendingHeaderStyle BackColor="#242121" />
+                                        </asp:GridView>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
                         </td>
                         <td>
                             &nbsp;</td>
