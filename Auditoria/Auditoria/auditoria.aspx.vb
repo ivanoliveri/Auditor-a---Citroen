@@ -333,11 +333,12 @@ Public Class auditoria
                 End If
                 Dim unaTablaIdReferencia As TablaSQL = New TablaSQL
                 unaTablaIdReferencia.setConnectionString(unConnectionString)
-                If Application("lastCat") = "F" Then
+                If Trim(unasReferencias.getItem(unaPosicion, 1)) <> "" Then
                     unaTablaIdReferencia.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & unasReferencias.getItem(unaPosicion, 1) & "'")
-                ElseIf Application("lastCat") = "G" Then
+                Else
                     unaTablaIdReferencia.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE DESCRIPCION='" & unasReferencias.getItem(unaPosicion, 2) & "' AND NRO_REFERENCIA=''")
                 End If
+                Dim unNumero As Integer = CInt(unaTablaIdReferencia.getItem(0, 0))
                 Dim unaTablaNuevaDeAuditoria As TablaSQL = New TablaSQL
                 unaTablaNuevaDeAuditoria.setConnectionString(unConnectionString)
                 unaTablaNuevaDeAuditoria.getDataSet("SELECT COUNT(*) FROM AUD_RELEVAMIENTOS WHERE CE=" & Application("unNumeroDeCE") & " AND SUCURSAL=" & Application("unNumeroDeSucursal") & " AND PERIODO='" & unPeriodoActual & "'" & " AND ID_AUD_REFERENCIAS=" & CInt(unaTablaIdReferencia.getItem(0, 0)))
@@ -359,8 +360,19 @@ Public Class auditoria
         unaTablaTemporal.setConnectionString(unConnectionString)
         For Each row As GridViewRow In GridViewData.Rows
             Dim radEstado As RadioButtonList = CType(row.FindControl("RadioButtonList1"), RadioButtonList)
-            unaTablaTemporal.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & unasReferencias.dataSet.Tables(0).Rows(unaPosicion).Item(1).ToString() & "'")
-            unasReferencias.execQuery("UPDATE AUD_RELEVAMIENTOS SET ESTADO='" & radEstado.SelectedValue & "' WHERE ID_AUD_REFERENCIAS='" & CInt(unaTablaTemporal.getItem(0, 0)) & "'")
+            Dim txtStock As TextBox = CType(row.FindControl("TextBox1"), TextBox)
+            Dim unStockTextBox As String = Trim(txtStock.Text)
+            Dim unStockDataTable As String = Trim(unasReferencias.getItem(unaPosicion, 6))
+            If formatStock((unStockTextBox)) = Trim(unStockDataTable) Then
+                If radEstado.SelectedValue <> unasReferencias.getItem(unaPosicion, 7) Then
+                    If Application("lastCat") <> "G" Then
+                        unaTablaTemporal.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & unasReferencias.getItem(unaPosicion, 1) & "'")
+                    Else
+                        unaTablaTemporal.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='' AND DESCRIPCION='" & unasReferencias.getItem(unaPosicion, 2) & "'")
+                    End If
+                    unasReferencias.execQuery("UPDATE AUD_RELEVAMIENTOS SET ESTADO='" & radEstado.SelectedValue & "' WHERE ID_AUD_REFERENCIAS=" & CInt(unaTablaTemporal.getItem(0, 0)) & " AND PERIODO='" & unPeriodoActual & "' AND CE=" & Application("unNumeroDeCE") & " AND SUCURSAL=" & Application("unNumeroDeSucursal"))
+                End If
+            End If
             unaPosicion += 1
         Next
     End Sub
