@@ -104,8 +104,6 @@ Public Class auditoria
 
     Protected Sub formatGridView()
         For Each row As GridViewRow In GridViewData.Rows
-            Dim radEstado As RadioButtonList = CType(row.FindControl("RadioButtonList1"), RadioButtonList)
-            radEstado.Items(3).Enabled = False
             Dim lblFecha As Label = CType(row.FindControl("Label7"), Label)
             Dim lblFechaEnviada As Label = CType(row.FindControl("Label9"), Label)
             Dim unaFechaVieja As String = lblFecha.Text
@@ -121,8 +119,6 @@ Public Class auditoria
             unaFechaVieja = lblFechaEnviada.Text
             formatDate(unaFechaVieja, unaFecha)
             lblFechaEnviada.Text = unaFecha
-            Dim txtStock As TextBox = CType(row.FindControl("TextBox1"), TextBox)
-            ' txtStock.Attributes.CssStyle.Add("TEXT-ALIGN", "center")
         Next
     End Sub
     'Sirve para eliminar los ceros antes del número. Input:00502; Output:502
@@ -353,7 +349,7 @@ Public Class auditoria
                     If unMes.Length = 1 Then
                         unMes = "0" & unMes
                     End If
-                    formatDate(unAno & unMes & unDia, unaFecha)
+                    unaFecha = unAno & unMes & unDia
                     unaTablaNuevaDeAuditoria.execQuery("INSERT INTO AUD_RELEVAMIENTOS VALUES(" & Application("unNumeroDeCE") & "," & Application("unNumeroDeSucursal") & ",'" & unPeriodoActual & "','" & unaFecha & "'," & CInt(unaTablaIdReferencia.getItem(0, 0)) & ",'" & formatStock(unStockTextBox) & "','" & radEstado.SelectedValue & "')")
                 Else
                     unaTablaNuevaDeAuditoria.execQuery("UPDATE AUD_RELEVAMIENTOS SET STOCK=" & formatStock(unStockTextBox) & ",ESTADO='" & radEstado.SelectedValue & "' WHERE CE=" & Application("unNumeroDeCE") & " AND SUCURSAL=" & Application("unNumeroDeSucursal") & " AND PERIODO='" & unPeriodoActual & "' AND ID_AUD_REFERENCIAS=" & CInt(unaTablaIdReferencia.getItem(0, 0)))

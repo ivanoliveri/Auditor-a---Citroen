@@ -150,14 +150,6 @@ radBusqueda control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:Auditoria.busqueda.UpdatePanel1">
-	<summary>
-UpdatePanel1 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
 </member><member name="F:Auditoria.busqueda.GridViewData">
 	<summary>
 GridViewData control.
@@ -263,17 +255,129 @@ btnCancelar control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:Auditoria.imprimir.txtTitulo">
+</member><member name="F:Auditoria.imprimir.txtTituloCategoria">
 	<summary>
-txtTitulo control.
+txtTituloCategoria control.
 </summary>
 	<remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:Auditoria.imprimir.GridViewData">
+</member><member name="F:Auditoria.imprimir.GridViewDataCategoria">
 	<summary>
-GridViewData control.
+GridViewDataCategoria control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.imprimir.txtTituloTodas">
+	<summary>
+txtTituloTodas control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.imprimir.GridViewDataTodas">
+	<summary>
+GridViewDataTodas control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.imprimir.txtTituloTodas0">
+	<summary>
+txtTituloTodas0 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.imprimir.GridViewDataTodas0">
+	<summary>
+GridViewDataTodas0 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.imprimir.txtTituloTodas1">
+	<summary>
+txtTituloTodas1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.imprimir.GridViewDataTodas1">
+	<summary>
+GridViewDataTodas1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.imprimir.txtTituloTodas2">
+	<summary>
+txtTituloTodas2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.imprimir.GridViewDataTodas2">
+	<summary>
+GridViewDataTodas2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.imprimir.txtTituloTodas3">
+	<summary>
+txtTituloTodas3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.imprimir.GridViewDataTodas3">
+	<summary>
+GridViewDataTodas3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.imprimir.txtTituloTodas4">
+	<summary>
+txtTituloTodas4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.imprimir.GridViewDataTodas4">
+	<summary>
+GridViewDataTodas4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.imprimir.txtTituloTodas5">
+	<summary>
+txtTituloTodas5 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.imprimir.GridViewDataTodas5">
+	<summary>
+GridViewDataTodas5 control.
 </summary>
 	<remarks>
 Auto-generated field.

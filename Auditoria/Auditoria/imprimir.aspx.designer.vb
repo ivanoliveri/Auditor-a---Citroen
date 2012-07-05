@@ -50,20 +50,146 @@ Partial Public Class imprimir
     Protected WithEvents btnCancelar As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
-    '''txtTitulo control.
+    '''txtTituloCategoria control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtTitulo As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtTituloCategoria As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''GridViewData control.
+    '''GridViewDataCategoria control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents GridViewData As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents GridViewDataCategoria As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''txtTituloTodas control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTituloTodas As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''GridViewDataTodas control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents GridViewDataTodas As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''txtTituloTodas0 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTituloTodas0 As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''GridViewDataTodas0 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents GridViewDataTodas0 As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''txtTituloTodas1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTituloTodas1 As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''GridViewDataTodas1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents GridViewDataTodas1 As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''txtTituloTodas2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTituloTodas2 As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''GridViewDataTodas2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents GridViewDataTodas2 As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''txtTituloTodas3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTituloTodas3 As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''GridViewDataTodas3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents GridViewDataTodas3 As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''txtTituloTodas4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTituloTodas4 As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''GridViewDataTodas4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents GridViewDataTodas4 As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''txtTituloTodas5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTituloTodas5 As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''GridViewDataTodas5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents GridViewDataTodas5 As Global.System.Web.UI.WebControls.GridView
 End Class
