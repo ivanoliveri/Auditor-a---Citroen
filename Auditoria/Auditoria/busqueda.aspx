@@ -51,6 +51,9 @@
 		<td colspan="2" class="style1">
             <div style="width: 99%; height: 332px;">
 
+                <asp:ScriptManager ID="ScriptManager1" runat="server">
+                </asp:ScriptManager>
+
                 <br />
                 &nbsp;&nbsp;
                 <asp:TextBox ID="TextBox2" runat="server" BorderColor="White" BorderWidth="0px" 
@@ -64,37 +67,40 @@
                     <asp:ListItem Value="PALABRA_CLAVE">PALABRA CLAVE</asp:ListItem>
                 </asp:RadioButtonList>
                 <div id="busqueda" style="width:100%;height:175px">
-                <asp:GridView ID="GridViewData" runat="server" BackColor="White" 
-                    BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" 
-                    Font-Names="Arial" Font-Size="Small" ForeColor="#666666" GridLines="Horizontal" 
-                    Height="175px" style="margin-top: 19px" Width="550px" 
-                        AutoGenerateColumns="False">
-                    <Columns>
-                        <asp:TemplateField HeaderText="CAT.">
-                            <ItemTemplate>
-                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("CATEGORIA") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="NRO. REF.">
-                            <ItemTemplate>
-                                <asp:Label ID="Label2" runat="server" Text='<%# Eval("NRO_REFERENCIA") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="DESCRIPCIÓN">
-                            <ItemTemplate>
-                                <asp:Label ID="Label3" runat="server" Text='<%# Eval("DESCRIPCION") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                    <FooterStyle BackColor="White" ForeColor="Black" />
-                    <HeaderStyle BackColor="#DC002E" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
-                    <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
-                    <SortedAscendingCellStyle BackColor="#F7F7F7" />
-                    <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
-                    <SortedDescendingCellStyle BackColor="#E5E5E5" />
-                    <SortedDescendingHeaderStyle BackColor="#242121" />
-                </asp:GridView>
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                        <ContentTemplate>
+                            <asp:GridView ID="GridViewData" runat="server" AutoGenerateColumns="False" 
+                                BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" 
+                                CellPadding="4" Font-Names="Arial" Font-Size="Small" ForeColor="#666666" 
+                                GridLines="Horizontal" Height="175px" style="margin-top: 19px" Width="550px">
+                                <Columns>
+                                    <asp:TemplateField HeaderText="CAT.">
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label1" runat="server" Text='<%# Eval("CATEGORIA") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="NRO. REF.">
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label2" runat="server" Text='<%# Eval("NRO_REFERENCIA") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="DESCRIPCIÓN">
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label3" runat="server" Text='<%# Eval("DESCRIPCION") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                                <FooterStyle BackColor="White" ForeColor="Black" />
+                                <HeaderStyle BackColor="#DC002E" Font-Bold="True" ForeColor="White" />
+                                <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+                                <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                                <SortedAscendingCellStyle BackColor="#F7F7F7" />
+                                <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+                                <SortedDescendingCellStyle BackColor="#E5E5E5" />
+                                <SortedDescendingHeaderStyle BackColor="#242121" />
+                            </asp:GridView>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
                 <br />
                 <div align="right" id="botonera">
