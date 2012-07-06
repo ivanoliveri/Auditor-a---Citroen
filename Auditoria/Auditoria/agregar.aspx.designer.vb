@@ -113,6 +113,15 @@ Partial Public Class agregar
     Protected WithEvents radEstado As Global.System.Web.UI.WebControls.RadioButtonList
 
     '''<summary>
+    '''txtError control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtError As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''btnConfirmar control.
     '''</summary>
     '''<remarks>

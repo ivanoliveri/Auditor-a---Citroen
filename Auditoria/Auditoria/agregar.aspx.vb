@@ -3,6 +3,7 @@
     Private unaCategoria As String
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         txtCategoria.Text = "G"
+        txtError.Visible = False
         txtNroReferencia.Focus()
         btnCancelar.Attributes.Add("onclick", "javascript:unloadPage()")
         txtCategoria.Attributes.CssStyle.Add("TEXT-ALIGN", "center")
@@ -25,45 +26,48 @@
         If popupCat = "F" Then
             unaTablaTemporal.getDataSet("SELECT COUNT(*) FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & Trim(txtNroReferencia.Text) & "'")
             If CInt(unaTablaTemporal.getItem(0, 0)) >= 1 Then
-                Response.Write("<script>alert('La pieza ingresada ya existe.');</script>")
-                txtNroReferencia.Text = ""
+                txtError.Text = "Error: La pieza ingresada ya existe."
+                txtError.Visible = True
                 txtNroReferencia.Focus()
                 Exit Sub
             End If
         Else
             unaTablaTemporal.getDataSet("SELECT COUNT(*) FROM AUD_REFERENCIAS WHERE DESCRIPCION='" & Trim(txtDescripcion.Text) & "' AND NRO_REFERENCIA=''")
             If CInt(unaTablaTemporal.getItem(0, 0)) >= 1 Then
-                Response.Write("<script>alert('La pieza ingresada ya existe.');</script>")
-                txtNroReferencia.Text = ""
-                txtNroReferencia.Focus()
+                txtError.Text = "Error: La pieza ingresada ya existe."
+                txtError.Visible = True
+                txtDescripcion.Focus()
                 Exit Sub
             End If
         End If
         If Trim(txtDescripcion.Text) = "" Then
-            Response.Write("<script>alert('No has ingresado la descripción.');</script>")
+            txtError.Text = "Error: No has ingresado la descripción."
+            txtError.Visible = True
             txtDescripcion.Focus()
             Exit Sub
         End If
         If IsNumeric(txtStock.Text) = False Then
-            Response.Write("<script>alert('El stock debe ser un entero positivo.');</script>")
-            txtStock.Text = ""
+            txtError.Text = "Error: El stock debe ser un entero positivo."
+            txtError.Visible = True
             txtStock.Focus()
             Exit Sub
         End If
         If CInt(txtStock.Text) < 0 Then
-            Response.Write("<script>alert('El stock debe ser un entero positivo.');</script>")
-            txtStock.Text = ""
+            txtError.Text = "Error: El stock debe ser un entero positivo."
+            txtError.Visible = True
             txtStock.Focus()
             Exit Sub
         End If
         If InStr(txtStock.Text, ".", CompareMethod.Text) Then
-            Response.Write("<script>alert('El stock debe ser un entero positivo.');</script>")
-            txtStock.Text = ""
+            txtError.Text = "Error: El stock debe ser un entero positivo."
+            txtError.Visible = True
             txtStock.Focus()
             Exit Sub
         End If
         If radEstado.SelectedIndex = -1 Then
-            Response.Write("<script>alert('Debes seleccionar un estado(B/M/R).');</script>")
+            txtError.Text = "Error: Debes seleccionar un estado(B/M/R)"
+            txtError.Visible = True
+            radEstado.Focus()
             Exit Sub
         End If
         Dim unaTablaIdCategoria As TablaSQL = New TablaSQL()
@@ -93,4 +97,5 @@
         End If
         Response.Write("<script>window.close();</script>")
     End Sub
+
 End Class

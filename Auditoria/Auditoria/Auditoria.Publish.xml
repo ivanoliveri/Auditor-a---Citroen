@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <publishData>
   <publishProfile publishUrl="C:\publish 24.06" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
-    <file relUrl="agregar.aspx" publishTime="07/05/2012 03:27:36" />
+    <file relUrl="agregar.aspx" publishTime="07/05/2012 22:50:58" />
     <file relUrl="images/buttons/btnG1.png" publishTime="07/05/2012 03:27:36" />
     <file relUrl="images/buttons/confirm.png" publishTime="07/05/2012 03:27:36" />
     <file relUrl="images/buttons/btnD1.png" publishTime="07/05/2012 03:27:36" />
@@ -9,7 +9,7 @@
     <file relUrl="images/buttons/btnG.png" publishTime="07/05/2012 03:27:36" />
     <file relUrl="images/buttons/btnFirst.png" publishTime="07/05/2012 03:27:36" />
     <file relUrl="images/buttons/btnLast.png" publishTime="07/05/2012 03:27:36" />
-    <file relUrl="bin/Auditoria.xml" publishTime="07/05/2012 16:12:10" />
+    <file relUrl="bin/Auditoria.xml" publishTime="07/05/2012 23:00:20" />
     <file relUrl="images/u82-fr.jpg" publishTime="07/05/2012 03:27:36" />
     <file relUrl="images/buttons/Imprimir.png" publishTime="07/05/2012 03:27:36" />
     <file relUrl="images/citroen.ico" publishTime="07/05/2012 03:27:36" />
@@ -21,18 +21,18 @@
     <file relUrl="images/buttons/exit.png" publishTime="07/05/2012 03:27:36" />
     <file relUrl="images/buttons/btnB1.png" publishTime="07/05/2012 03:27:36" />
     <file relUrl="images/buttons/btnA1.png" publishTime="07/05/2012 03:27:36" />
-    <file relUrl="auditoria.aspx" publishTime="07/05/2012 04:09:19" />
+    <file relUrl="auditoria.aspx" publishTime="07/05/2012 22:43:08" />
     <file relUrl="imprimir.aspx" publishTime="07/05/2012 16:04:06" />
     <file relUrl="images/Select.png" publishTime="07/05/2012 03:27:36" />
     <file relUrl="images/_vti_cnf/u82-fr.jpg" publishTime="07/05/2012 03:27:36" />
     <file relUrl="images/buttons/btnC.png" publishTime="07/05/2012 03:27:36" />
-    <file relUrl="bin/Auditoria.pdb" publishTime="07/05/2012 16:12:10" />
+    <file relUrl="bin/Auditoria.pdb" publishTime="07/05/2012 23:00:20" />
     <file relUrl="images/buttons/btnD.png" publishTime="07/05/2012 03:27:36" />
     <file relUrl="images/buttons/btnE1.png" publishTime="07/05/2012 03:27:36" />
     <file relUrl="images/buttons/cancel.png" publishTime="07/05/2012 03:27:36" />
     <file relUrl="Web.config" publishTime="07/05/2012 04:10:36" />
     <file relUrl="images/buttons/btnF.png" publishTime="07/05/2012 03:27:36" />
-    <file relUrl="bin/Auditoria.dll" publishTime="07/05/2012 16:12:10" />
+    <file relUrl="bin/Auditoria.dll" publishTime="07/05/2012 23:00:20" />
     <file relUrl="images/buttons/agregar.png" publishTime="07/05/2012 03:27:36" />
     <file relUrl="images/buttons/btnE.png" publishTime="07/05/2012 03:27:36" />
     <file relUrl="busqueda.aspx" publishTime="07/05/2012 14:42:48" />

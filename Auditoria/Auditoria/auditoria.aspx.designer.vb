@@ -149,6 +149,15 @@ Partial Public Class auditoria
     Protected WithEvents GridViewData As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
+    '''txtError control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtError As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''btnAgregar control.
     '''</summary>
     '''<remarks>
