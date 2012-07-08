@@ -97,39 +97,44 @@ Public Class busqueda
 
     Protected Sub buscar()
         'CREO UNA TABLA TEMPORAL PARA OBTENER EL CORRESPONDIENTE NÚMERO DE FILAS DE CADA UNO, CUANDO LA TERMINO DE USAR SE BORRA SOLA
-        If radBusqueda.SelectedValue = "DESCRIPCION" Then
-            calcularPaginasDescripcion()
-            If totalPaginasBusqueda = 0 Then
-                GridViewData.Visible = False
-                btnNext.Visible = False
-                btnPrevious.Visible = False
-                Exit Sub
-            Else
-                GridViewData.Visible = True
+        If InStr(txtBusqueda.Text, "'", CompareMethod.Text) Then
+            txtError.Text = "Error: Debes ingresar una cadena de caracteres válida."
+            Exit Sub
+        Else
+            If radBusqueda.SelectedValue = "DESCRIPCION" Then
+                calcularPaginasDescripcion()
+                If totalPaginasBusqueda = 0 Then
+                    GridViewData.Visible = False
+                    btnNext.Visible = False
+                    btnPrevious.Visible = False
+                    Exit Sub
+                Else
+                    GridViewData.Visible = True
+                End If
+                unaTablaTemporalDeBusqueda.getDataSet("CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1) NOT NULL,[NRO_REFERENCIA] [varchar](20) NULL,[DESCRIPCION] [varchar] (80) NOT NULL,[CATEGORIA] [varchar](1) NOT NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (NRO_REFERENCIA,DESCRIPCION,CATEGORIA)SELECT AUD_REFERENCIAS.NRO_REFERENCIA,AUD_REFERENCIAS.DESCRIPCION, AUD_CATEGORIAS.CODIGO FROM AUD_REFERENCIAS INNER JOIN AUD_CATEGORIAS ON AUD_REFERENCIAS.ID_CATEGORIA=AUD_CATEGORIAS.ID WHERE AUD_REFERENCIAS.DESCRIPCION LIKE'%" & txtBusqueda.Text & "%' ORDER BY AUD_REFERENCIAS.NRO_REFERENCIA ASC SELECT CATEGORIA,NRO_REFERENCIA,DESCRIPCION FROM #TEMP_REFERENCIAS WHERE FILA>0 AND FILA<=5")
+            ElseIf radBusqueda.SelectedValue = "NRO_REFERENCIA" Then
+                calcularPaginasNroReferencia()
+                If totalPaginasBusqueda = 0 Then
+                    GridViewData.Visible = False
+                    Exit Sub
+                Else
+                    GridViewData.Visible = True
+                End If
+                unaTablaTemporalDeBusqueda.getDataSet("CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1) NOT NULL,[NRO_REFERENCIA] [varchar](20) NULL,[DESCRIPCION] [varchar] (80) NOT NULL,[CATEGORIA] [varchar](1) NOT NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (NRO_REFERENCIA,DESCRIPCION,CATEGORIA)SELECT AUD_REFERENCIAS.NRO_REFERENCIA,AUD_REFERENCIAS.DESCRIPCION, AUD_CATEGORIAS.CODIGO FROM AUD_REFERENCIAS INNER JOIN AUD_CATEGORIAS ON AUD_REFERENCIAS.ID_CATEGORIA=AUD_CATEGORIAS.ID WHERE AUD_REFERENCIAS.NRO_REFERENCIA LIKE'%" & txtBusqueda.Text & "%' ORDER BY AUD_REFERENCIAS.NRO_REFERENCIA ASC SELECT CATEGORIA,NRO_REFERENCIA,DESCRIPCION FROM #TEMP_REFERENCIAS WHERE FILA>0 AND FILA<=5")
+            ElseIf radBusqueda.SelectedValue = "PALABRA_CLAVE" Then
+                calcularPaginasPalabraClave()
+                If totalPaginasBusqueda = 0 Then
+                    GridViewData.Visible = False
+                    Exit Sub
+                Else
+                    GridViewData.Visible = True
+                End If
+                unaTablaTemporalDeBusqueda.getDataSet("CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1) NOT NULL,[NRO_REFERENCIA] [varchar](20) NULL,[DESCRIPCION] [varchar] (80) NOT NULL,[CATEGORIA] [varchar](1) NOT NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (NRO_REFERENCIA,DESCRIPCION,CATEGORIA)SELECT AUD_REFERENCIAS.NRO_REFERENCIA,AUD_REFERENCIAS.DESCRIPCION, AUD_CATEGORIAS.CODIGO FROM AUD_REFERENCIAS INNER JOIN AUD_CATEGORIAS ON AUD_REFERENCIAS.ID_CATEGORIA=AUD_CATEGORIAS.ID WHERE AUD_REFERENCIAS.NRO_REFERENCIA LIKE '%" & txtBusqueda.Text & "%' OR AUD_REFERENCIAS.DESCRIPCION LIKE '%" & txtBusqueda.Text & "%' ORDER BY AUD_REFERENCIAS.NRO_REFERENCIA ASC SELECT CATEGORIA,NRO_REFERENCIA,DESCRIPCION FROM #TEMP_REFERENCIAS WHERE FILA>0 AND FILA<=5")
             End If
-            unaTablaTemporalDeBusqueda.getDataSet("CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1) NOT NULL,[NRO_REFERENCIA] [varchar](20) NULL,[DESCRIPCION] [varchar] (80) NOT NULL,[CATEGORIA] [varchar](1) NOT NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (NRO_REFERENCIA,DESCRIPCION,CATEGORIA)SELECT AUD_REFERENCIAS.NRO_REFERENCIA,AUD_REFERENCIAS.DESCRIPCION, AUD_CATEGORIAS.CODIGO FROM AUD_REFERENCIAS INNER JOIN AUD_CATEGORIAS ON AUD_REFERENCIAS.ID_CATEGORIA=AUD_CATEGORIAS.ID WHERE AUD_REFERENCIAS.DESCRIPCION LIKE'%" & txtBusqueda.Text & "%' ORDER BY AUD_REFERENCIAS.NRO_REFERENCIA ASC SELECT CATEGORIA,NRO_REFERENCIA,DESCRIPCION FROM #TEMP_REFERENCIAS WHERE FILA>0 AND FILA<=5")
-        ElseIf radBusqueda.SelectedValue = "NRO_REFERENCIA" Then
-            calcularPaginasNroReferencia()
-            If totalPaginasBusqueda = 0 Then
-                GridViewData.Visible = False
-                Exit Sub
-            Else
-                GridViewData.Visible = True
-            End If
-            unaTablaTemporalDeBusqueda.getDataSet("CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1) NOT NULL,[NRO_REFERENCIA] [varchar](20) NULL,[DESCRIPCION] [varchar] (80) NOT NULL,[CATEGORIA] [varchar](1) NOT NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (NRO_REFERENCIA,DESCRIPCION,CATEGORIA)SELECT AUD_REFERENCIAS.NRO_REFERENCIA,AUD_REFERENCIAS.DESCRIPCION, AUD_CATEGORIAS.CODIGO FROM AUD_REFERENCIAS INNER JOIN AUD_CATEGORIAS ON AUD_REFERENCIAS.ID_CATEGORIA=AUD_CATEGORIAS.ID WHERE AUD_REFERENCIAS.NRO_REFERENCIA LIKE'%" & txtBusqueda.Text & "%' ORDER BY AUD_REFERENCIAS.NRO_REFERENCIA ASC SELECT CATEGORIA,NRO_REFERENCIA,DESCRIPCION FROM #TEMP_REFERENCIAS WHERE FILA>0 AND FILA<=5")
-        ElseIf radBusqueda.SelectedValue = "PALABRA_CLAVE" Then
-            calcularPaginasPalabraClave()
-            If totalPaginasBusqueda = 0 Then
-                GridViewData.Visible = False
-                Exit Sub
-            Else
-                GridViewData.Visible = True
-            End If
-            unaTablaTemporalDeBusqueda.getDataSet("CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1) NOT NULL,[NRO_REFERENCIA] [varchar](20) NULL,[DESCRIPCION] [varchar] (80) NOT NULL,[CATEGORIA] [varchar](1) NOT NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (NRO_REFERENCIA,DESCRIPCION,CATEGORIA)SELECT AUD_REFERENCIAS.NRO_REFERENCIA,AUD_REFERENCIAS.DESCRIPCION, AUD_CATEGORIAS.CODIGO FROM AUD_REFERENCIAS INNER JOIN AUD_CATEGORIAS ON AUD_REFERENCIAS.ID_CATEGORIA=AUD_CATEGORIAS.ID WHERE AUD_REFERENCIAS.NRO_REFERENCIA LIKE '%" & txtBusqueda.Text & "%' OR AUD_REFERENCIAS.DESCRIPCION LIKE '%" & txtBusqueda.Text & "%' ORDER BY AUD_REFERENCIAS.NRO_REFERENCIA ASC SELECT CATEGORIA,NRO_REFERENCIA,DESCRIPCION FROM #TEMP_REFERENCIAS WHERE FILA>0 AND FILA<=5")
+            unaTablaTemporalDeBusqueda.fillGridView(GridViewData)
+            paginaActualBusqueda = 1
+            hideNextOrPrevious()
         End If
-        unaTablaTemporalDeBusqueda.fillGridView(GridViewData)
-        paginaActualBusqueda = 1
-        hideNextOrPrevious()
     End Sub
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -137,6 +142,7 @@ Public Class busqueda
         txtBusqueda.Focus()
         btnCancelar.Attributes.Add("onclick", "javascript:unloadPage()")
         hideNextOrPrevious()
+
     End Sub
 
     Protected Sub btnSearch_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnSearch.Click

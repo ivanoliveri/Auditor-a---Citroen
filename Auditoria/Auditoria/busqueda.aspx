@@ -31,6 +31,11 @@
         width: 566px;
         margin-left: 0px;
     }
+    .style2
+    {
+        height: 69px;
+        width: 181px;
+    }
 </style>
 </head>
 
@@ -38,18 +43,18 @@
 
     <form id="form1" runat="server">
 
-<table align="center" class="auto-style1" style="width: 591px; height: 400px">
+<table align="center" class="auto-style1" style="width: 591px; height: 431px">
 	<tr>
 		<td style="height: 69px; width: 83px">
 		<img alt="" height="55" src="images/u82-fr.jpg" width="78" /></td>
-		<td style="height: 69px; width: 181px;"></td>
+		<td class="style2"></td>
 	</tr>
 	<tr>
 		<td class="auto-style2" colspan="2" style="height: 6px">&nbsp;</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="style1">
-            <div style="width: 99%; height: 332px;">
+            <div style="width: 99%; height: 353px;">
 
                 <asp:ScriptManager ID="ScriptManager1" runat="server">
                 </asp:ScriptManager>
@@ -77,16 +82,41 @@
                                         <ItemTemplate>
                                             <asp:Label ID="Label1" runat="server" Text='<%# Eval("CATEGORIA") %>'></asp:Label>
                                         </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="NRO. REF.">
                                         <ItemTemplate>
                                             <asp:Label ID="Label2" runat="server" Text='<%# Eval("NRO_REFERENCIA") %>'></asp:Label>
                                         </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="DESCRIPCIÓN">
                                         <ItemTemplate>
                                             <asp:Label ID="Label3" runat="server" Text='<%# Eval("DESCRIPCION") %>'></asp:Label>
                                         </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="ELIMINAR">
+                                        <FooterTemplate>
+                                            <table cellpadding="0" cellspacing="0" 
+                                                style="margin:5px 0px; border:1px solid #A0A0A0;width:100%;height:100%">
+                                                <tr>
+                                                    <td style="padding: 2px 4px; height: 17px; font-family: Segoe UI; font-style: normal; font-weight: normal; font-size: 9pt; text-decoration: none; background-color: buttonface; color: #102040; background-image: url(mvwres://Microsoft.Web.Design.Client, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a/TemplateHeaderBackground.gif); background-repeat: repeat-x; border-bottom: 1px solid #A0A0A0;">
+                                                        ItemTemplate
+                                                    </td>
+                                                </tr>
+                                                <tr style="">
+                                                    <td style="padding:4px;height:50px;vertical-align:top;color:#666666;background-color:White;font-family:'Arial';font-size:Small">
+                                                        <asp:ImageButton ID="ImageButton1" runat="server" Height="26px" Width="25px" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </FooterTemplate>
+                                        <ItemTemplate>
+                                            <asp:ImageButton ID="ImageButton2" runat="server" ImageAlign="AbsMiddle" 
+                                                ImageUrl="~/images/buttons/eliminar.png" />
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
                                 </Columns>
                                 <FooterStyle BackColor="White" ForeColor="Black" />
@@ -98,9 +128,15 @@
                                 <SortedDescendingCellStyle BackColor="#E5E5E5" />
                                 <SortedDescendingHeaderStyle BackColor="#242121" />
                             </asp:GridView>
+                            <br />
                 </div>
                 <br />
                 <div align="right" id="botonera">
+                    <asp:TextBox ID="txtError" 
+                runat="server" BorderWidth="0px" 
+                Font-Names="Arial" Font-Size="Small" ForeColor="#DC002E" ReadOnly="True" 
+                Width="314px" Height="16px" style="margin-left: 0px"></asp:TextBox>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:ImageButton ID="btnSearch" runat="server" 
                         ImageUrl="~/images/buttons/Buscar.png" />
                     <asp:ImageButton ID="btnPrevious" runat="server" Height="100%" 
@@ -111,7 +147,7 @@
                 ImageUrl="~/images/buttons/cancel.png" Width="32px" ToolTip="Cancelar" />
                     <br />
                 </div>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
             </div>
 		</td>

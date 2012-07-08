@@ -223,9 +223,9 @@
                 <div align="right" id="botonera">
             <asp:TextBox ID="txtError" runat="server" BorderWidth="0px" 
                 Font-Names="Arial" Font-Size="Small" ForeColor="#DC002E" ReadOnly="True" 
-                Width="671px" Height="16px" style="margin-left: 0px"></asp:TextBox>
+                Width="701px" Height="16px" style="margin-left: 0px"></asp:TextBox>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:ImageButton 
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:ImageButton 
                                 ID="btnAgregar" runat="server" UseSubmitBehavior="false"
                                 ImageUrl="~/images/buttons/agregar.png" ToolTip="Agregar" />
                             <asp:ImageButton ID="btnSearch" runat="server" 

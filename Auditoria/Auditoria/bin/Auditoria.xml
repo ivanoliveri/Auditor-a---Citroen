@@ -166,6 +166,14 @@ GridViewData control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:Auditoria.busqueda.txtError">
+	<summary>
+txtError control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:Auditoria.busqueda.btnSearch">
 	<summary>
 btnSearch control.

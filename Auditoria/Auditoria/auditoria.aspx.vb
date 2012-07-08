@@ -110,8 +110,12 @@ Public Class auditoria
             Dim unaFechaVieja As String = lblFecha.Text
             Dim unaFecha As String
             Dim lblDescripcion As Label = CType(row.FindControl("Label2"), Label)
+            Dim lblEstadoEnviado As Label = CType(row.FindControl("Label5"), Label)
             Dim unString As String = Trim(lblDescripcion.Text)
             Dim unNum As Integer = Len(unString)
+            If lblEstadoEnviado.Text = "N" Then
+                lblEstadoEnviado.Text = ""
+            End If
             If Len(unString) >= 29 Then
                 lblDescripcion.Text = Left(unString, 30) + ".."
             End If
@@ -135,8 +139,12 @@ Public Class auditoria
     End Function
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If agregoOedito = True Then
+            agregoOedito = False
+            Exit Sub
+        End If
+        lastError = ""
         agregoOedito = False
-        txtError.Visible = False
         txtCE.Attributes.CssStyle.Add("TEXT-ALIGN", "right")
         txtSucursal.Attributes.CssStyle.Add("TEXT-ALIGN", "right")
         txtPeriodo.Attributes.CssStyle.Add("TEXT-ALIGN", "right")
@@ -206,7 +214,6 @@ Public Class auditoria
         btnE.Attributes.Add("onmouseout", "javascript:llenarLabel('')")
         btnF.Attributes.Add("onmouseout", "javascript:llenarLabel('')")
         btnG.Attributes.Add("onmouseout", "javascript:llenarLabel('')")
-        'Seteo que los TextBox estén en align CENTER
         hideNextOrPrevious()
     End Sub
 
@@ -311,23 +318,20 @@ Public Class auditoria
             'Se fija que sea distinto de lo que vino cargado y que adamás haya seleccionado un estado
             If txtStock.Text.Trim() <> Trim(unStockDataTable) Then
                 If IsNumeric(txtStock.Text) = False Then
-                    txtError.Text = "Error: El stock debe ser un entero positivo."
-                    txtError.Visible = True
+                    lastError = "Error: El stock debe ser un entero positivo."
                     txtStock.Focus()
                     agregoOedito = True
                     Exit Sub
                 End If
                 If CInt(txtStock.Text) < 0 Or InStr(txtStock.Text, ".", CompareMethod.Text) Then
-                    txtError.Text = "Error: El stock debe ser un entero positivo."
-                    txtError.Visible = True
+                    lastError = "Error: El stock debe ser un entero positivo."
                     txtStock.Focus()
                     agregoOedito = True
                     Exit Sub
                 End If
                 Dim radOpciones As RadioButtonList = CType(row.FindControl("RadioButtonList1"), RadioButtonList)
                 If radOpciones.SelectedValue = "N" And Trim(unStockTextBox) <> "0" Then
-                    txtError.Text = "Error: Debes seleccionar un estado(B/M/R)"
-                    txtError.Visible = True
+                    lastError = "Error: Debes seleccionar un estado(B/M/R)"
                     radOpciones.Focus()
                     agregoOedito = True
                     Exit Sub
@@ -360,8 +364,6 @@ Public Class auditoria
                 Else
                     unaTablaNuevaDeAuditoria.execQuery("UPDATE AUD_RELEVAMIENTOS SET STOCK=" & formatStock(unStockTextBox) & ",ESTADO='" & radEstado.SelectedValue & "' WHERE CE=" & Application("unNumeroDeCE") & " AND SUCURSAL=" & Application("unNumeroDeSucursal") & " AND PERIODO='" & unPeriodoActual & "' AND ID_AUD_REFERENCIAS=" & CInt(unaTablaIdReferencia.getItem(0, 0)))
                 End If
-                ' Dim unUpdatePanel As UpdatePanel = New UpdatePanel
-                ' unUpdatePanel.a()
             End If
             unaPosicion += 1
         Next
@@ -385,6 +387,11 @@ Public Class auditoria
                         unaTablaTemporal.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='' AND DESCRIPCION='" & unasReferencias.getItem(unaPosicion, 2) & "'")
                     End If
                     unasReferencias.execQuery("UPDATE AUD_RELEVAMIENTOS SET ESTADO='" & radEstado.SelectedValue & "' WHERE ID_AUD_REFERENCIAS=" & CInt(unaTablaTemporal.getItem(0, 0)) & " AND PERIODO='" & unPeriodoActual & "' AND CE=" & Application("unNumeroDeCE") & " AND SUCURSAL=" & Application("unNumeroDeSucursal"))
+                    If unStockTextBox = "" Then
+                        txtError.Text = lastError
+                        agregoOedito = True
+                        Exit Sub
+                    End If
                 End If
             End If
             unaPosicion += 1
@@ -399,6 +406,7 @@ Public Class auditoria
         unasReferencias.getDataSet(Application("ultimoQuery"))
         unasReferencias.fillGridView(GridViewData)
         formatGridView()
+        txtError.Text = lastError
     End Sub
 
     Protected Sub btnSalir_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnSalir.Click
@@ -419,28 +427,32 @@ Public Class auditoria
         Dim unaPosicion As Integer = 0
         For Each row As GridViewRow In GridViewData.Rows
             Dim txtCategoria As TextBox = CType(row.FindControl("TextBox2"), TextBox)
-            Dim unaCategoriaTextBox As String = Trim(txtCategoria.Text)
-            Dim unaCategoriaDataTable As String = Trim(unasReferencias.getItem(unaPosicion, 0))
-            If Trim(unaCategoriaDataTable) <> Trim(unaCategoriaTextBox) Then
-                Dim unaTablaTemporal As TablaSQL = New TablaSQL
-                unaTablaTemporal.setConnectionString(unConnectionString)
-                unaTablaTemporal.getDataSet("SELECT COUNT(*) FROM AUD_CATEGORIAS WHERE CODIGO='" & Trim(unaCategoriaTextBox) & "'")
-                If unaTablaTemporal.getItem(0, 0) = "1" Then
-                    unaTablaTemporal.getDataSet("SELECT ID FROM AUD_CATEGORIAS WHERE CODIGO='" & Trim(unaCategoriaTextBox) & "'")
-                    If Application("lastCat") = "F" Then
-                        unasReferencias.execQuery("UPDATE AUD_REFERENCIAS SET ID_CATEGORIA=" & CInt(unaTablaTemporal.getItem(0, 0)) & " WHERE NRO_REFERENCIA='" & unasReferencias.getItem(unaPosicion, 1) & "'")
-                    ElseIf Application("lastCat") = "G" Then
-                        unasReferencias.execQuery("UPDATE AUD_REFERENCIAS SET ID_CATEGORIA=" & CInt(unaTablaTemporal.getItem(0, 0)) & " WHERE DESCRIPCION='" & unasReferencias.getItem(unaPosicion, 2) & "' AND NRO_REFERENCIA=''")
+            If InStr(txtCategoria.Text, "'", CompareMethod.Text) Then
+                txtError.Text = "Error: Debes ingresar una cadena de caracteres válida."
+                txtError.Visible = True
+                agregoOedito = True
+            Else
+                Dim unaCategoriaTextBox As String = Trim(txtCategoria.Text)
+                Dim unaCategoriaDataTable As String = Trim(unasReferencias.getItem(unaPosicion, 0))
+                If Trim(unaCategoriaDataTable) <> Trim(unaCategoriaTextBox) Then
+                    Dim unaTablaTemporal As TablaSQL = New TablaSQL
+                    unaTablaTemporal.setConnectionString(unConnectionString)
+                    unaTablaTemporal.getDataSet("SELECT COUNT(*) FROM AUD_CATEGORIAS WHERE CODIGO='" & Trim(unaCategoriaTextBox) & "'")
+                    If unaTablaTemporal.getItem(0, 0) = "1" Then
+                        unaTablaTemporal.getDataSet("SELECT ID FROM AUD_CATEGORIAS WHERE CODIGO='" & Trim(unaCategoriaTextBox) & "'")
+                        If Application("lastCat") = "F" Then
+                            unasReferencias.execQuery("UPDATE AUD_REFERENCIAS SET ID_CATEGORIA=" & CInt(unaTablaTemporal.getItem(0, 0)) & " WHERE NRO_REFERENCIA='" & unasReferencias.getItem(unaPosicion, 1) & "'")
+                        ElseIf Application("lastCat") = "G" Then
+                            unasReferencias.execQuery("UPDATE AUD_REFERENCIAS SET ID_CATEGORIA=" & CInt(unaTablaTemporal.getItem(0, 0)) & " WHERE DESCRIPCION='" & unasReferencias.getItem(unaPosicion, 2) & "' AND NRO_REFERENCIA=''")
+                        End If
+                    Else
+                        txtError.Text = "Error: La categoría ingresada es inválida."
+                        txtError.Visible = True
                     End If
-                Else
-                    txtError.Text = "Error: La categoría ingresada es inválida."
-                    txtError.Visible = True
                 End If
             End If
             unaPosicion += 1
         Next
         agregoOedito = True
     End Sub
-
-
 End Class

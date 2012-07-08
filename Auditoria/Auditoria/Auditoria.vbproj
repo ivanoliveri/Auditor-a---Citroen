@@ -115,6 +115,7 @@
     <Content Include="images\buttons\Buscar.png" />
     <Content Include="images\buttons\cancel.png" />
     <Content Include="images\buttons\confirm.png" />
+    <Content Include="images\buttons\eliminar.png" />
     <Content Include="images\buttons\exit.png" />
     <Content Include="images\buttons\Imprimir.png" />
     <Content Include="images\citroen.ico" />
