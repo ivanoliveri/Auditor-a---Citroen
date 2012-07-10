@@ -3,6 +3,7 @@ Public Class agregar
     Inherits System.Web.UI.Page
     Private unaCategoria As String
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        lastErrorAgregar = ""
         txtNroReferencia.Focus()
         txtNroReferencia.MaxLength = 15
         txtStock.MaxLength = 4
@@ -95,6 +96,7 @@ Public Class agregar
             agregoDesdePopup = True
             Response.Write("<script>opener.location.href='http://normasymetodos.com/citroen.ar/Auditoria/auditoria.aspx';</script>")
         End If
+        lastErrorAgregar = ""
         Response.Write("<script>window.close();</script>")
     End Sub
 
@@ -107,5 +109,9 @@ Public Class agregar
             End If
         End If
         txtError.Text = lastErrorAgregar
+    End Sub
+
+    Protected Sub btnCancelar_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnCancelar.Click
+
     End Sub
 End Class

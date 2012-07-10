@@ -173,7 +173,7 @@ Public Class auditoria
                 unNumeroDeFila = CInt(unaTablaTemporal.getItem(0, 0))
             Else
                 unaTablaTemporal.getDataSet("CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1)  NOT NULL,[NRO_REFERENCIA] [varchar] (15) NOT NULL, [DESCRIPCION] [varchar] (80) NOT NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (NRO_REFERENCIA,DESCRIPCION) SELECT NRO_REFERENCIA,DESCRIPCION FROM AUD_REFERENCIAS WHERE ID_CATEGORIA=" & idCategoriaToSearch & " ORDER BY DESCRIPCION ASC SELECT FILA FROM #TEMP_REFERENCIAS WHERE DESCRIPCION='" & descripcionToSearch & "'")
-                unNumeroDeFila = CInt(unaTablaTemporal.getItem(0, 0))
+                unNumeroDeFila = CInt(unaTablaTemporal.getItem(0, 0)) - 1
             End If
             Dim maxFila As Integer
             If unNumeroDeFila Mod 10 <> 0 Then
