@@ -28,7 +28,7 @@
     #botonera
     {
         height: 32px;
-        width: 566px;
+        width: 670px;
         margin-left: 0px;
     }
     .style2
@@ -43,7 +43,8 @@
 
     <form id="form1" runat="server">
 
-<table align="center" class="auto-style1" style="width: 591px; height: 431px">
+<table align="center" class="auto-style1" 
+        style="width: 671px; height: 431px; margin-right: 66px;">
 	<tr>
 		<td style="height: 69px; width: 83px">
 		<img alt="" height="55" src="images/u82-fr.jpg" width="78" /></td>
@@ -54,7 +55,7 @@
 	</tr>
 	<tr>
 		<td colspan="2" class="style1">
-            <div style="width: 99%; height: 353px;">
+            <div style="width: 101%; height: 353px;">
 
                 <asp:ScriptManager ID="ScriptManager1" runat="server">
                 </asp:ScriptManager>
@@ -64,7 +65,7 @@
                 <asp:TextBox ID="TextBox2" runat="server" BorderColor="White" BorderWidth="0px" 
                     Font-Names="Arial" ForeColor="#666666" style="margin-left: 0px" 
                     Width="72px">Búsqueda :</asp:TextBox>
-                <asp:TextBox ID="txtBusqueda" runat="server" Width="466px"></asp:TextBox>
+                <asp:TextBox ID="txtBusqueda" runat="server" Width="551px"></asp:TextBox>
                 &nbsp;<asp:RadioButtonList ID="radBusqueda" runat="server" Font-Names="Arial" 
                     Font-Size="Small" ForeColor="#666666" RepeatDirection="Horizontal">
                     <asp:ListItem Selected="True" Value="NRO_REFERENCIA">NRO. REFERENCIA</asp:ListItem>
@@ -75,8 +76,8 @@
                             <asp:GridView ID="GridViewData" runat="server" AutoGenerateColumns="False" 
                                 BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" 
                                 CellPadding="4" Font-Names="Arial" Font-Size="Small" ForeColor="#666666" 
-                                GridLines="Horizontal" Height="175px" style="margin-top: 19px" 
-                                Width="550px">
+                                GridLines="Horizontal" Height="175px" style="margin-top: 19px; margin-right: 0px;" 
+                                Width="634px">
                                 <Columns>
                                     <asp:TemplateField HeaderText="CAT.">
                                         <ItemTemplate>
@@ -92,7 +93,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="DESCRIPCIÓN">
                                         <ItemTemplate>
-                                            <asp:Label ID="Label3" runat="server" Text='<%# Eval("DESCRIPCION") %>'></asp:Label>
+                                            <asp:Label ID="lblDescripcion" runat="server" Text='<%# Eval("DESCRIPCION") %>'></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
@@ -135,9 +136,8 @@
                     <asp:TextBox ID="txtError" 
                 runat="server" BorderWidth="0px" 
                 Font-Names="Arial" Font-Size="Small" ForeColor="#DC002E" ReadOnly="True" 
-                Width="314px" Height="16px" style="margin-left: 0px"></asp:TextBox>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:ImageButton ID="btnSearch" runat="server" 
+                Width="393px" Height="16px" style="margin-left: 0px"></asp:TextBox>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:ImageButton ID="btnSearch" runat="server" 
                         ImageUrl="~/images/buttons/Buscar.png" />
                     <asp:ImageButton ID="btnPrevious" runat="server" Height="100%" 
                         ImageUrl="~/images/buttons/btnPrevious.png" />
@@ -145,6 +145,7 @@
                         ImageUrl="~/images/buttons/btnNext.png" />
             <asp:ImageButton ID="btnCancelar" runat="server" Height="32px" 
                 ImageUrl="~/images/buttons/cancel.png" Width="32px" ToolTip="Cancelar" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <br />
                 </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

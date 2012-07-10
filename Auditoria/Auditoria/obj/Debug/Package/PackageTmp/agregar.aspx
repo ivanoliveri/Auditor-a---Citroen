@@ -16,7 +16,13 @@
         }else{
                document.getElementById('txtCategoria').value = 'F';
         }
+       }
+    function ponerCategoriaVacia() {
+        if (document.getElementById('txtNroReferencia').value == '') {
+            document.getElementById('txtCategoria').value = '';
+        } 
     }
+
 </script>
 <style type="text/css">
 .auto-style1 {
@@ -81,7 +87,7 @@
                 Font-Size="Small" ForeColor="#666666" Width="144px" ReadOnly="True">Número de Referencia :</asp:TextBox>
                     </td>
                     <td>
-            <asp:TextBox ID="txtNroReferencia" runat="server" onKeyUp="ponerCategoriaF()" Font-Names="Arial" Font-Size="Small" 
+            <asp:TextBox ID="txtNroReferencia" runat="server" onkeyup="ponerCategoriaVacia()" Font-Names="Arial" Font-Size="Small" 
                             ForeColor="#666666"></asp:TextBox>
                     </td>
                 </tr>
@@ -91,7 +97,7 @@
                 Font-Size="Small" ForeColor="#666666" Width="144px" ReadOnly="True">Descripción :</asp:TextBox>
                     </td>
                     <td>
-            <asp:TextBox ID="txtDescripcion" runat="server"  Font-Names="Arial" Font-Size="Small" 
+            <asp:TextBox ID="txtDescripcion" runat="server" onfocus="ponerCategoriaF()" Font-Names="Arial" Font-Size="Small" 
                             ForeColor="#666666"></asp:TextBox>
                     </td>
                 </tr>
@@ -129,7 +135,7 @@
             &nbsp;&nbsp;&nbsp;<asp:TextBox ID="txtError" 
                 runat="server" BorderWidth="0px" 
                 Font-Names="Arial" Font-Size="Small" ForeColor="#DC002E" ReadOnly="True" 
-                Width="314px" Height="16px" style="margin-left: 0px"></asp:TextBox>
+                Width="303px" Height="16px" style="margin-left: 0px"></asp:TextBox>
                 &nbsp;&nbsp;&nbsp;&nbsp;
             <asp:ImageButton ID="btnConfirmar" runat="server" Height="32px" 
                 ImageUrl="~/images/buttons/confirm.png" Width="32px" 

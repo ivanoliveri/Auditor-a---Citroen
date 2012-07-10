@@ -1,10 +1,12 @@
-﻿Public Class agregar
+﻿Imports Auditoria.TableClass
+Public Class agregar
     Inherits System.Web.UI.Page
     Private unaCategoria As String
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        txtCategoria.Text = "G"
-        txtError.Visible = False
         txtNroReferencia.Focus()
+        txtNroReferencia.MaxLength = 15
+        txtStock.MaxLength = 4
+        txtDescripcion.MaxLength = 80
         btnCancelar.Attributes.Add("onclick", "javascript:unloadPage()")
         txtCategoria.Attributes.CssStyle.Add("TEXT-ALIGN", "center")
         txtDescripcion.Attributes.CssStyle.Add("TEXT-ALIGN", "center")
@@ -12,6 +14,11 @@
         txtStock.Attributes.CssStyle.Add("TEXT-ALIGN", "center")
     End Sub
     Protected Sub btnConfirmar_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnConfirmar.Click
+        If InStr(txtNroReferencia.Text, "'", CompareMethod.Text) Or InStr(txtNroReferencia.Text, "%", CompareMethod.Text) Or InStr(txtDescripcion.Text, "'", CompareMethod.Text) Or InStr(txtDescripcion.Text, "%", CompareMethod.Text) Then
+            txtError.Text = "Has ingresado una cadena de carácteres inválida."
+            txtNroReferencia.Focus()
+            Exit Sub
+        End If
         Dim unaCategoria As String
         If Len(txtNroReferencia.Text) = 0 Then
             popupCat = "G"
@@ -26,47 +33,40 @@
         If popupCat = "F" Then
             unaTablaTemporal.getDataSet("SELECT COUNT(*) FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & Trim(txtNroReferencia.Text) & "'")
             If CInt(unaTablaTemporal.getItem(0, 0)) >= 1 Then
-                txtError.Text = "Error: La pieza ingresada ya existe."
-                txtError.Visible = True
+                lastErrorAgregar = "Error: La pieza ingresada ya existe."
                 txtNroReferencia.Focus()
                 Exit Sub
             End If
         Else
             unaTablaTemporal.getDataSet("SELECT COUNT(*) FROM AUD_REFERENCIAS WHERE DESCRIPCION='" & Trim(txtDescripcion.Text) & "' AND NRO_REFERENCIA=''")
             If CInt(unaTablaTemporal.getItem(0, 0)) >= 1 Then
-                txtError.Text = "Error: La pieza ingresada ya existe."
-                txtError.Visible = True
+                lastErrorAgregar = "Error: La pieza ingresada ya existe."
                 txtDescripcion.Focus()
                 Exit Sub
             End If
         End If
         If Trim(txtDescripcion.Text) = "" Then
-            txtError.Text = "Error: No has ingresado la descripción."
-            txtError.Visible = True
+            lastErrorAgregar = "Error: No has ingresado la descripción."
             txtDescripcion.Focus()
             Exit Sub
         End If
         If IsNumeric(txtStock.Text) = False Then
-            txtError.Text = "Error: El stock debe ser un entero positivo."
-            txtError.Visible = True
+            lastErrorAgregar = "Error: El stock debe ser un entero positivo."
             txtStock.Focus()
             Exit Sub
         End If
         If CInt(txtStock.Text) < 0 Then
-            txtError.Text = "Error: El stock debe ser un entero positivo."
-            txtError.Visible = True
+            lastErrorAgregar = "Error: El stock debe ser un entero positivo."
             txtStock.Focus()
             Exit Sub
         End If
         If InStr(txtStock.Text, ".", CompareMethod.Text) Then
-            txtError.Text = "Error: El stock debe ser un entero positivo."
-            txtError.Visible = True
+            lastErrorAgregar = "Error: El stock debe ser un entero positivo."
             txtStock.Focus()
             Exit Sub
         End If
         If radEstado.SelectedIndex = -1 Then
-            txtError.Text = "Error: Debes seleccionar un estado(B/M/R)"
-            txtError.Visible = True
+            lastErrorAgregar = "Error: Debes seleccionar un estado(B/M/R)"
             radEstado.Focus()
             Exit Sub
         End If
@@ -98,4 +98,14 @@
         Response.Write("<script>window.close();</script>")
     End Sub
 
+    Private Sub agregar_LoadComplete(sender As Object, e As System.EventArgs) Handles Me.LoadComplete
+        If lastErrorAgregar <> "" Then
+            If Len(txtNroReferencia.Text) = 0 Then
+                txtCategoria.Text = "G"
+            Else
+                txtCategoria.Text = "F"
+            End If
+        End If
+        txtError.Text = lastErrorAgregar
+    End Sub
 End Class

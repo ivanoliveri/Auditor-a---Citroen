@@ -2,7 +2,6 @@
 Imports Microsoft.VisualBasic
 Public Class auditoria
     Inherits System.Web.UI.Page
-
     Protected Sub traerPrimerosRegistros(ByVal unCodigoCategoria As String)
         Dim unaTablaIdCategoria As TablaSQL = New TablaSQL()
         unaTablaIdCategoria.setConnectionString(unConnectionString)
@@ -112,6 +111,10 @@ Public Class auditoria
             Dim lblDescripcion As Label = CType(row.FindControl("Label2"), Label)
             Dim lblEstadoEnviado As Label = CType(row.FindControl("Label5"), Label)
             Dim unString As String = Trim(lblDescripcion.Text)
+            Dim txtStock As TextBox = CType(row.FindControl("TextBox1"), TextBox)
+            txtStock.MaxLength = 4
+            Dim txtCategoria As TextBox = CType(row.FindControl("TextBox2"), TextBox)
+            txtCategoria.MaxLength = 1
             Dim unNum As Integer = Len(unString)
             If lblEstadoEnviado.Text = "N" Then
                 lblEstadoEnviado.Text = ""
@@ -170,7 +173,7 @@ Public Class auditoria
                 unNumeroDeFila = CInt(unaTablaTemporal.getItem(0, 0))
             Else
                 unaTablaTemporal.getDataSet("CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1)  NOT NULL,[NRO_REFERENCIA] [varchar] (15) NOT NULL, [DESCRIPCION] [varchar] (80) NOT NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (NRO_REFERENCIA,DESCRIPCION) SELECT NRO_REFERENCIA,DESCRIPCION FROM AUD_REFERENCIAS WHERE ID_CATEGORIA=" & idCategoriaToSearch & " ORDER BY DESCRIPCION ASC SELECT FILA FROM #TEMP_REFERENCIAS WHERE DESCRIPCION='" & descripcionToSearch & "'")
-                unNumeroDeFila = CInt(unaTablaTemporal.getItem(0, 0)) - 1
+                unNumeroDeFila = CInt(unaTablaTemporal.getItem(0, 0))
             End If
             Dim maxFila As Integer
             If unNumeroDeFila Mod 10 <> 0 Then
@@ -388,9 +391,9 @@ Public Class auditoria
                     End If
                     unasReferencias.execQuery("UPDATE AUD_RELEVAMIENTOS SET ESTADO='" & radEstado.SelectedValue & "' WHERE ID_AUD_REFERENCIAS=" & CInt(unaTablaTemporal.getItem(0, 0)) & " AND PERIODO='" & unPeriodoActual & "' AND CE=" & Application("unNumeroDeCE") & " AND SUCURSAL=" & Application("unNumeroDeSucursal"))
                     If unStockTextBox = "" Then
-                        txtError.Text = lastError
+                        lastError = "Debes ingresar un stock primero"
+                        txtStock.Focus()
                         agregoOedito = True
-                        Exit Sub
                     End If
                 End If
             End If

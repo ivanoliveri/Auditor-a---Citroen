@@ -124,6 +124,7 @@
     <Content Include="images\_vti_cnf\u82-fr.jpg" />
     <Content Include="imprimir.aspx" />
     <Content Include="ingreso.aspx" />
+    <Content Include="login.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -167,6 +168,13 @@
     </Compile>
     <Compile Include="ingreso.aspx.vb">
       <DependentUpon>ingreso.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.vb">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="login.aspx.vb">
+      <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="modules\Variables.vb" />
