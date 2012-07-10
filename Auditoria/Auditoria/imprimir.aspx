@@ -26,6 +26,7 @@
         ventimp.document.write(ficha.innerHTML);
         ventimp.document.close();
         ventimp.print();
+        window.close()
     }
     function unloadPage() {
         window.close();

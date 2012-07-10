@@ -44,7 +44,7 @@
 	        document.all("txtCategoria").value = unString;
 	    }
 	    function mostrarPopupBuscar(unString) {
-	        hidden = open(unString, 'Buscar', 'top=0,left=0,width=620,height=495,status=yes,resizable=yes,scrollbars=yes');
+	        hidden = open(unString, 'Buscar', 'top=0,left=0,width=690,height=495,status=yes,resizable=yes,scrollbars=yes');
 	    }
 	    function mostrarPopupImprimir(unString) {
 	        hidden = open(unString, 'Imprimir', 'top=0,left=0,width=630,height=320,status=yes,resizable=yes,scrollbars=yes');
@@ -220,12 +220,14 @@
                             &nbsp;</td>
                     </tr>
                 </table>
-                <div align="right" id="botonera">
-            <asp:TextBox ID="txtError" runat="server" BorderWidth="0px" 
+
+                        <div align="right" id="botonera">
+                            <asp:TextBox ID="txtError" runat="server" BorderWidth="0px" 
                 Font-Names="Arial" Font-Size="Small" ForeColor="#DC002E" ReadOnly="True" 
-                Width="701px" Height="16px" style="margin-left: 0px"></asp:TextBox>
+                Width="706px" Height="16px" style="margin-left: 0px"></asp:TextBox>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:ImageButton 
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <asp:ImageButton 
                                 ID="btnAgregar" runat="server" UseSubmitBehavior="false"
                                 ImageUrl="~/images/buttons/agregar.png" ToolTip="Agregar" />
                             <asp:ImageButton ID="btnSearch" runat="server" 
@@ -233,16 +235,16 @@
                             <asp:ImageButton ID="btnImprimir" runat="server" Height="32px" 
                                 ImageUrl="~/images/buttons/Imprimir.png" ToolTip="Imprimir" />
                             <asp:ImageButton ID="btnPrevious" runat="server" Height="32px" 
-                                ImageUrl="~/images/buttons/btnPrevious.png" ToolTip="Página Anterior" />
+                                ImageUrl="~/images/buttons/btnPrevious.png" 
+                        ToolTip="Página Anterior" />
                             <asp:ImageButton ID="btnNext" runat="server" 
                                 ImageUrl="~/images/buttons/btnNext.png" ToolTip="Página Siguiente" />
                             <asp:ImageButton 
                                 ID="btnSalir" runat="server" ImageUrl="~/images/buttons/exit.png" 
                                 ToolTip="Salir" Height="32px" />
-                            &nbsp; 
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;
                         </div>
-
-                <br />
                 <br />
                 <br />
                 <br />
