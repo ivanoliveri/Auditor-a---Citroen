@@ -14,7 +14,18 @@ Public Class auditoria
         unasReferencias.dataSet = unaTablaTemporal.dataSet
         paginaActualMain = 1
     End Sub
-
+    Protected Sub setMouseOutCategoria()
+        Dim todasLasCategorias As TablaSQL = New TablaSQL
+        todasLasCategorias.setConnectionString(unConnectionString)
+        todasLasCategorias.getDataSet("SELECT DESCRIPCION FROM AUD_CATEGORIAS WHERE CODIGO='" & Application("lastCat") & "'")
+        btnA.Attributes.Add("onmouseout", "javascript:llenarLabel('CATEGORIA: " & todasLasCategorias.getItem(0, 0) & "')")
+        btnB.Attributes.Add("onmouseout", "javascript:llenarLabel('CATEGORIA: " & todasLasCategorias.getItem(0, 0) & "')")
+        btnC.Attributes.Add("onmouseout", "javascript:llenarLabel('CATEGORIA: " & todasLasCategorias.getItem(0, 0) & "')")
+        btnD.Attributes.Add("onmouseout", "javascript:llenarLabel('CATEGORIA: " & todasLasCategorias.getItem(0, 0) & "')")
+        btnE.Attributes.Add("onmouseout", "javascript:llenarLabel('CATEGORIA: " & todasLasCategorias.getItem(0, 0) & "')")
+        btnF.Attributes.Add("onmouseout", "javascript:llenarLabel('CATEGORIA: " & todasLasCategorias.getItem(0, 0) & "')")
+        btnG.Attributes.Add("onmouseout", "javascript:llenarLabel('CATEGORIA: " & todasLasCategorias.getItem(0, 0) & "')")
+    End Sub
     Protected Sub calcularPaginas(ByVal unCodigoCategoria As String)
         Dim unaTablaTemporal As TablaSQL = New TablaSQL()
         unaTablaTemporal.setConnectionString(unConnectionString)
@@ -66,25 +77,15 @@ Public Class auditoria
         End If
     End Sub
 
-    Protected Sub setImageButton(ByVal unaCategoriaPasada As String, ByVal unaCategoriaActual As String)
-        Select Case unaCategoriaPasada
-            Case "A"
-                btnA.ImageUrl = "~/images/buttons/btnA.png"
-            Case "B"
-                btnB.ImageUrl = "~/images/buttons/btnB.png"
-            Case "C"
-                btnC.ImageUrl = "~/images/buttons/btnC.png"
-            Case "D"
-                btnD.ImageUrl = "~/images/buttons/btnD.png"
-            Case "E"
-                btnE.ImageUrl = "~/images/buttons/btnE.png"
-            Case "F"
-                btnF.ImageUrl = "~/images/buttons/btnF.png"
-            Case "G"
-                btnG.ImageUrl = "~/images/buttons/btnG.png"
-        End Select
-
-        Select Case unaCategoriaActual
+    Protected Sub setImageButton()
+        btnA.ImageUrl = "~/images/buttons/btnA.png"
+        btnB.ImageUrl = "~/images/buttons/btnB.png"
+        btnC.ImageUrl = "~/images/buttons/btnC.png"
+        btnD.ImageUrl = "~/images/buttons/btnD.png"
+        btnE.ImageUrl = "~/images/buttons/btnE.png"
+        btnF.ImageUrl = "~/images/buttons/btnF.png"
+        btnG.ImageUrl = "~/images/buttons/btnG.png"
+        Select Case Application("lastCat")
             Case "A"
                 btnA.ImageUrl = "~/images/buttons/btnA1.png"
             Case "B"
@@ -161,16 +162,21 @@ Public Class auditoria
         txtPeriodo.Text = "Período: " & unPeriodoActual
         txtUsuario.Text = "Usuario: " & Application("nombreUsuario")
         unasReferencias.setConnectionString(unConnectionString)
+        Dim todasLasCategorias As TablaSQL = New TablaSQL
+        todasLasCategorias.setConnectionString(unConnectionString)
+        todasLasCategorias.setTableName("AUD_CATEGORIAS")
+        todasLasCategorias.getAllDataSet()
         'El ViewGrid viene por defecto en categoría A
         If Application("ultimoQuery") = "" Then
-            setImageButton(Application("lastCat"), "A")
+            txtCategoria.Text = Trim(todasLasCategorias.getItem(0, 2))
             Application("lastCat") = "A"
+            setImageButton()
             calcularPaginas(Application("lastCat"))
             traerPrimerosRegistros(Application("lastCat"))
         End If
         If BusquedaMode = True Then
-            setImageButton(Application("lastCat"), codCategoriaToSearch)
             Application("lastCat") = codCategoriaToSearch
+            setImageButton()
             Dim unaTablaTemporal As TablaSQL = New TablaSQL
             unaTablaTemporal.setConnectionString(unConnectionString)
             Dim unNumeroDeFila As Integer
@@ -204,10 +210,6 @@ Public Class auditoria
         btnSearch.Attributes.Add("onclick", "javascript:mostrarPopupBuscar('" & "busqueda.aspx" & "')")
         btnImprimir.Attributes.Add("onclick", "javascript:mostrarPopupImprimir('" & "imprimir.aspx" & "')")
         btnAgregar.Attributes.Add("onclick", "javascript:mostrarPopupAgregar('" & "agregar.aspx" & "')")
-        Dim todasLasCategorias As TablaSQL = New TablaSQL
-        todasLasCategorias.setConnectionString(unConnectionString)
-        todasLasCategorias.setTableName("AUD_CATEGORIAS")
-        todasLasCategorias.getAllDataSet()
         'Agrego Atributo onMouseMove a los botones de Categoría
         btnA.Attributes.Add("onmouseover", "javascript:llenarLabel('CATEGORIA: " & todasLasCategorias.getItem(0, 2) & "')")
         btnB.Attributes.Add("onmouseover", "javascript:llenarLabel('CATEGORIA: " & todasLasCategorias.getItem(1, 2) & "')")
@@ -216,62 +218,83 @@ Public Class auditoria
         btnE.Attributes.Add("onmouseover", "javascript:llenarLabel('CATEGORIA: " & todasLasCategorias.getItem(4, 2) & "')")
         btnF.Attributes.Add("onmouseover", "javascript:llenarLabel('CATEGORIA: " & todasLasCategorias.getItem(5, 2) & "')")
         btnG.Attributes.Add("onmouseover", "javascript:llenarLabel('CATEGORIA: " & todasLasCategorias.getItem(6, 2) & "')")
-        btnA.Attributes.Add("onmouseout", "javascript:llenarLabel('')")
-        btnB.Attributes.Add("onmouseout", "javascript:llenarLabel('')")
-        btnC.Attributes.Add("onmouseout", "javascript:llenarLabel('')")
-        btnD.Attributes.Add("onmouseout", "javascript:llenarLabel('')")
-        btnE.Attributes.Add("onmouseout", "javascript:llenarLabel('')")
-        btnF.Attributes.Add("onmouseout", "javascript:llenarLabel('')")
-        btnG.Attributes.Add("onmouseout", "javascript:llenarLabel('')")
         hideNextOrPrevious()
     End Sub
 
     Protected Sub btnA_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnA.Click
         If agregoOedito = True Then Exit Sub
-        setImageButton(Application("lastCat"), "A")
         Application("lastCat") = "A"
+        setImageButton()
+        Dim unaTablaAuditoria As TablaSQL = New TablaSQL
+        unaTablaAuditoria.setConnectionString(unConnectionString)
+        unaTablaAuditoria.getDataSet("SELECT DESCRIPCION FROM AUD_CATEGORIAS WHERE CODIGO='" & Application("lastCat") & "'")
+        txtCategoria.Text = "CATEGORIA: " & unaTablaAuditoria.getItem(0, 0)
         cargarCategoria()
         formatGridView()
     End Sub
 
     Protected Sub btnB_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnB.Click
-        setImageButton(Application("lastCat"), "B")
         Application("lastCat") = "B"
+        setImageButton()
+        Dim unaTablaAuditoria As TablaSQL = New TablaSQL
+        unaTablaAuditoria.setConnectionString(unConnectionString)
+        unaTablaAuditoria.getDataSet("SELECT DESCRIPCION FROM AUD_CATEGORIAS WHERE CODIGO='" & Application("lastCat") & "'")
+        txtCategoria.Text = "CATEGORIA: " & unaTablaAuditoria.getItem(0, 0)
         cargarCategoria()
         formatGridView()
     End Sub
 
     Protected Sub btnC_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnC.Click
-        setImageButton(Application("lastCat"), "C")
         Application("lastCat") = "C"
+        setImageButton()
+        Dim unaTablaAuditoria As TablaSQL = New TablaSQL
+        unaTablaAuditoria.setConnectionString(unConnectionString)
+        unaTablaAuditoria.getDataSet("SELECT DESCRIPCION FROM AUD_CATEGORIAS WHERE CODIGO='" & Application("lastCat") & "'")
+        txtCategoria.Text = "CATEGORIA: " & unaTablaAuditoria.getItem(0, 0)
         cargarCategoria()
         formatGridView()
     End Sub
 
     Protected Sub btnD_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnD.Click
-        setImageButton(Application("lastCat"), "D")
         Application("lastCat") = "D"
+        setImageButton()
+        Dim unaTablaAuditoria As TablaSQL = New TablaSQL
+        unaTablaAuditoria.setConnectionString(unConnectionString)
+        unaTablaAuditoria.getDataSet("SELECT DESCRIPCION FROM AUD_CATEGORIAS WHERE CODIGO='" & Application("lastCat") & "'")
+        txtCategoria.Text = "CATEGORIA: " & unaTablaAuditoria.getItem(0, 0)
         cargarCategoria()
         formatGridView()
     End Sub
 
     Protected Sub btnE_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnE.Click
-        setImageButton(Application("lastCat"), "E")
         Application("lastCat") = "E"
+        setImageButton()
+        Dim unaTablaAuditoria As TablaSQL = New TablaSQL
+        unaTablaAuditoria.setConnectionString(unConnectionString)
+        unaTablaAuditoria.getDataSet("SELECT DESCRIPCION FROM AUD_CATEGORIAS WHERE CODIGO='" & Application("lastCat") & "'")
+        txtCategoria.Text = "CATEGORIA: " & unaTablaAuditoria.getItem(0, 0)
         cargarCategoria()
         formatGridView()
     End Sub
 
     Protected Sub btnF_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnF.Click
-        setImageButton(Application("lastCat"), "F")
         Application("lastCat") = "F"
+        setImageButton()
+        Dim unaTablaAuditoria As TablaSQL = New TablaSQL
+        unaTablaAuditoria.setConnectionString(unConnectionString)
+        unaTablaAuditoria.getDataSet("SELECT DESCRIPCION FROM AUD_CATEGORIAS WHERE CODIGO='" & Application("lastCat") & "'")
+        txtCategoria.Text = "CATEGORIA: " & unaTablaAuditoria.getItem(0, 0)
         cargarCategoria()
         formatGridView()
     End Sub
 
     Protected Sub btnG_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnG.Click
-        setImageButton(Application("lastCat"), "G")
         Application("lastCat") = "G"
+        setImageButton()
+        Dim unaTablaAuditoria As TablaSQL = New TablaSQL
+        unaTablaAuditoria.setConnectionString(unConnectionString)
+        unaTablaAuditoria.getDataSet("SELECT DESCRIPCION FROM AUD_CATEGORIAS WHERE CODIGO='" & Application("lastCat") & "'")
+        txtCategoria.Text = "CATEGORIA: " & unaTablaAuditoria.getItem(0, 0)
         cargarCategoria()
         formatGridView()
     End Sub
@@ -409,11 +432,12 @@ Public Class auditoria
 
     Private Sub auditoria_LoadComplete(sender As Object, e As System.EventArgs) Handles Me.LoadComplete
         If agregoDesdePopup = True Then
-            setImageButton("A", popupCat)
+            setImageButton()
             agregoDesdePopup = False
         End If
         unasReferencias.getDataSet(Application("ultimoQuery"))
         unasReferencias.fillGridView(GridViewData)
+        setMouseOutCategoria()
         formatGridView()
         txtError.Text = lastError
     End Sub
