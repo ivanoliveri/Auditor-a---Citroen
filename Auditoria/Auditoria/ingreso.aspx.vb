@@ -47,7 +47,7 @@ Public Class ingreso
             dropSucursal.DataValueField = "Suc"
             dropSucursal.DataBind()
             dropSucursal.Items.Insert(0, "Seleccione SUC")
-            If Trim(dropSucursal.Items.Item(1).Text) = "" Then dropSucursal.Items.Item(1).Text = "0"
+            If Trim(dropSucursal.Items.Item(1).Text) = "" Then dropSucursal.Items.Item(1).Text = "000"
             Application("unNumeroDeSucursal") = -1
         End If
     End Sub

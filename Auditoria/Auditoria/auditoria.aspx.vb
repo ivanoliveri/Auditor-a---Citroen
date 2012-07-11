@@ -434,6 +434,11 @@ Public Class auditoria
                 lastError = "Error: Debes ingresar una cadena de caracteres válida."
                 agregoOedito = True
             Else
+                If Application("lastCat") = "F" And txtCategoria.Text = "G" Then
+                    lastError = "Error: No puedes cambiar una referencia de categoría F a G."
+                    agregoOedito = True
+                    Exit Sub
+                End If
                 Dim unaCategoriaTextBox As String = Trim(txtCategoria.Text)
                 Dim unaCategoriaDataTable As String = Trim(unasReferencias.getItem(unaPosicion, 0))
                 If Trim(unaCategoriaDataTable) <> Trim(unaCategoriaTextBox) Then
