@@ -209,6 +209,14 @@ Public Class busqueda
         MyBase.Render(writer)
     End Sub
 
+    Private Sub GridViewData_RowDataBound(sender As Object, e As System.Web.UI.WebControls.GridViewRowEventArgs) Handles GridViewData.RowDataBound
+        If Application("nivelUsuario") = "ADMIN" Then
+            e.Row.Cells(3).Visible = True
+        Else
+            e.Row.Cells(3).Visible = False
+        End If
+    End Sub
+
     Private Sub GridViewData_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles GridViewData.SelectedIndexChanged
         nroReferenciaToSearch = unaTablaTemporalDeBusqueda.getItem(GridViewData.SelectedIndex, 1)
         codCategoriaToSearch = unaTablaTemporalDeBusqueda.getItem(GridViewData.SelectedIndex, 0)

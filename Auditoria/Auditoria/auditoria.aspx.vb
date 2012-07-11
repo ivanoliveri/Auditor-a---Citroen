@@ -423,7 +423,7 @@ Public Class auditoria
     End Sub
 
     Private Sub GridViewData_RowDataBound(sender As Object, e As System.Web.UI.WebControls.GridViewRowEventArgs) Handles GridViewData.RowDataBound
-        If Application("lastCat") = "F" Or Application("lastCat") = "G" Then
+        If (Application("lastCat") = "F" Or Application("lastCat") = "G") And Application("nivelUsuario") = "ADMIN" Then
             e.Row.Cells(0).Visible = True
         Else
             e.Row.Cells(0).Visible = False
