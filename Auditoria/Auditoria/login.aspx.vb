@@ -21,9 +21,10 @@ Public Class login
         Else
             If Left(unaTablaDeLogin.getItem(0, 2), 1) = "M" Then
                 Application("nivelUsuario") = "ADMIN"
-            Else
+            ElseIf Left(unaTablaDeLogin.getItem(0, 2), 1) = "U" Then
                 Application("nivelUsuario") = "OPERARIO"
             End If
+            Application("nombreUsuario") = Trim(unaTablaDeLogin.getItem(0, 0))
             Response.Redirect("ingreso.aspx")
         End If
     End Sub

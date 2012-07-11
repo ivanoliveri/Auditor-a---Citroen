@@ -82,6 +82,10 @@
             <asp:TextBox ID="txtPeriodo" runat="server" BorderWidth="0px" 
                 Font-Names="Arial" Font-Size="Small" ForeColor="#666666" ReadOnly="True" 
                 Width="914px" Height="16px"></asp:TextBox>
+            <br />
+            <asp:TextBox ID="txtUsuario" runat="server" BorderWidth="0px" 
+                Font-Names="Arial" Font-Size="Small" ForeColor="#666666" ReadOnly="True" 
+                Width="914px" Height="16px"></asp:TextBox>
         </td>
 	</tr>
 	<tr>

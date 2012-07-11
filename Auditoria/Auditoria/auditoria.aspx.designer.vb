@@ -50,6 +50,15 @@ Partial Public Class auditoria
     Protected WithEvents txtPeriodo As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''txtUsuario control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtUsuario As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''btnA control.
     '''</summary>
     '''<remarks>

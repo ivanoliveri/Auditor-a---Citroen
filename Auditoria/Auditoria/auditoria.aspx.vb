@@ -151,6 +151,7 @@ Public Class auditoria
         txtCE.Attributes.CssStyle.Add("TEXT-ALIGN", "right")
         txtSucursal.Attributes.CssStyle.Add("TEXT-ALIGN", "right")
         txtPeriodo.Attributes.CssStyle.Add("TEXT-ALIGN", "right")
+        txtUsuario.Attributes.CssStyle.Add("TEXT-ALIGN", "right")
         txtCE.Text = "CE: " & Application("unNumeroDeCE")
         If Application("unNumeroDeSucursal") = 0 Then
             txtSucursal.Text = "Sucursal: 000"
@@ -158,6 +159,7 @@ Public Class auditoria
             txtSucursal.Text = "Sucursal: " & Application("unNumeroDeSucursal")
         End If
         txtPeriodo.Text = "Período: " & unPeriodoActual
+        txtUsuario.Text = "Usuario: " & Application("nombreUsuario")
         unasReferencias.setConnectionString(unConnectionString)
         'El ViewGrid viene por defecto en categoría A
         If Application("ultimoQuery") = "" Then
