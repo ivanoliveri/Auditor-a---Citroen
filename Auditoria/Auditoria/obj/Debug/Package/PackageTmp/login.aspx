@@ -64,7 +64,7 @@
 				<td class="style1">
             <asp:TextBox ID="lblUsuario" runat="server"
                         Font-Names="Arial" Font-Size="Small" 
-                            ForeColor="#DC002E" BorderWidth="0px" ReadOnly="True">Usuario :</asp:TextBox>
+                            ForeColor="#DC002E" BorderWidth="0px" ReadOnly="True" TabIndex="4">Usuario :</asp:TextBox>
                     </td>
 				<td class="style2">&nbsp;&nbsp;
             <asp:TextBox ID="txtUsuario" runat="server" 
@@ -78,7 +78,7 @@
 				<td class="style1">
             <asp:TextBox ID="lblPassword" runat="server"
                         Font-Names="Arial" Font-Size="Small" 
-                            ForeColor="#DC002E" BorderWidth="0px" ReadOnly="True">Password :</asp:TextBox>
+                            ForeColor="#DC002E" BorderWidth="0px" ReadOnly="True" TabIndex="5">Password :</asp:TextBox>
                     </td>
 				<td class="style2">&nbsp;&nbsp;
             <asp:TextBox ID="txtPassword" runat="server" 
@@ -93,9 +93,10 @@
 				<td class="style2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:ImageButton ID="btnConfirmar" runat="server" Height="32px" 
                 ImageUrl="~/images/buttons/confirm.png" Width="32px" 
-                ToolTip="Confirmar" />
+                ToolTip="Confirmar" TabIndex="2" />
                 <asp:ImageButton ID="btnCancelar" runat="server" Height="32px" 
-                ImageUrl="~/images/buttons/cancel.png" Width="32px" ToolTip="Cancelar" />
+                ImageUrl="~/images/buttons/cancel.png" Width="32px" ToolTip="Cancelar" 
+                        TabIndex="3" />
 		        </td>
 				<td>&nbsp;</td>
 			</tr>

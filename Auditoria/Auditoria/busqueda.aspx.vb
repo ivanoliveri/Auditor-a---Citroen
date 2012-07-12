@@ -149,6 +149,7 @@ Public Class busqueda
 
     Protected Sub btnSearch_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnSearch.Click
         buscar()
+        GridViewData.SelectedIndex = -1
     End Sub
 
     Protected Sub btnNext_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnNext.Click
