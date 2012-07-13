@@ -137,7 +137,7 @@
                 runat="server" BorderWidth="0px" 
                 Font-Names="Arial" Font-Size="Small" ForeColor="#DC002E" ReadOnly="True" 
                 Width="393px" Height="16px" style="margin-left: 0px"></asp:TextBox>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:ImageButton ID="btnSearch" runat="server" 
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:ImageButton ID="btnSearch" runat="server" 
                         ImageUrl="~/images/buttons/Buscar.png" />
                     <asp:ImageButton ID="btnPrevious" runat="server" Height="100%" 
                         ImageUrl="~/images/buttons/btnPrevious.png" />
