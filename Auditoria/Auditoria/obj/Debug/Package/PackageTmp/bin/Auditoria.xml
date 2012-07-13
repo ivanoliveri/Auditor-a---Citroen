@@ -335,6 +335,14 @@ btnCancelar control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:Auditoria.imprimir.txtDatosCategoria">
+	<summary>
+txtDatosCategoria control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:Auditoria.imprimir.txtTituloCategoria">
 	<summary>
 txtTituloCategoria control.
@@ -346,6 +354,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:Auditoria.imprimir.GridViewDataCategoria">
 	<summary>
 GridViewDataCategoria control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Auditoria.imprimir.txtDatosTodas">
+	<summary>
+txtDatosTodas control.
 </summary>
 	<remarks>
 Auto-generated field.

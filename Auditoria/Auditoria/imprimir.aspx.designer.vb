@@ -50,6 +50,15 @@ Partial Public Class imprimir
     Protected WithEvents btnCancelar As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
+    '''txtDatosCategoria control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtDatosCategoria As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''txtTituloCategoria control.
     '''</summary>
     '''<remarks>
@@ -66,6 +75,15 @@ Partial Public Class imprimir
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GridViewDataCategoria As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''txtDatosTodas control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtDatosTodas As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''txtTituloTodas control.

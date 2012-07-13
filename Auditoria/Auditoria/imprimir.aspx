@@ -86,7 +86,10 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
 		        <br />
                 <div id="categoria" class=invisible >
-                        
+                                        <asp:TextBox ID="txtDatosCategoria" runat="server" 
+                        BorderWidth="0px" Font-Names="Arial" 
+                                    Font-Size="Medium" ForeColor="#000000" ReadOnly="True" 
+                        Width="971px"></asp:TextBox>
                                 <asp:TextBox ID="txtTituloCategoria" runat="server" 
                         BorderWidth="0px" Font-Names="Arial" 
                                     Font-Size="Medium" ForeColor="#000000" ReadOnly="True" 
@@ -166,6 +169,10 @@
       
                 </div>
                 <div id="todas" class=invisible>
+                                        <asp:TextBox ID="txtDatosTodas" runat="server" 
+                        BorderWidth="0px" Font-Names="Arial" 
+                                    Font-Size="Medium" ForeColor="#000000" ReadOnly="True" 
+                        Width="971px"></asp:TextBox>
                                     <div id="CatG"  style="page-break-after: always;">
                                 <asp:TextBox ID="txtTituloTodas" runat="server" BorderWidth="0px" Font-Names="Arial" 
                                     Font-Size="Medium" ForeColor="#000000" ReadOnly="True" Width="971px"></asp:TextBox>

@@ -40,10 +40,13 @@
         txtTituloTodas3.Attributes.CssStyle.Add("TEXT-ALIGN", "center")
         txtTituloTodas4.Attributes.CssStyle.Add("TEXT-ALIGN", "center")
         txtTituloTodas5.Attributes.CssStyle.Add("TEXT-ALIGN", "center")
+        txtDatosCategoria.Attributes.CssStyle.Add("TEXT-ALIGN", "center")
+        txtDatosTodas.Attributes.CssStyle.Add("TEXT-ALIGN", "center")
     End Sub
 
     Protected Sub RadioButtonList1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles radImpresion.SelectedIndexChanged
         If radImpresion.Items(0).Selected = True Then
+            txtDatosCategoria.Text = "CE: " & Application("unNumeroDeCE") & " SUCURSAL: " & Application("unNumeroDeSucursal") & " PERÍODO: " & unPeriodoActual
             Dim unaTablaIdCategoria As TablaSQL = New TablaSQL()
             unaTablaIdCategoria.setConnectionString(unConnectionString)
             unaTablaIdCategoria.getDataSet("SELECT ID,DESCRIPCION FROM AUD_CATEGORIAS WHERE CODIGO='" & Application("lastCat") & "'")
@@ -55,7 +58,14 @@
             txtTituloCategoria.Text = "CATEGORÍA :" & unaTablaIdCategoria.getItem(0, 1).ToString()
             formatGridView(GridViewDataCategoria)
         ElseIf radImpresion.Items(1).Selected = True Then
-            Dim unaTablaIdCategoria As TablaSQL = New TablaSQL()
+            If Application("unNumeroDeSucursal") = 0 Then
+                txtDatosTodas.Text = "CE: " & Application("unNumeroDeCE") & " SUCURSAL: 000 PERÍODO: " & unPeriodoActual
+
+            Else
+                txtDatosTodas.Text = "CE: " & Application("unNumeroDeCE") & " SUCURSAL: " & Application("unNumeroDeSucursal") & " PERÍODO: " & unPeriodoActual
+
+            End If
+             Dim unaTablaIdCategoria As TablaSQL = New TablaSQL()
             unaTablaIdCategoria.setConnectionString(unConnectionString)
             unaTablaIdCategoria.getDataSet("SELECT ID,DESCRIPCION FROM AUD_CATEGORIAS")
             Dim unaTablaTemporal As TablaSQL = New TablaSQL()

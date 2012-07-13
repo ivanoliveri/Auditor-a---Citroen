@@ -41,6 +41,8 @@ Public Class auditoria
     End Sub
 
     Protected Sub cargarCategoria()
+        MsgBox(txtCE.Text)
+        MsgBox(txtSucursal.Text)
         GridViewData.SelectedIndex = -1
         paginaActualMain = 1
         calcularPaginas(Application("lastCat"))
