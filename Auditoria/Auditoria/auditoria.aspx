@@ -38,6 +38,10 @@
     {
         width: 7px;
     }
+    #botonera
+    {
+        width: 975px;
+    }
     </style>
 	<script type="text/javascript">
 	    function llenarLabel(unString) {
@@ -137,6 +141,8 @@
                             &nbsp;</td>
                     </tr>
                 </table>
+                                          <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                    <ContentTemplate>
                 <table style="width: 100%; height: 430px">
                     <tr>
                         <td class="style5">
@@ -144,8 +150,7 @@
                         <td class="style3" >
                                 <asp:ScriptManager ID="ScriptManager1" runat="server">
                                 </asp:ScriptManager>
-                                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                                    <ContentTemplate>
+      
                                         <asp:GridView ID="GridViewData" runat="server" AutoGenerateColumns="False" 
                                             BackColor="White" BorderColor="#666666" BorderStyle="None" BorderWidth="1px" 
                                             CellPadding="4" Font-Names="Arial" Font-Size="Small" ForeColor="#666666" 
@@ -217,18 +222,21 @@
                                             <SortedDescendingCellStyle BackColor="#E5E5E5" />
                                             <SortedDescendingHeaderStyle BackColor="#242121" />
                                         </asp:GridView>
-                                    </ContentTemplate>
-                                </asp:UpdatePanel>
+         
+     
                         </td>
                         <td>
                             &nbsp;</td>
                     </tr>
-                </table>
+                    <tr>
+                        <td class="style5">
+                            &nbsp;</td>
+                        <td class="style3" >
 
                         <div align="right" id="botonera">
                             <asp:TextBox ID="txtError" runat="server" BorderWidth="0px" 
                 Font-Names="Arial" Font-Size="Small" ForeColor="#DC002E" ReadOnly="True" 
-                Width="706px" Height="16px" style="margin-left: 0px"></asp:TextBox>
+                Width="572px" Height="16px" style="margin-left: 0px"></asp:TextBox>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <asp:ImageButton 
@@ -249,6 +257,15 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;
                         </div>
+                        </td>
+                        <td>
+                            &nbsp;</td>
+                    </tr>
+                </table>
+                </contenttemplate>
+                </asp:UpdatePanel>
+
+
                 <br />
                 <br />
                 <br />
