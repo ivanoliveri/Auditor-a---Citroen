@@ -86,7 +86,7 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
 		        <br />
                 <div id="categoria" class=invisible >
-
+                        
                                 <asp:TextBox ID="txtTituloCategoria" runat="server" 
                         BorderWidth="0px" Font-Names="Arial" 
                                     Font-Size="Medium" ForeColor="#000000" ReadOnly="True" 
@@ -166,6 +166,7 @@
       
                 </div>
                 <div id="todas" class=invisible>
+                                    <div id="CatG"  style="page-break-after: always;">
                                 <asp:TextBox ID="txtTituloTodas" runat="server" BorderWidth="0px" Font-Names="Arial" 
                                     Font-Size="Medium" ForeColor="#000000" ReadOnly="True" Width="971px"></asp:TextBox>
                                 <br />
@@ -239,8 +240,9 @@
                                     <SortedDescendingCellStyle BackColor="#E5E5E5" />
                                     <SortedDescendingHeaderStyle BackColor="#242121" />
                                 </asp:GridView>
-      
+                                </div>
                                 <br />
+                                <div id="CatB"  style="page-break-after: always;">
                                 <asp:TextBox ID="txtTituloTodas0" runat="server" BorderWidth="0px" Font-Names="Arial" 
                                     Font-Size="Medium" ForeColor="#000000" ReadOnly="True" Width="971px"></asp:TextBox>
 
@@ -316,6 +318,8 @@
                                 </asp:GridView>
       
                                 <br />
+                                </div>
+                                 <div id="CatC"  style="page-break-after: always;">
                                 <asp:TextBox ID="txtTituloTodas1" runat="server" BorderWidth="0px" Font-Names="Arial" 
                                     Font-Size="Medium" ForeColor="#000000" ReadOnly="True" Width="971px"></asp:TextBox>
 
@@ -391,6 +395,8 @@
                                 </asp:GridView>
       
                                 <br />
+                                </div>
+                                <div id="CatD"  style="page-break-after: always;">
                                 <asp:TextBox ID="txtTituloTodas2" runat="server" BorderWidth="0px" Font-Names="Arial" 
                                     Font-Size="Medium" ForeColor="#000000" ReadOnly="True" Width="971px"></asp:TextBox>
 
@@ -466,6 +472,8 @@
                                 </asp:GridView>
       
                                 <br />
+                                </div>
+                                <div id="CatE"  style="page-break-after: always;">
                                 <asp:TextBox ID="txtTituloTodas3" runat="server" BorderWidth="0px" Font-Names="Arial" 
                                     Font-Size="Medium" ForeColor="#000000" ReadOnly="True" Width="971px"></asp:TextBox>
 
@@ -541,6 +549,8 @@
                                 </asp:GridView>
       
                                 <br />
+                                </div>
+                                <div id="CatF"  style="page-break-after: always;">
                                 <asp:TextBox ID="txtTituloTodas4" runat="server" BorderWidth="0px" Font-Names="Arial" 
                                     Font-Size="Medium" ForeColor="#000000" ReadOnly="True" Width="971px"></asp:TextBox>
 
@@ -616,6 +626,7 @@
                                 </asp:GridView>
       
                                 <br />
+                                </div>
                                 <asp:TextBox ID="txtTituloTodas5" runat="server" BorderWidth="0px" Font-Names="Arial" 
                                     Font-Size="Medium" ForeColor="#000000" ReadOnly="True" Width="971px"></asp:TextBox>
 
@@ -691,7 +702,7 @@
                                 </asp:GridView>
       
                                 <br />
-      
+                                                     
         </td>
 	</tr>
 	</table>
