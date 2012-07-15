@@ -3,7 +3,7 @@ Public Class agregar
     Inherits System.Web.UI.Page
     Private unaCategoria As String
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        lastErrorAgregar = ""
+        Application("lastErrorAgregar") = ""
         txtNroReferencia.Focus()
         txtNroReferencia.MaxLength = 15
         txtStock.MaxLength = 4
@@ -22,64 +22,64 @@ Public Class agregar
         End If
         Dim unaCategoria As String
         If Len(txtNroReferencia.Text) = 0 Then
-            popupCat = "G"
+            Application("popupcat") = "G"
             unaCategoria = "G"
         Else
-            popupCat = "F"
+            Application("popupcat") = "F"
             unaCategoria = "F"
         End If
         Dim unaTablaTemporal As TablaSQL = New TablaSQL()
-        unaTablaTemporal.setConnectionString(unConnectionString)
+        unaTablaTemporal.setConnectionString(unconnectionstring)
         'Verifica que la referencia ingresada no exista previamente.
-        If popupCat = "F" Then
+        If Application("popupcat") = "F" Then
             unaTablaTemporal.getDataSet("SELECT COUNT(*) FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & Trim(txtNroReferencia.Text) & "'")
             If CInt(unaTablaTemporal.getItem(0, 0)) >= 1 Then
-                lastErrorAgregar = "Error: La pieza ingresada ya existe."
+                Application("lastErrorAgregar") = "Error: La pieza ingresada ya existe."
                 txtNroReferencia.Focus()
                 Exit Sub
             End If
         Else
             unaTablaTemporal.getDataSet("SELECT COUNT(*) FROM AUD_REFERENCIAS WHERE DESCRIPCION='" & Trim(txtDescripcion.Text) & "' AND NRO_REFERENCIA=''")
             If CInt(unaTablaTemporal.getItem(0, 0)) >= 1 Then
-                lastErrorAgregar = "Error: La pieza ingresada ya existe."
+                Application("lastErrorAgregar") = "Error: La pieza ingresada ya existe."
                 txtDescripcion.Focus()
                 Exit Sub
             End If
         End If
         If Trim(txtDescripcion.Text) = "" Then
-            lastErrorAgregar = "Error: No has ingresado la descripción."
+            Application("lastErrorAgregar") = "Error: No has ingresado la descripción."
             txtDescripcion.Focus()
             Exit Sub
         End If
         If IsNumeric(txtStock.Text) = False Then
-            lastErrorAgregar = "Error: El stock debe ser un entero positivo."
+            Application("lastErrorAgregar") = "Error: El stock debe ser un entero positivo."
             txtStock.Focus()
             Exit Sub
         End If
         If CInt(txtStock.Text) < 0 Then
-            lastErrorAgregar = "Error: El stock debe ser un entero positivo."
+            Application("lastErrorAgregar") = "Error: El stock debe ser un entero positivo."
             txtStock.Focus()
             Exit Sub
         End If
         If InStr(txtStock.Text, ".", CompareMethod.Text) Then
-            lastErrorAgregar = "Error: El stock debe ser un entero positivo."
+            Application("lastErrorAgregar") = "Error: El stock debe ser un entero positivo."
             txtStock.Focus()
             Exit Sub
         End If
         If radEstado.SelectedIndex = -1 And Trim(txtStock.Text) <> "0" Then
-            lastErrorAgregar = "Error: Debes seleccionar un estado(B/M/R)"
+            Application("lastErrorAgregar") = "Error: Debes seleccionar un estado(B/M/R)"
             radEstado.Focus()
             Exit Sub
         End If
         If txtStock.Text = "0" And radEstado.SelectedIndex <> -1 Then
-            lastErrorAgregar = "Error: No puedes asignarle un estado a un stock de 0."
+            Application("lastErrorAgregar") = "Error: No puedes asignarle un estado un stock de 0"
             radEstado.SelectedIndex = -1
             Exit Sub
         End If
         Dim unaTablaIdCategoria As TablaSQL = New TablaSQL()
-        unaTablaIdCategoria.setConnectionString(unConnectionString)
+        unaTablaIdCategoria.setConnectionString(unconnectionstring)
         unaTablaIdCategoria.getDataSet("SELECT ID FROM AUD_CATEGORIAS WHERE CODIGO='" & unaCategoria & "'")
-        unasReferencias.execQuery("INSERT INTO AUD_REFERENCIAS VALUES('" & txtNroReferencia.Text & "','" & txtDescripcion.Text & "'," & CInt(unaTablaIdCategoria.getItem(0, 0)) & ")")
+        unasreferencias.execQuery("INSERT INTO AUD_REFERENCIAS VALUES('" & txtNroReferencia.Text & "','" & txtDescripcion.Text & "'," & CInt(unaTablaIdCategoria.getItem(0, 0)) & ")")
         Dim unAno As String = Now.Year()
         Dim unMes As String = Now.Month()
         Dim unDia As String = Now.Day
@@ -90,30 +90,30 @@ Public Class agregar
             unMes = "0" & unMes
         End If
         Dim unaTablaIdReferencia As TablaSQL = New TablaSQL
-        unaTablaIdReferencia.setConnectionString(unConnectionString)
-        If popupCat = "G" Then
+        unaTablaIdReferencia.setConnectionString(unconnectionstring)
+        If Application("popupcat") = "G" Then
             unaTablaIdReferencia.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE DESCRIPCION='" & txtDescripcion.Text & "' AND NRO_REFERENCIA=''")
         Else
             unaTablaIdReferencia.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & txtNroReferencia.Text & "'")
         End If
-        unasReferencias.execQuery("INSERT INTO AUD_RELEVAMIENTOS VALUES(" & Application("unNumeroDeCE") & "," & Application("unNumeroDeSucursal") & ",'" & unPeriodoActual & "'," & unAno & unMes & unDia & "," & CInt(unaTablaIdReferencia.getItem(0, 0)) & ",'" & txtStock.Text & "','" & radEstado.SelectedValue & "')")
+        unasreferencias.execQuery("INSERT INTO AUD_RELEVAMIENTOS VALUES(" & Application("unNumeroDeCE") & "," & Application("unNumeroDeSucursal") & ",'" & Application("unPeriodoActual") & "'," & unAno & unMes & unDia & "," & CInt(unaTablaIdReferencia.getItem(0, 0)) & ",'" & txtStock.Text & "','" & radEstado.SelectedValue & "')")
         If (Application("lastCat") = "F" And unaCategoria = "F") Or (Application("lastCat") = "G" And unaCategoria = "G") Then
-            agregoDesdePopup = True
+            Application("agregoDesdePopup") = True
             Response.Write("<script>opener.location.href='http://normasymetodos.com/citroen.ar/Auditoria/auditoria.aspx';</script>")
         End If
-        lastErrorAgregar = ""
+        Application("lastErrorAgregar") = ""
         Response.Write("<script>window.close();</script>")
     End Sub
 
     Private Sub agregar_LoadComplete(sender As Object, e As System.EventArgs) Handles Me.LoadComplete
-        If lastErrorAgregar <> "" Then
+        If Application("lastErrorAgregar") <> "" Then
             If Len(txtNroReferencia.Text) = 0 Then
                 txtCategoria.Text = "G"
             Else
                 txtCategoria.Text = "F"
             End If
         End If
-        txtError.Text = lastErrorAgregar
+        txtError.Text = Application("lastErrorAgregar")
     End Sub
 
     Protected Sub btnCancelar_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnCancelar.Click

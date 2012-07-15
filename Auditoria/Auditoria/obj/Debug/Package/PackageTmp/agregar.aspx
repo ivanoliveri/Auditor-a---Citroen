@@ -135,7 +135,7 @@
             &nbsp;&nbsp;&nbsp;<asp:TextBox ID="txtError" 
                 runat="server" BorderWidth="0px" 
                 Font-Names="Arial" Font-Size="Small" ForeColor="#DC002E" ReadOnly="True" 
-                Width="303px" Height="16px" style="margin-left: 0px"></asp:TextBox>
+                Width="310px" Height="16px" style="margin-left: 0px"></asp:TextBox>
                 &nbsp;&nbsp;&nbsp;&nbsp;
             <asp:ImageButton ID="btnConfirmar" runat="server" Height="32px" 
                 ImageUrl="~/images/buttons/confirm.png" Width="32px" 

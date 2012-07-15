@@ -4,9 +4,9 @@ Public Class ingreso
     Private unContadorPrimerCE As Integer = 0
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        unPeriodoAnterior = "2011-2"
-        unPeriodoActual = "2012-1"
-        BusquedaMode = False
+        Application("unPeriodoAnterior") = "2011-2"
+        Application("unPeriodoActual") = "2012-1"
+        Application("busquedaMode") = False
         If Trim(dropConcesionaria.Text) = "" Then
             Application.Lock()
             Application("unNumeroDeCE") = 0
