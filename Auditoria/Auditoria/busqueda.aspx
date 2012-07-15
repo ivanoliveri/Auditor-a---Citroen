@@ -97,27 +97,11 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="ELIMINAR">
-                                        <FooterTemplate>
-                                            <table cellpadding="0" cellspacing="0" 
-                                                style="margin:5px 0px; border:1px solid #A0A0A0;width:100%;height:100%">
-                                                <tr>
-                                                    <td style="padding: 2px 4px; height: 17px; font-family: Segoe UI; font-style: normal; font-weight: normal; font-size: 9pt; text-decoration: none; background-color: buttonface; color: #102040; background-image: url(mvwres://Microsoft.Web.Design.Client, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a/TemplateHeaderBackground.gif); background-repeat: repeat-x; border-bottom: 1px solid #A0A0A0;">
-                                                        ItemTemplate
-                                                    </td>
-                                                </tr>
-                                                <tr style="">
-                                                    <td style="padding:4px;height:50px;vertical-align:top;color:#666666;background-color:White;font-family:'Arial';font-size:Small">
-                                                        <asp:ImageButton ID="ImageButton1" runat="server" Height="26px" Width="25px" />
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </FooterTemplate>
+                                    <asp:TemplateField HeaderText="ELIMINAR" ShowHeader="False">
                                         <ItemTemplate>
-                                            <asp:ImageButton ID="ImageButton2" runat="server" ImageAlign="AbsMiddle" 
-                                                ImageUrl="~/images/buttons/eliminar.png" />
+                                            <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="false" 
+                                                CommandName="Eliminar" CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>" Text="Eliminar"></asp:LinkButton>
                                         </ItemTemplate>
-                                        <ItemStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
                                 </Columns>
                                 <FooterStyle BackColor="White" ForeColor="Black" />

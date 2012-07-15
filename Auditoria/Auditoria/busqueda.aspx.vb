@@ -210,6 +210,16 @@ Public Class busqueda
         MyBase.Render(writer)
     End Sub
 
+    Private Sub GridViewData_RowCommand(sender As Object, e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles GridViewData.RowCommand
+        If e.CommandName = "Eliminar" Then
+            Dim unIndice = CInt(e.CommandArgument.ToString())
+            'Dim unaFila As GridViewRow = GridViewData.Rows(unIndice)
+            'MsgBox(unaFila.Cells(0).Text)
+            'MsgBox(unaFila.Cells(1).Text)
+            'MsgBox(unaFila.Cells(2).Text)
+        End If
+    End Sub
+
     Private Sub GridViewData_RowDataBound(sender As Object, e As System.Web.UI.WebControls.GridViewRowEventArgs) Handles GridViewData.RowDataBound
         If Application("nivelUsuario") = "ADMIN" Then
             e.Row.Cells(3).Visible = True
@@ -232,5 +242,9 @@ Public Class busqueda
         Response.Write("<script>opener.location.href='http://normasymetodos.com/citroen.ar/Auditoria/auditoria.aspx';</script>")
         'Response.Write("<script>opener.location.reload();</script>")
         Response.Write("<script>window.close();</script>")
+    End Sub
+
+    Protected Sub ImageButton1_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs)
+
     End Sub
 End Class
