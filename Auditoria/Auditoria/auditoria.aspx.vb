@@ -148,11 +148,12 @@ Public Class auditoria
             Application("unNumeroDeSucursal") = CInt(Mid(txtSucursal.Text, 10))
             Application("unNumeroDeCE") = CInt(Mid(txtCE.Text, 4))
         End If
+        Application("lastError") = ""
         If Application("agregoOEdito") = True Then
             Application("agregoOEdito") = False
             Exit Sub
         End If
-        'Application("lastError") = ""
+
         Application("agregoOEdito") = False
         txtCE.Attributes.CssStyle.Add("TEXT-ALIGN", "right")
         txtSucursal.Attributes.CssStyle.Add("TEXT-ALIGN", "right")
@@ -314,7 +315,6 @@ Public Class auditoria
             Dim unaTablaTemporal As TablaSQL = New TablaSQL()
             unaTablaTemporal.setConnectionString(unConnectionString)
             'CREO UNA TABLA TEMPORAL PARA OBTENER EL CORRESPONDIENTE NÚMERO DE FILAS DE CADA UNO, CUANDO LA TERMINO DE USAR SE BORRA SOLA
-            'Application("ultimoQuery") = "CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1) NOT NULL,[CATEGORIA] [varchar](1) NULL,[NRO_REFERENCIA] [varchar](15) NULL,[DESCRIPCION] [varchar] (80) NULL,[STOCK_ENVIADO] [int] NULL,[ESTADO_ENVIADO] [varchar] (1) NULL,[FECHA_ENVIADA] [varchar] (15) NULL,[STOCK] [varchar] (10) NULL,[ESTADO] [varchar] (1) NULL,[FECHA] [varchar] (15) NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (CATEGORIA,NRO_REFERENCIA,DESCRIPCION,STOCK_ENVIADO,ESTADO_ENVIADO,FECHA_ENVIADA,STOCK,ESTADO,FECHA)SELECT (SELECT CODIGO FROM AUD_CATEGORIAS WHERE AUD_CATEGORIAS.ID=AUD_REFERENCIAS.ID_CATEGORIA),AUD_REFERENCIAS.NRO_REFERENCIA,AUD_REFERENCIAS.DESCRIPCION,(SELECT AUD_RELEVAMIENTOS.STOCK FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & Application("unPeriodoAnterior") & "' AND AUD_RELEVAMIENTOS.CE=" & Application("unNumeroDeCE") & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & Application("unNumeroDeSucursal") & ") AS STOCK_ENVIADO, (SELECT AUD_RELEVAMIENTOS.ESTADO FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & Application("unPeriodoAnterior") & "' AND AUD_RELEVAMIENTOS.CE=" & Application("unNumeroDeCE") & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & Application("unNumeroDeSucursal") & ") AS ESTADO_ENVIADO,(SELECT AUD_RELEVAMIENTOS.FECHA FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & Application("unPeriodoAnterior") & "' AND AUD_RELEVAMIENTOS.CE=" & Application("unNumeroDeCE") & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & Application("unNumeroDeSucursal") & ") AS FECHA_ENVIADA,AUD_RELEVAMIENTOS.STOCK, AUD_RELEVAMIENTOS.ESTADO, AUD_RELEVAMIENTOS.FECHA FROM AUD_RELEVAMIENTOS INNER JOIN AUD_REFERENCIAS ON AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID WHERE AUD_RELEVAMIENTOS.CE=" & Application("unNumeroDeCE") & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & Application("unNumeroDeSucursal") & " AND AUD_REFERENCIAS.ID_CATEGORIA=" & CInt(unaTablaIdCategoria.getItem(0, 0)) & " AND AUD_RELEVAMIENTOS.PERIODO='" & Application("unPeriodoActual") & "' UNION SELECT (SELECT CODIGO FROM AUD_CATEGORIAS WHERE AUD_CATEGORIAS.ID=AUD_REFERENCIAS.ID_CATEGORIA),NRO_REFERENCIA,DESCRIPCION,(SELECT AUD_RELEVAMIENTOS.STOCK FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND PERIODO='" & Application("unPeriodoAnterior") & "' AND AUD_RELEVAMIENTOS.CE=" & Application("unNumeroDeCE") & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & Application("unNumeroDeSucursal") & ") AS STOCK_ENVIADO,(SELECT AUD_RELEVAMIENTOS.ESTADO FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & Application("unPeriodoAnterior") & "' AND AUD_RELEVAMIENTOS.CE=" & Application("unNumeroDeCE") & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & Application("unNumeroDeSucursal") & ")AS ESTADO_ENVIADO,(SELECT AUD_RELEVAMIENTOS.FECHA FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & Application("unPeriodoAnterior") & "' AND AUD_RELEVAMIENTOS.CE=" & Application("unNumeroDeCE") & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & Application("unNumeroDeSucursal") & ")AS FECHA_ENVIADA, '' AS STOCK, 'N' AS ESTADO, '' AS FECHA FROM AUD_REFERENCIAS WHERE ID_CATEGORIA=" & CInt(unaTablaIdCategoria.getItem(0, 0)) & " AND ID NOT IN (SELECT ID_AUD_REFERENCIAS FROM AUD_RELEVAMIENTOS WHERE CE=" & Application("unNumeroDeCE") & " AND SUCURSAL=" & Application("unNumeroDeSucursal") & " AND PERIODO='" & Application("unPeriodoActual") & "' )SELECT CATEGORIA,NRO_REFERENCIA,DESCRIPCION,STOCK_ENVIADO,ESTADO_ENVIADO,FECHA_ENVIADA,STOCK,ESTADO,FECHA FROM #TEMP_REFERENCIAS WHERE FILA>" & (Application("paginaActualMain") - 1) * 10 & " AND FILA<=" & Application("paginaActualMain") * 10 & " ORDER BY LEN(NRO_REFERENCIA),NRO_REFERENCIA ASC"
             Application("ultimoQuery") = "CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1) NOT NULL,[CATEGORIA] [varchar](1) NULL,[NRO_REFERENCIA] [varchar](15) NULL,[DESCRIPCION] [varchar] (80) NULL,[STOCK_ENVIADO] [int] NULL,[ESTADO_ENVIADO] [varchar] (1) NULL,[FECHA_ENVIADA] [varchar] (15) NULL,[STOCK] [varchar] (10) NULL,[ESTADO] [varchar] (1) NULL,[FECHA] [varchar] (15) NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (CATEGORIA,NRO_REFERENCIA,DESCRIPCION,STOCK_ENVIADO,ESTADO_ENVIADO,FECHA_ENVIADA,STOCK,ESTADO,FECHA)SELECT * FROM(SELECT (SELECT CODIGO FROM AUD_CATEGORIAS WHERE AUD_CATEGORIAS.ID=AUD_REFERENCIAS.ID_CATEGORIA) AS CATEGORIA,AUD_REFERENCIAS.NRO_REFERENCIA,AUD_REFERENCIAS.DESCRIPCION,(SELECT AUD_RELEVAMIENTOS.STOCK FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & Application("unPeriodoAnterior") & "' AND AUD_RELEVAMIENTOS.CE=" & Application("unNumeroDeCE") & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & Application("unNumeroDeSucursal") & ") AS STOCK_ENVIADO, (SELECT AUD_RELEVAMIENTOS.ESTADO FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & Application("unPeriodoAnterior") & "' AND AUD_RELEVAMIENTOS.CE=" & Application("unNumeroDeCE") & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & Application("unNumeroDeSucursal") & ") AS ESTADO_ENVIADO,(SELECT AUD_RELEVAMIENTOS.FECHA FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & Application("unPeriodoAnterior") & "' AND AUD_RELEVAMIENTOS.CE=" & Application("unNumeroDeCE") & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & Application("unNumeroDeSucursal") & ") AS FECHA_ENVIADA,AUD_RELEVAMIENTOS.STOCK, AUD_RELEVAMIENTOS.ESTADO, AUD_RELEVAMIENTOS.FECHA FROM AUD_RELEVAMIENTOS INNER JOIN AUD_REFERENCIAS ON AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID WHERE AUD_RELEVAMIENTOS.CE=" & Application("unNumeroDeCE") & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & Application("unNumeroDeSucursal") & " AND AUD_REFERENCIAS.ID_CATEGORIA=" & CInt(unaTablaIdCategoria.getItem(0, 0)) & " AND AUD_RELEVAMIENTOS.PERIODO='" & Application("unPeriodoActual") & "' UNION SELECT (SELECT CODIGO FROM AUD_CATEGORIAS WHERE AUD_CATEGORIAS.ID=AUD_REFERENCIAS.ID_CATEGORIA)AS CATEGORIA,NRO_REFERENCIA,DESCRIPCION,(SELECT AUD_RELEVAMIENTOS.STOCK FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND PERIODO='" & Application("unPeriodoAnterior") & "' AND AUD_RELEVAMIENTOS.CE=" & Application("unNumeroDeCE") & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & Application("unNumeroDeSucursal") & ") AS STOCK_ENVIADO,(SELECT AUD_RELEVAMIENTOS.ESTADO FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & Application("unPeriodoAnterior") & "' AND AUD_RELEVAMIENTOS.CE=" & Application("unNumeroDeCE") & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & Application("unNumeroDeSucursal") & ")AS ESTADO_ENVIADO,(SELECT AUD_RELEVAMIENTOS.FECHA FROM AUD_RELEVAMIENTOS WHERE AUD_RELEVAMIENTOS.ID_AUD_REFERENCIAS=AUD_REFERENCIAS.ID AND AUD_RELEVAMIENTOS.PERIODO='" & Application("unPeriodoAnterior") & "' AND AUD_RELEVAMIENTOS.CE=" & Application("unNumeroDeCE") & " AND AUD_RELEVAMIENTOS.SUCURSAL=" & Application("unNumeroDeSucursal") & ")AS FECHA_ENVIADA, '' AS STOCK, 'N' AS ESTADO, '' AS FECHA FROM AUD_REFERENCIAS WHERE ID_CATEGORIA=" & CInt(unaTablaIdCategoria.getItem(0, 0)) & " AND ID NOT IN (SELECT ID_AUD_REFERENCIAS FROM AUD_RELEVAMIENTOS WHERE CE=" & Application("unNumeroDeCE") & " AND SUCURSAL=" & Application("unNumeroDeSucursal") & " AND PERIODO='" & Application("unPeriodoActual") & "' )) AS T ORDER BY LEN(T.NRO_REFERENCIA),T.NRO_REFERENCIA ASC SELECT CATEGORIA,NRO_REFERENCIA,DESCRIPCION,STOCK_ENVIADO,ESTADO_ENVIADO,FECHA_ENVIADA,STOCK,ESTADO,FECHA FROM #TEMP_REFERENCIAS WHERE FILA>" & (Application("paginaActualMain") - 1) * 10 & " AND FILA<=" & Application("paginaActualMain") * 10 & " ORDER BY LEN(NRO_REFERENCIA),NRO_REFERENCIA ASC"
             unaTablaTemporal.getDataSet(Application("ultimoQuery"))
             unasReferencias.dataSet = unaTablaTemporal.dataSet
@@ -355,6 +355,7 @@ Public Class auditoria
             txtStock.Text = formatStock(unStockTextBox)
             'Se fija que sea distinto de lo que vino cargado y que adamás haya seleccionado un estado
             If txtStock.Text.Trim() <> Trim(unStockDataTable) Then
+                MsgBox("TXT: " & txtStock.Text.Trim() & vbCrLf & " DATATABLE: " & Trim(unStockDataTable))
                 If IsNumeric(txtStock.Text) = False Then
                     Application("lastError") = "Error: El stock debe ser un entero positivo."
                     txtStock.Focus()
@@ -381,15 +382,15 @@ Public Class auditoria
                     Exit Sub
                 End If
                 Dim unaTablaIdReferencia As TablaSQL = New TablaSQL
-                unaTablaIdReferencia.setConnectionString(unConnectionString)
-                If Trim(unasReferencias.getItem(unaPosicion, 1)) <> "" Then
-                    unaTablaIdReferencia.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & unasReferencias.getItem(unaPosicion, 1) & "'")
+                unaTablaIdReferencia.setConnectionString(unconnectionstring)
+                If Trim(unasreferencias.getItem(unaPosicion, 1)) <> "" Then
+                    unaTablaIdReferencia.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & unasreferencias.getItem(unaPosicion, 1) & "'")
                 Else
-                    unaTablaIdReferencia.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE DESCRIPCION='" & unasReferencias.getItem(unaPosicion, 2) & "' AND NRO_REFERENCIA=''")
+                    unaTablaIdReferencia.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE DESCRIPCION='" & unasreferencias.getItem(unaPosicion, 2) & "' AND NRO_REFERENCIA=''")
                 End If
                 Dim unNumero As Integer = CInt(unaTablaIdReferencia.getItem(0, 0))
                 Dim unaTablaNuevaDeAuditoria As TablaSQL = New TablaSQL
-                unaTablaNuevaDeAuditoria.setConnectionString(unConnectionString)
+                unaTablaNuevaDeAuditoria.setConnectionString(unconnectionstring)
                 unaTablaNuevaDeAuditoria.getDataSet("SELECT COUNT(*) FROM AUD_RELEVAMIENTOS WHERE CE=" & Application("unNumeroDeCE") & " AND SUCURSAL=" & Application("unNumeroDeSucursal") & " AND PERIODO='" & Application("unPeriodoActual") & "'" & " AND ID_AUD_REFERENCIAS=" & CInt(unaTablaIdReferencia.getItem(0, 0)))
                 'Si no encuentra relevamientos en el período actual para la referencia indicada INSERTA sino UPDATE
                 If CInt(unaTablaNuevaDeAuditoria.getItem(0, 0)) = 0 Then
@@ -503,9 +504,5 @@ Public Class auditoria
             unaPosicion += 1
         Next
         Application("agregoOEdito") = True
-    End Sub
-
-    Protected Sub btnSearch_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnSearch.Click
-
     End Sub
 End Class
