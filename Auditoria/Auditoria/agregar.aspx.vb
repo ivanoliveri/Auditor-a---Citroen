@@ -66,9 +66,14 @@ Public Class agregar
             txtStock.Focus()
             Exit Sub
         End If
-        If radEstado.SelectedIndex = -1 Then
+        If radEstado.SelectedIndex = -1 And Trim(txtStock.Text) <> "0" Then
             lastErrorAgregar = "Error: Debes seleccionar un estado(B/M/R)"
             radEstado.Focus()
+            Exit Sub
+        End If
+        If txtStock.Text = "0" And radEstado.SelectedIndex <> -1 Then
+            lastErrorAgregar = "Error: No puedes asignarle un estado a un stock de 0."
+            radEstado.SelectedIndex = -1
             Exit Sub
         End If
         Dim unaTablaIdCategoria As TablaSQL = New TablaSQL()

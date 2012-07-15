@@ -41,8 +41,6 @@ Public Class auditoria
     End Sub
 
     Protected Sub cargarCategoria()
-        MsgBox(txtCE.Text)
-        MsgBox(txtSucursal.Text)
         GridViewData.SelectedIndex = -1
         paginaActualMain = 1
         calcularPaginas(Application("lastCat"))
@@ -146,6 +144,10 @@ Public Class auditoria
     End Function
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If Trim(txtCE.Text) <> "" Then
+            Application("unNumeroDeSucursal") = CInt(Mid(txtSucursal.Text, 10))
+            Application("unNumeroDeCE") = CInt(Mid(txtCE.Text, 4))
+        End If
         If agregoOedito = True Then
             agregoOedito = False
             Exit Sub
@@ -501,5 +503,9 @@ Public Class auditoria
             unaPosicion += 1
         Next
         agregoOedito = True
+    End Sub
+
+    Protected Sub btnSearch_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnSearch.Click
+
     End Sub
 End Class
