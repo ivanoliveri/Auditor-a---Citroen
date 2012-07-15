@@ -212,11 +212,16 @@ Public Class busqueda
 
     Private Sub GridViewData_RowCommand(sender As Object, e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles GridViewData.RowCommand
         If e.CommandName = "Eliminar" Then
-            Dim unIndice = CInt(e.CommandArgument.ToString())
-            'Dim unaFila As GridViewRow = GridViewData.Rows(unIndice)
-            'MsgBox(unaFila.Cells(0).Text)
-            'MsgBox(unaFila.Cells(1).Text)
-            'MsgBox(unaFila.Cells(2).Text)
+            Dim unaFila = CInt(e.CommandArgument.ToString())
+            Dim unaCategoria As String = Trim(unatablatemporaldebusqueda.getItem(unaFila, 0))
+            If unaCategoria = "G" Then
+                Dim unaDescripcion As String = Trim(unatablatemporaldebusqueda.getItem(unaFila, 2))
+                unatablatemporaldebusqueda.execQuery("DELETE FROM AUD_REFERENCIAS WHERE DESCRIPCION='" & unaDescripcion & "' AND ID_CATEGORIA = 7")
+            Else
+                Dim unNumeroDeReferencia As String = unatablatemporaldebusqueda.getItem(unaFila, 1)
+                unatablatemporaldebusqueda.execQuery("DELETE FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & unNumeroDeReferencia & "' AND ID_CATEGORIA<>7")
+            End If
+            'unatablatemporaldebusqueda.getDataSet(Application
         End If
     End Sub
 
