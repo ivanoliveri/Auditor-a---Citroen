@@ -355,7 +355,6 @@ Public Class auditoria
             txtStock.Text = formatStock(unStockTextBox)
             'Se fija que sea distinto de lo que vino cargado y que adamás haya seleccionado un estado
             If txtStock.Text.Trim() <> Trim(unStockDataTable) Then
-                MsgBox("TXT: " & txtStock.Text.Trim() & vbCrLf & " DATATABLE: " & Trim(unStockDataTable))
                 If IsNumeric(txtStock.Text) = False Then
                     Application("lastError") = "Error: El stock debe ser un entero positivo."
                     txtStock.Focus()

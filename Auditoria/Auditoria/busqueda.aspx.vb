@@ -43,35 +43,35 @@ Public Class busqueda
     End Sub
 
     Protected Sub calcularPaginasDescripcion()
-        Dim unaTablaIdCategoria As TablaSQL = New TablaSQL()
-        unaTablaIdCategoria.setConnectionString(unconnectionstring)
-        unatablatemporaldebusqueda.getDataSet("CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1) NOT NULL,[ID] [int] NULL,[NRO_REFERENCIA] [varchar](20) NULL,[DESCRIPCION] [varchar] (80) NOT NULL,[ID_CATEGORIA] [int] NOT NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (ID,NRO_REFERENCIA,DESCRIPCION,ID_CATEGORIA)SELECT * FROM AUD_REFERENCIAS WHERE DESCRIPCION LIKE '" & Trim(txtBusqueda.Text) & "%' SELECT COUNT(*) FROM #TEMP_REFERENCIAS")
-        If CInt(unaTablaTemporalDeBusqueda.getItem(0, 0)) Mod 5 = 0 Then
-            Application("totalPaginasBusqueda") = CInt(unaTablaTemporalDeBusqueda.getItem(0, 0)) / 5
+        Dim unaTablaDeBusqueda As TablaSQL = New TablaSQL()
+        unaTablaDeBusqueda.setConnectionString(unconnectionstring)
+        unaTablaDeBusqueda.getDataSet("CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1) NOT NULL,[ID] [int] NULL,[NRO_REFERENCIA] [varchar](20) NULL,[DESCRIPCION] [varchar] (80) NOT NULL,[ID_CATEGORIA] [int] NOT NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (ID,NRO_REFERENCIA,DESCRIPCION,ID_CATEGORIA)SELECT * FROM AUD_REFERENCIAS WHERE DESCRIPCION LIKE '" & Trim(txtBusqueda.Text) & "%' SELECT COUNT(*) FROM #TEMP_REFERENCIAS")
+        If CInt(unaTablaDeBusqueda.getItem(0, 0)) Mod 5 = 0 Then
+            Application("totalPaginasBusqueda") = CInt(unaTablaDeBusqueda.getItem(0, 0)) / 5
         Else
-            Application("totalPaginasBusqueda") = CInt(unaTablaTemporalDeBusqueda.getItem(0, 0)) \ 5 + 1
+            Application("totalPaginasBusqueda") = CInt(unaTablaDeBusqueda.getItem(0, 0)) \ 5 + 1
         End If
     End Sub
 
     Protected Sub calcularPaginasNroReferencia()
-        Dim unaTablaIdCategoria As TablaSQL = New TablaSQL()
-        unaTablaIdCategoria.setConnectionString(unConnectionString)
-        unatablatemporaldebusqueda.getDataSet("CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1) NOT NULL,[ID] [int] NULL,[NRO_REFERENCIA] [varchar](20) NULL,[DESCRIPCION] [varchar] (80) NOT NULL,[ID_CATEGORIA] [int] NOT NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (ID,NRO_REFERENCIA,DESCRIPCION,ID_CATEGORIA)SELECT * FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA LIKE '" & Trim(txtBusqueda.Text) & "%' SELECT COUNT(*) FROM #TEMP_REFERENCIAS")
-        If CInt(unaTablaTemporalDeBusqueda.getItem(0, 0)) Mod 5 = 0 Then
-            Application("totalPaginasBusqueda") = CInt(unaTablaTemporalDeBusqueda.getItem(0, 0)) / 5
+        Dim unaTablaDeBusqueda As TablaSQL = New TablaSQL()
+        unaTablaDeBusqueda.setConnectionString(unconnectionstring)
+        unaTablaDeBusqueda.getDataSet("CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1) NOT NULL,[ID] [int] NULL,[NRO_REFERENCIA] [varchar](20) NULL,[DESCRIPCION] [varchar] (80) NOT NULL,[ID_CATEGORIA] [int] NOT NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (ID,NRO_REFERENCIA,DESCRIPCION,ID_CATEGORIA)SELECT * FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA LIKE '" & Trim(txtBusqueda.Text) & "%' SELECT COUNT(*) FROM #TEMP_REFERENCIAS")
+        If CInt(unaTablaDeBusqueda.getItem(0, 0)) Mod 5 = 0 Then
+            Application("totalPaginasBusqueda") = CInt(unaTablaDeBusqueda.getItem(0, 0)) / 5
         Else
-            Application("totalPaginasBusqueda") = CInt(unaTablaTemporalDeBusqueda.getItem(0, 0)) \ 5 + 1
+            Application("totalPaginasBusqueda") = CInt(unaTablaDeBusqueda.getItem(0, 0)) \ 5 + 1
         End If
     End Sub
 
     Protected Sub calcularPaginasPalabraClave()
-        Dim unaTablaIdCategoria As TablaSQL = New TablaSQL()
-        unaTablaIdCategoria.setConnectionString(unConnectionString)
-        unatablatemporaldebusqueda.getDataSet("CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1) NOT NULL,[ID] [int] NULL,[NRO_REFERENCIA] [varchar](20) NULL,[DESCRIPCION] [varchar] (80) NOT NULL,[ID_CATEGORIA] [int] NOT NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (ID,NRO_REFERENCIA,DESCRIPCION,ID_CATEGORIA)SELECT * FROM AUD_REFERENCIAS WHERE DESCRIPCION LIKE '%" & Trim(txtBusqueda.Text) & "%' SELECT COUNT(*) FROM #TEMP_REFERENCIAS")
-        If CInt(unaTablaTemporalDeBusqueda.getItem(0, 0)) Mod 5 = 0 Then
-            Application("totalPaginasBusqueda") = CInt(unaTablaTemporalDeBusqueda.getItem(0, 0)) / 5
+        Dim unaTablaDeBusqueda As TablaSQL = New TablaSQL()
+        unaTablaDeBusqueda.setConnectionString(unconnectionstring)
+        unaTablaDeBusqueda.getDataSet("CREATE TABLE [dbo].[#TEMP_REFERENCIAS]([FILA] [int] IDENTITY(1,1) NOT NULL,[ID] [int] NULL,[NRO_REFERENCIA] [varchar](20) NULL,[DESCRIPCION] [varchar] (80) NOT NULL,[ID_CATEGORIA] [int] NOT NULL) ON [PRIMARY] INSERT INTO #TEMP_REFERENCIAS (ID,NRO_REFERENCIA,DESCRIPCION,ID_CATEGORIA)SELECT * FROM AUD_REFERENCIAS WHERE DESCRIPCION LIKE '%" & Trim(txtBusqueda.Text) & "%' SELECT COUNT(*) FROM #TEMP_REFERENCIAS")
+        If CInt(unaTablaDeBusqueda.getItem(0, 0)) Mod 5 = 0 Then
+            Application("totalPaginasBusqueda") = CInt(unaTablaDeBusqueda.getItem(0, 0)) / 5
         Else
-            Application("totalPaginasBusqueda") = CInt(unaTablaTemporalDeBusqueda.getItem(0, 0)) \ 5 + 1
+            Application("totalPaginasBusqueda") = CInt(unaTablaDeBusqueda.getItem(0, 0)) \ 5 + 1
         End If
     End Sub
 
