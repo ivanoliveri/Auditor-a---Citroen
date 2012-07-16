@@ -6,11 +6,6 @@
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 <title>Busqueda de Herramientas @ Auditoría</title>
-<script type="text/javascript">
-    function unloadPage() {
-        window.close();
-    }
-</script>
 <style type="text/css">
 .auto-style1 {
 	border: 2px solid #000000;

@@ -147,7 +147,6 @@ Public Class busqueda
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         unaTablaTemporalDeBusqueda.setConnectionString(unConnectionString)
         txtBusqueda.Focus()
-        btnCancelar.Attributes.Add("onclick", "javascript:unloadPage()")
         hideNextOrPrevious()
     End Sub
 
@@ -235,6 +234,10 @@ Public Class busqueda
                 Case "PALABRA_CLAVE"
                     calcularPaginasPalabraClave()
             End Select
+            Application("agregoDesdePopup") = True
+            Application("busquedaMode") = False
+            Response.Write("<script>opener.location.href='http://normasymetodos.com/citroen.ar/Auditoria/auditoria.aspx';</script>")
+            Response.Write("<script>window.close();</script>")
         End If
     End Sub
 
@@ -260,5 +263,9 @@ Public Class busqueda
         Response.Write("<script>opener.location.href='http://normasymetodos.com/citroen.ar/Auditoria/auditoria.aspx';</script>")
         'Response.Write("<script>opener.location.reload();</script>")
         Response.Write("<script>window.close();</script>")
+    End Sub
+
+    Protected Sub btnCancelar_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnCancelar.Click
+          Response.Write("<script>window.close();</script>")
     End Sub
 End Class
