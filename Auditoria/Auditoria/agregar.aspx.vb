@@ -34,45 +34,45 @@ Public Class agregar
         If Application("popupcat") = "F" Then
             unaTablaTemporal.getDataSet("SELECT COUNT(*) FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & Trim(txtNroReferencia.Text) & "'")
             If CInt(unaTablaTemporal.getItem(0, 0)) >= 1 Then
-                Application("lastErrorAgregar") = "Error: La pieza ingresada ya existe."
+                Application("lastErrorAgregar") = "ERROR: LA PIEZA INGRESADA YA EXISTE."
                 txtNroReferencia.Focus()
                 Exit Sub
             End If
         Else
             unaTablaTemporal.getDataSet("SELECT COUNT(*) FROM AUD_REFERENCIAS WHERE DESCRIPCION='" & Trim(txtDescripcion.Text) & "' AND NRO_REFERENCIA=''")
             If CInt(unaTablaTemporal.getItem(0, 0)) >= 1 Then
-                Application("lastErrorAgregar") = "Error: La pieza ingresada ya existe."
+                Application("lastErrorAgregar") = "ERROR: LA PIEZA INGRESADA YA EXISTE."
                 txtDescripcion.Focus()
                 Exit Sub
             End If
         End If
         If Trim(txtDescripcion.Text) = "" Then
-            Application("lastErrorAgregar") = "Error: No has ingresado la descripción."
+            Application("lastErrorAgregar") = "ERROR: NO HAS INGRESADO LA DESCRIPCIÓN."
             txtDescripcion.Focus()
             Exit Sub
         End If
         If IsNumeric(txtStock.Text) = False Then
-            Application("lastErrorAgregar") = "Error: El stock debe ser un entero positivo."
+            Application("lastErrorAgregar") = "ERROR: EL STOCK DEBE SER UN ENTERO POSITIVO."
             txtStock.Focus()
             Exit Sub
         End If
         If CInt(txtStock.Text) < 0 Then
-            Application("lastErrorAgregar") = "Error: El stock debe ser un entero positivo."
+            Application("lastErrorAgregar") = "ERROR: EL STOCK DEBE SER UN ENTERO POSITIVO."
             txtStock.Focus()
             Exit Sub
         End If
         If InStr(txtStock.Text, ".", CompareMethod.Text) Then
-            Application("lastErrorAgregar") = "Error: El stock debe ser un entero positivo."
+            Application("lastErrorAgregar") = "ERROR: EL STOCK DEBE SER UN ENTERO POSITIVO."
             txtStock.Focus()
             Exit Sub
         End If
         If radEstado.SelectedIndex = -1 And Trim(txtStock.Text) <> "0" Then
-            Application("lastErrorAgregar") = "Error: Debes seleccionar un estado(B/M/R)"
+            Application("lastErrorAgregar") = "ERROR: DEBES SELECCIONAR UN ESTADO(B/M/R)"
             radEstado.Focus()
             Exit Sub
         End If
         If txtStock.Text = "0" And radEstado.SelectedIndex <> -1 Then
-            Application("lastErrorAgregar") = "Error: No puedes asignarle un estado un stock de 0"
+            Application("lastErrorAgregar") = "ERROR: NO PUEDES ASIGNARLE UN STOCK DE 0."
             radEstado.SelectedIndex = -1
             Exit Sub
         End If

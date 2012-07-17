@@ -117,6 +117,7 @@ Public Class auditoria
             Dim unaFecha As String
             Dim lblDescripcion As Label = CType(row.FindControl("Label2"), Label)
             Dim lblEstadoEnviado As Label = CType(row.FindControl("Label5"), Label)
+            Dim lblStockEnviado As Label = CType(row.FindControl("Label8"), Label)
             Dim unString As String = Trim(lblDescripcion.Text)
             Dim txtStock As TextBox = CType(row.FindControl("TextBox1"), TextBox)
             txtStock.MaxLength = 4
@@ -126,6 +127,9 @@ Public Class auditoria
             Dim unNum As Integer = Len(unString)
             If lblEstadoEnviado.Text = "N" Then
                 lblEstadoEnviado.Text = ""
+            End If
+            If lblStockEnviado.Text = "0" Then
+                lblStockEnviado.Text = ""
             End If
             If Len(unString) >= 29 Then
                 lblDescripcion.Text = Left(unString, 30) + ".."
@@ -341,27 +345,27 @@ Public Class auditoria
             'Se fija que sea distinto de lo que vino cargado y que adamás haya seleccionado un estado
             If txtStock.Text.Trim() <> Trim(unStockDataTable) Then
                 If IsNumeric(txtStock.Text) = False Then
-                    Application("lastError") = "Error: El stock debe ser un entero positivo."
+                    Application("lastError") = "ERROR: EL STOCK DEBE SER UN ENTERO POSITIVO."
                     txtStock.Focus()
                     Application("agregoOEdito") = True
                     Exit Sub
                 End If
                 If CInt(txtStock.Text) < 0 Or InStr(txtStock.Text, ".", CompareMethod.Text) Or InStr(txtStock.Text, "%", CompareMethod.Text) Then
-                    Application("lastError") = "Error: El stock debe ser un entero positivo."
+                    Application("lastError") = "ERROR: EL STOCK DEBE SER UN ENTERO POSITIVO."
                     txtStock.Focus()
                     Application("agregoOEdito") = True
                     Exit Sub
                 End If
                 Dim radOpciones As RadioButtonList = CType(row.FindControl("RadioButtonList1"), RadioButtonList)
                 If radOpciones.SelectedValue = "N" And Trim(unStockTextBox) <> "0" Then
-                    Application("lastError") = "Error: Debes seleccionar un estado(B/M/R)"
+                    Application("lastError") = "ERROR: DEBES SELECCIONAR UN ESTADO(B/M/R)"
                     radOpciones.Focus()
                     Application("agregoOEdito") = True
                     Exit Sub
                 End If
                 If radOpciones.SelectedValue <> "N" And Trim(unStockTextBox) = "0" Then
                     radOpciones.SelectedIndex = -1
-                    Application("lastError") = "Error: No puedes asignarle un estado a un stock de 0."
+                    Application("lastError") = "ERROR: NO PUEDES ASIGNARLE UN ESTADO A UN STOCK DE 0."
                     radOpciones.Focus()
                     Application("agregoOEdito") = True
                     Exit Sub
@@ -419,7 +423,7 @@ Public Class auditoria
                     End If
                     unasreferencias.execQuery("UPDATE AUD_RELEVAMIENTOS SET ESTADO='" & radEstado.SelectedValue & "' WHERE ID_AUD_REFERENCIAS=" & CInt(unaTablaTemporal.getItem(0, 0)) & " AND PERIODO='" & Application("unPeriodoActual") & "' AND CE=" & Application("unNumeroDeCE") & " AND SUCURSAL=" & Application("unNumeroDeSucursal"))
                     If unStockTextBox = "" Then
-                        Application("lastError") = "Debes ingresar un stock primero"
+                        Application("lastError") = "ERROR: DEBES INGRESAR UN STOCK PRIMERO."
                         txtStock.Focus()
                         Application("agregoOEdito") = True
                     End If

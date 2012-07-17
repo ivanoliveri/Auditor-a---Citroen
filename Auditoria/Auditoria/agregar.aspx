@@ -49,7 +49,7 @@
     }
     .style4
     {
-        width: 221px;
+        width: 234px;
     }
 </style>
 </head>
@@ -58,7 +58,7 @@
 
     <form id="form1" runat="server">
 
-<table align="center" class="auto-style1" style="width: 426px; height: 259px">
+<table align="center" class="auto-style1" style="width: 475px; height: 332px">
 	<tr>
 		<td style="height: 69px; width: 83px">
 		<img alt="" height="55" src="images/u82-fr.jpg" width="78" /></td>
@@ -135,9 +135,8 @@
             &nbsp;&nbsp;&nbsp;<asp:TextBox ID="txtError" 
                 runat="server" BorderWidth="0px" 
                 Font-Names="Arial" Font-Size="Small" ForeColor="#DC002E" ReadOnly="True" 
-                Width="310px" Height="16px" style="margin-left: 0px"></asp:TextBox>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:ImageButton ID="btnConfirmar" runat="server" Height="32px" 
+                Width="370px" Height="16px" style="margin-left: 0px" Font-Bold="True"></asp:TextBox>
+                &nbsp;<asp:ImageButton ID="btnConfirmar" runat="server" Height="32px" 
                 ImageUrl="~/images/buttons/confirm.png" Width="32px" 
                 ToolTip="Confirmar" />
                 <asp:ImageButton ID="btnCancelar" runat="server" Height="32px" 

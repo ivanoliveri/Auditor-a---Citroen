@@ -54,7 +54,7 @@
 	        hidden = open(unString, 'Imprimir', 'top=0,left=0,width=630,height=320,status=yes,resizable=yes,scrollbars=yes');
         }
 	    function mostrarPopupAgregar(unString) {
-	        hidden = open(unString, 'Agregar', 'top=0,left=0,width=465,height=360,status=yes,resizable=yes,scrollbars=yes');
+	        hidden = open(unString, 'Agregar', 'top=0,left=0,width=500,height=360,status=yes,resizable=yes,scrollbars=yes');
 	        return false;
 	    }
 	    function printGrid(nombre) {
@@ -236,7 +236,7 @@
                         <div align="right" id="botonera">
                             <asp:TextBox ID="txtError" runat="server" BorderWidth="0px" 
                 Font-Names="Arial" Font-Size="Small" ForeColor="#DC002E" ReadOnly="True" 
-                Width="673px" Height="16px" style="margin-left: 0px"></asp:TextBox>
+                Width="673px" Height="16px" style="margin-left: 0px" Font-Bold="True"></asp:TextBox>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <asp:ImageButton 

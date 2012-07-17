@@ -104,7 +104,7 @@ Public Class busqueda
     Protected Sub buscar()
         'CREO UNA TABLA TEMPORAL PARA OBTENER EL CORRESPONDIENTE NÚMERO DE FILAS DE CADA UNO, CUANDO LA TERMINO DE USAR SE BORRA SOLA
         If InStr(txtBusqueda.Text, "'", CompareMethod.Text) Or InStr(txtBusqueda.Text, "%", CompareMethod.Text) Then
-            txtError.Text = "Error: Debes ingresar una cadena de caracteres válida."
+            txtError.Text = "DEBES INGRESAR UNA CADENA DE CARACTERS VÁLIDA."
             Exit Sub
         Else
             If radBusqueda.SelectedValue = "DESCRIPCION" Then
