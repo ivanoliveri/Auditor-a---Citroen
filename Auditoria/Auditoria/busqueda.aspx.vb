@@ -260,6 +260,7 @@ Public Class busqueda
         unaTablaTemp.getDataSet("SELECT ID FROM AUD_REFERENCIAS WHERE NRO_REFERENCIA='" & Application("nroReferenciaToSearch") & "'")
         Application("idReferenciaToSearch") = CInt(unaTablaTemp.getItem(0, 0))
         Application("busquedaMode") = True
+        Application("agregoDesdePopup") = True
         Response.Write("<script>opener.location.href='http://normasymetodos.com/citroen.ar/Auditoria/auditoria.aspx';</script>")
         'Response.Write("<script>opener.location.reload();</script>")
         Response.Write("<script>window.close();</script>")

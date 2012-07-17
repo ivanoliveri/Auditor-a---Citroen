@@ -101,7 +101,7 @@ Public Class agregar
         Else
             unasreferencias.execQuery("INSERT INTO AUD_RELEVAMIENTOS VALUES(" & Application("unNumeroDeCE") & "," & Application("unNumeroDeSucursal") & ",'" & Application("unPeriodoActual") & "'," & unAno & unMes & unDia & "," & CInt(unaTablaIdReferencia.getItem(0, 0)) & ",'" & txtStock.Text & "','" & radEstado.SelectedValue & "')")
         End If
-            If (Application("lastCat") = "F" And unaCategoria = "F") Or (Application("lastCat") = "G" And unaCategoria = "G") Then
+        If (Application("lastCat") = "F" And unaCategoria = "F") Or (Application("lastCat") = "G" And unaCategoria = "G") Then
             Application("agregoDesdePopup") = True
             Response.Write("<script>opener.location.href='http://normasymetodos.com/citroen.ar/Auditoria/auditoria.aspx';</script>")
         End If

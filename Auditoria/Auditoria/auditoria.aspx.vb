@@ -180,7 +180,7 @@ Public Class auditoria
         todasLasCategorias.getAllDataSet()
         'El ViewGrid viene por defecto en categoría A
         If Application("ultimoQuery") = "" Then
-            txtCategoria.Text = Trim(todasLasCategorias.getItem(0, 2))
+            txtCategoria.Text = "CATEGORIA: " & Trim(todasLasCategorias.getItem(0, 2))
             Application("lastCat") = "A"
             setImageButton()
             calcularPaginas(Application("lastCat"))
